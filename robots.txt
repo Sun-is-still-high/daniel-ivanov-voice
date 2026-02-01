@@ -1,0 +1,10 @@
+# robots.txt for Daniel's Voice
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://daniel-ivanov-voice.ru/sitemap-index.xml
+
+# Disallow admin paths if any
+# Disallow: /admin/
