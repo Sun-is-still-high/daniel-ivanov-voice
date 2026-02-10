@@ -55,6 +55,16 @@ $pageImage = isset($pageImage) ? $pageImage : $SITE_CONFIG['author']['avatar'];
     <!-- <meta name="yandex-verification" content="your_yandex_verification_code"> -->
     <!-- <meta name="google-site-verification" content="your_google_verification_code"> -->
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-02N3C6RNW0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-02N3C6RNW0');
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
