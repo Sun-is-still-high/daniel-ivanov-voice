@@ -14,9 +14,27 @@ $categoryColor = $categoryInfo['color'];
 
 $pageTitle = $categoryInfo['title'];
 $pageDescription = $categoryInfo['description'];
+$pageImage = $SITE_CONFIG['author']['avatar'];
 
 require_once __DIR__ . '/../includes/header.php';
+
+// Добавляем структурированные данные для категории
+$categorySchema = [
+    "@context" => "https://schema.org",
+    "@type" => "CollectionPage",
+    "name" => $categoryInfo['title'],
+    "description" => $categoryInfo['description'],
+    "creator" => [
+        "@type" => "Person",
+        "name" => $SITE_CONFIG['author']['name']
+    ]
+];
 ?>
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+<?= json_encode($categorySchema, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
+</script>
 
 <main class="container mx-auto px-6 md:px-8 py-16 md:py-24">
     <div class="max-w-4xl mx-auto">

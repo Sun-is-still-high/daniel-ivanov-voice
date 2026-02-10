@@ -8,3 +8,9 @@ Sitemap: https://daniel-ivanov-voice.ru/sitemap-index.xml
 
 # Disallow admin paths if any
 # Disallow: /admin/
+
+# Block access to certain file types
+Disallow: /*.log$
+Disallow: /*.tmp$
+Disallow: /includes/
+Disallow: /data/

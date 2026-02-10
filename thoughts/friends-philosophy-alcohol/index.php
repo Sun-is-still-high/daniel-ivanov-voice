@@ -23,18 +23,51 @@ $platforms = $audio['platforms'] ?? [];
 $pageTitle = $audio['title'];
 $pageDescription = $audio['description'];
 $pageType = 'article';
+$pageImage = $SITE_CONFIG['author']['avatar'];
 
 require_once __DIR__ . '/../../includes/header.php';
 
 $formattedDate = formatDate($audio['publishDate']);
 ?>
 
-<main class="container mx-auto px-6 md:px-8 py-16 md:py-24">
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AudioObject",
+    "name": <?= json_encode($audio['title'], JSON_UNESCAPED_UNICODE) ?>,
+    "description": <?= json_encode($audio['description'], JSON_UNESCAPED_UNICODE) ?>,
+    "duration": "<?= formatDurationForSchema($audio['duration']) ?>",
+    "uploadDate": "<?= $audio['publishDate'] ?>",
+    "author": {
+        "@type": "Person",
+        "name": <?= json_encode($SITE_CONFIG['author']['name'], JSON_UNESCAPED_UNICODE) ?>
+    },
+    "contentUrl": "<?= $audio['audioFile'] ?>",
+    "encodingFormat": "audio/mpeg"
+}
+</script>
+
+<main class="container mx-auto px-6 md:px-8 py-16 md:py-24" itemscope itemtype="https://schema.org/AudioObject">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://daniel-ivanov-voice.ru/<?= e($audio['category']) ?>/<?= e(basename($audio['id'])) ?>/">
+    
     <!-- Breadcrumbs -->
     <?= renderBreadcrumbs([
         ['label' => $categoryInfo['title'], 'href' => '/' . e($audio['category'])],
         ['label' => $audio['title']]
     ]) ?>
+    
+    <!-- Hidden schema.org properties -->
+    <meta itemprop="name" content="<?= e($audio['title']) ?>">
+    <meta itemprop="description" content="<?= e($audio['description']) ?>">
+    <meta itemprop="duration" content="<?= formatDurationForSchema($audio['duration']) ?>">
+    <meta itemprop="datePublished" content="<?= e($audio['publishDate']) ?>">
+    <meta itemprop="contentUrl" content="<?= e($audio['audioFile']) ?>">
+    <meta itemprop="encodingFormat" content="audio/mpeg">
+    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <meta itemprop="name" content="<?= e($SITE_CONFIG['author']['name']) ?>">
+    </div>
 
     <div class="grid lg:grid-cols-3 gap-8">
         <!-- Main Content -->
@@ -99,7 +132,7 @@ $formattedDate = formatDate($audio['publishDate']);
                     </h2>
                     <div class="space-y-4">
                         <?php foreach ($relatedAudio as $related): ?>
-                            <a href="/<?= e($related['category']) ?>/<?= e(basename($related['id'])) ?>" class="block group">
+                            <a href="/<?= e($related['category']) ?>/<?= e(basename($related['id'])) ?>/" class="block group">
                                 <div class="p-4 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors">
                                     <h3 class="font-semibold text-slate-900 group-hover:text-blue-600 mb-2 line-clamp-2">
                                         <?= e($related['title']) ?>

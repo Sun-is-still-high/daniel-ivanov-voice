@@ -46,8 +46,14 @@ $pageImage = isset($pageImage) ? $pageImage : $SITE_CONFIG['author']['avatar'];
     <!-- Additional SEO -->
     <meta name="author" content="<?= e($SITE_CONFIG['author']['name']) ?>">
     <meta name="robots" content="index, follow">
+    <meta name="keywords" content="психология, медитация, осознанность, подкаст, айти, выгорание, стресс, психотерапия, mindfulness">
+    <link rel="alternate" type="application/rss+xml" title="Daniel's Voice RSS Feed" href="/rss.xml">
 
     <title><?= e($pageTitle) ?></title>
+    
+    <!-- Verification tags if needed -->
+    <!-- <meta name="yandex-verification" content="your_yandex_verification_code"> -->
+    <!-- <meta name="google-site-verification" content="your_google_verification_code"> -->
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>

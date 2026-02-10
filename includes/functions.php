@@ -83,22 +83,30 @@ function renderAudioCard($audio) {
     $categoryLabel = $CATEGORY_LABELS[$category] ?? '';
 
     return <<<HTML
-<article class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200" data-category="{$category}">
+<article class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200" data-category="{$category}" itemscope itemtype="https://schema.org/AudioObject">
+  <meta itemprop="name" content="{$title}">
+  <meta itemprop="description" content="{$description}">
+  <meta itemprop="duration" content="{$duration}">
+  <meta itemprop="contentUrl" content="{$audioFile}">
+  <meta itemprop="encodingFormat" content="audio/mpeg">
+  <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <meta itemprop="name" content="{$GLOBALS['SITE_CONFIG']['author']['name']}">
+  </div>
   <div class="p-7 md:p-8">
     <div class="flex items-start justify-between mb-4">
-      <span class="text-xs font-semibold px-4 py-2 rounded-full border {$badgeColor}">
+      <span class="text-xs font-semibold px-4 py-2 rounded-full border {$badgeColor}" itemprop="genre">
         {$categoryLabel}
       </span>
-      <span class="text-sm text-slate-500 font-medium">{$duration}</span>
+      <span class="text-sm text-slate-500 font-medium" itemprop="duration">{$duration}</span>
     </div>
 
     <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-3 line-clamp-2 break-words">
-      <a href="{$audioUrl}" class="hover:text-slate-600 transition-colors">
-        {$title}
+      <a href="{$audioUrl}" class="hover:text-slate-600 transition-colors" itemprop="url">
+        <span itemprop="name">{$title}</span>
       </a>
     </h3>
 
-    <p class="text-slate-600 text-base leading-relaxed mb-5 line-clamp-2 break-words">
+    <p class="text-slate-600 text-base leading-relaxed mb-5 line-clamp-2 break-words" itemprop="description">
       {$description}
     </p>
 
@@ -259,4 +267,46 @@ function renderBreadcrumbs($items) {
     $html .= '</ol></nav>';
 
     return $html;
+}
+
+/**
+ * Преобразовать длительность в формат ISO 8601 для schema.org
+ * @param string $duration В формате "MM:SS" или "HH:MM:SS"
+ * @return string Формат ISO 8601, например "PT10M30S" или "PT1H20M30S"
+ */
+function formatDurationForSchema($duration) {
+    $parts = explode(':', $duration);
+    
+    if (count($parts) === 2) { // MM:SS
+        $minutes = intval($parts[0]);
+        $seconds = intval($parts[1]);
+        $hours = 0;
+    } elseif (count($parts) === 3) { // HH:MM:SS
+        $hours = intval($parts[0]);
+        $minutes = intval($parts[1]);
+        $seconds = intval($parts[2]);
+    } else {
+        return 'PT0S'; // Если формат не распознан
+    }
+    
+    $iso = 'PT';
+    
+    if ($hours > 0) {
+        $iso .= $hours . 'H';
+    }
+    
+    if ($minutes > 0) {
+        $iso .= $minutes . 'M';
+    }
+    
+    if ($seconds > 0) {
+        $iso .= $seconds . 'S';
+    }
+    
+    // Если всё равно PT без единиц времени (например, PT0S), вернуть хотя бы 0S
+    if ($iso === 'PT') {
+        $iso = 'PT0S';
+    }
+    
+    return $iso;
 }

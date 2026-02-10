@@ -3,11 +3,41 @@
  * Главная страница
  */
 
-require_once __DIR__ . '/includes/header.php';
+$pageTitle = $SITE_CONFIG['title'];
+$pageDescription = $SITE_CONFIG['description'];
+$pageImage = $SITE_CONFIG['author']['avatar'];
+
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/data/audio.php';
 
 // Получаем отсортированные аудиозаписи
 $sortedAudio = getSortedAudio();
+
+require_once __DIR__ . '/includes/header.php';
+
+// Добавляем структурированные данные для главной страницы
+$homepageSchema = [
+    "@context" => "https://schema.org",
+    "@type" => "WebSite",
+    "name" => $SITE_CONFIG['title'],
+    "description" => $SITE_CONFIG['description'],
+    "url" => "https://daniel-ivanov-voice.ru/",
+    "author" => [
+        "@type" => "Person",
+        "name" => $SITE_CONFIG['author']['name']
+    ],
+    "publisher" => [
+        "@type" => "Person",
+        "name" => $SITE_CONFIG['author']['name']
+    ]
+];
 ?>
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+<?= json_encode($homepageSchema, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
+</script>
 
 <main class="container mx-auto px-6 md:px-8 py-16 md:py-24">
     <!-- Hero Section -->

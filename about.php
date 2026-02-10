@@ -5,9 +5,32 @@
 
 $pageTitle = 'О проекте';
 $pageDescription = "Информация о проекте Daniel's Voice и его создателе Даниил Иванов";
+$pageImage = $SITE_CONFIG['author']['avatar'];
+
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/data/audio.php';
 
 require_once __DIR__ . '/includes/header.php';
+
+// Добавляем структурированные данные для страницы "О проекте"
+$aboutPageSchema = [
+    "@context" => "https://schema.org",
+    "@type" => "AboutPage",
+    "name" => "О проекте",
+    "description" => "Информация о проекте Daniel's Voice и его создателе Даниил Иванов",
+    "author" => [
+        "@type" => "Person",
+        "name" => $SITE_CONFIG['author']['name'],
+        "description" => $SITE_CONFIG['author']['bio']
+    ]
+];
 ?>
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+<?= json_encode($aboutPageSchema, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
+</script>
 
 <main class="container mx-auto px-6 md:px-8 py-16 md:py-24">
     <article class="max-w-4xl mx-auto">
