@@ -3,13 +3,13 @@
  * Страница "О проекте"
  */
 
-$pageTitle = 'О проекте';
-$pageDescription = "Информация о проекте Daniel's Voice и его создателе Даниил Иванов";
-$pageImage = $SITE_CONFIG['author']['avatar'];
-
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/data/audio.php';
+
+$pageTitle = 'О проекте';
+$pageDescription = "Информация о проекте Daniel's Voice и его создателе Даниил Иванов";
+$pageImage = $SITE_CONFIG['author']['avatar'];
 
 require_once __DIR__ . '/includes/header.php';
 

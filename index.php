@@ -3,13 +3,13 @@
  * Главная страница
  */
 
-$pageTitle = $SITE_CONFIG['title'];
-$pageDescription = $SITE_CONFIG['description'];
-$pageImage = $SITE_CONFIG['author']['avatar'];
-
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/data/audio.php';
+
+$pageTitle = $SITE_CONFIG['title'];
+$pageDescription = $SITE_CONFIG['description'];
+$pageImage = $SITE_CONFIG['author']['avatar'];
 
 // Получаем отсортированные аудиозаписи
 $sortedAudio = getSortedAudio();
