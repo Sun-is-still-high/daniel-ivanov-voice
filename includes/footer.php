@@ -27,7 +27,7 @@ $currentYear = date('Y');
                                     <?= e($category['title']) ?> <span class="text-xs">(Скоро)</span>
                                 </span>
                             <?php else: ?>
-                                <a href="/<?= e($key) ?>.php" class="text-slate-400 hover:text-white transition-colors">
+                                <a href="/<?= e($key) ?>/" class="text-slate-400 hover:text-white transition-colors">
                                     <?= e($category['title']) ?>
                                 </a>
                             <?php endif; ?>

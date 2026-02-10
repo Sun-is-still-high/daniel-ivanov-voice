@@ -77,20 +77,10 @@ function renderAudioCard($audio) {
     $category = e($audio['category']);
     $duration = e($audio['duration']);
     $audioFile = e($audio['audioFile']);
-    $tags = $audio['tags'] ?? [];
-    $audioUrl = "/{$category}/{$slug}.php";
+    $audioUrl = "/{$category}/{$slug}/";
 
     $badgeColor = $CATEGORY_BADGE_COLORS[$category] ?? '';
     $categoryLabel = $CATEGORY_LABELS[$category] ?? '';
-
-    $tagsHtml = '';
-    if (!empty($tags)) {
-        $tagsHtml = '<div class="flex flex-wrap gap-2 mb-6">';
-        foreach (array_slice($tags, 0, 3) as $tag) {
-            $tagsHtml .= '<span class="text-xs px-3 py-1.5 bg-slate-100 text-slate-600 rounded-md">#' . e($tag) . '</span>';
-        }
-        $tagsHtml .= '</div>';
-    }
 
     return <<<HTML
 <article class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200" data-category="{$category}">
@@ -111,8 +101,6 @@ function renderAudioCard($audio) {
     <p class="text-slate-600 text-base leading-relaxed mb-5 line-clamp-2 break-words">
       {$description}
     </p>
-
-    {$tagsHtml}
 
     <div class="flex gap-3">
       <a
@@ -204,6 +192,33 @@ function renderAudioPlayer($audio) {
   </div>
 </div>
 HTML;
+}
+
+/**
+ * Отрисовка кнопок платформ
+ */
+function renderPlatformButtons($platforms) {
+    if (empty($platforms)) {
+        return '';
+    }
+
+    $html = '<div class="border-t border-slate-100 pt-6 px-6 pb-6">';
+    $html .= '<h2 class="text-xl font-bold text-slate-900 mb-4">Слушать на платформах</h2>';
+    $html .= '<div class="flex flex-wrap gap-3">';
+
+    foreach ($platforms as $platform) {
+        $name = e($platform['name']);
+        $url = e($platform['url']);
+        $html .= '<a href="' . $url . '" target="_blank" rel="noopener noreferrer" ';
+        $html .= 'class="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">';
+        $html .= '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">';
+        $html .= '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>';
+        $html .= '</svg>';
+        $html .= $name . '</a>';
+    }
+
+    $html .= '</div></div>';
+    return $html;
 }
 
 /**

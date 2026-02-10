@@ -12,7 +12,31 @@ $AUDIO_DATA = [
         'duration' => '09:47',
         'audioFile' => '/audio/mindfulness/Про борьбу с мыслями.mp3',
         'publishDate' => '2026-01-15',
-        'tags' => ['для начинающих', 'борьба с мыслями'],
+        'platforms' => [
+            // ['name' => 'Apple Podcasts', 'url' => 'https://...'],
+            // ['name' => 'Spotify', 'url' => 'https://...'],
+            // ['name' => 'YouTube', 'url' => 'https://...'],
+        ],
+    ],
+    'podcast/trailer' => [
+        'id' => 'podcast/trailer',
+        'title' => 'Трейлер',
+        'description' => '"Психопогромизм" - это психология для технарей, которые во всем привыкли разбираться досконально. Каждый человек является экспертом своей жизни, и я это уважаю. Поэтому и создал психологический подкаст без "успешного успеха" и "Нужно просто себя полюбить". Добро пожаловать, давайте продолжим наши духовные поиски вместе.',
+        'category' => 'podcast',
+        'duration' => '01:16',
+        'audioFile' => '/audio/podcast/Трейлер.mp3',
+        'publishDate' => '2026-02-02',
+        'platforms' => [],
+    ],
+    'podcast/pilot' => [
+        'id' => 'podcast/pilot',
+        'title' => 'Пилот',
+        'description' => 'Пилотная серия подкаста. "Развиваем психическую устойчивость во время кризиса". Поговорим о сложном мире, в котором мы живем. Поговорим об автопилоте, на котором мы пытаемся решить наши проблемы. Рассмотрим альтернативу для автопилота.',
+        'category' => 'podcast',
+        'duration' => '21:17',
+        'audioFile' => '/audio/podcast/Пилот.mp3',
+        'publishDate' => '2026-02-10',
+        'platforms' => [],
     ],
     'thoughts/friends-philosophy-alcohol' => [
         'id' => 'thoughts/friends-philosophy-alcohol',
@@ -22,7 +46,11 @@ $AUDIO_DATA = [
         'duration' => '8:13',
         'audioFile' => '/audio/thoughts/Друзья, философия, коньяк - не помогло. Что теперь.mp3',
         'publishDate' => '2026-01-08',
-        'tags' => ['психотерапия', 'психология', 'самопомощь'],
+        'platforms' => [
+            // ['name' => 'Apple Podcasts', 'url' => 'https://...'],
+            // ['name' => 'Spotify', 'url' => 'https://...'],
+            // ['name' => 'YouTube', 'url' => 'https://...'],
+        ],
     ],
 ];
 

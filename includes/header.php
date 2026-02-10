@@ -83,7 +83,7 @@ $pageImage = isset($pageImage) ? $pageImage : $SITE_CONFIG['author']['avatar'];
                             <?= e($category['title']) ?> <span class="text-xs">(Скоро)</span>
                         </span>
                     <?php else: ?>
-                        <a href="/<?= e($key) ?>.php" class="text-slate-700 hover:text-slate-900 font-medium transition-colors">
+                        <a href="/<?= e($key) ?>/" class="text-slate-700 hover:text-slate-900 font-medium transition-colors">
                             <?= e($category['title']) ?>
                         </a>
                     <?php endif; ?>
@@ -114,7 +114,7 @@ $pageImage = isset($pageImage) ? $pageImage : $SITE_CONFIG['author']['avatar'];
                         <?= e($category['title']) ?> <span class="text-xs">(Скоро)</span>
                     </span>
                 <?php else: ?>
-                    <a href="/<?= e($key) ?>.php" class="block py-2 text-slate-700 hover:text-slate-900 font-medium">
+                    <a href="/<?= e($key) ?>/" class="block py-2 text-slate-700 hover:text-slate-900 font-medium">
                         <?= e($category['title']) ?>
                     </a>
                 <?php endif; ?>

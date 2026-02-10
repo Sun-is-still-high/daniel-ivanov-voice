@@ -103,7 +103,7 @@ $sortedAudio = getSortedAudio();
                     </div>
                 <?php else: ?>
                     <a
-                        href="/<?= e($key) ?>.php"
+                        href="/<?= e($key) ?>"
                         class="group relative overflow-hidden bg-white rounded-3xl shadow-lg transition-all duration-300 p-10 md:p-12 hover:shadow-2xl cursor-pointer"
                     >
                         <div class="absolute inset-0 bg-gradient-to-br <?= $colorClasses ?> opacity-0 group-hover:opacity-10 transition-opacity"></div>
@@ -124,6 +124,46 @@ $sortedAudio = getSortedAudio();
                     </a>
                 <?php endif; ?>
             <?php endforeach; ?>
+        </div>
+    </section>
+
+    <!-- Podcast Platforms -->
+    <section class="mb-32">
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-10 md:p-16 text-center">
+            <h2 class="text-4xl font-bold text-slate-900 mb-4">Психопогромизм</h2>
+            <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+                Слушайте подкаст на удобной платформе
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://mave.stream/rebel-psychology" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    Mave
+                </a>
+                <a href="https://music.yandex.ru/album/40512697" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    Яндекс Музыка
+                </a>
+                <a href="https://castbox.fm/channel/id7001251" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    Castbox
+                </a>
+                <a href="https://zvuk.com/podcast/48659120" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    Звук
+                </a>
+            </div>
         </div>
     </section>
 
