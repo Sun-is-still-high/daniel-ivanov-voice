@@ -117,16 +117,6 @@ function renderAudioCard($audio) {
       >
         Прослушать
       </a>
-      <a
-        href="{$audioFile}"
-        download
-        class="px-5 py-3 border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-700 text-sm font-medium rounded-xl transition-colors"
-        aria-label="Скачать"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-        </svg>
-      </a>
     </div>
   </div>
 </article>

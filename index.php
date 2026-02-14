@@ -17,19 +17,47 @@ $sortedAudio = getSortedAudio();
 require_once __DIR__ . '/includes/header.php';
 
 // Добавляем структурированные данные для главной страницы
+$authorSchema = [
+    "@type" => "Person",
+    "name" => $SITE_CONFIG['author']['name'],
+    "description" => $SITE_CONFIG['author']['bio'],
+    "url" => $SITE_CONFIG['author']['website'],
+    "image" => "https://daniel-ivanov-voice.ru" . $SITE_CONFIG['author']['avatar'],
+    "jobTitle" => "Психолог, психотерапевт",
+    "knowsAbout" => ["психология", "психотерапия", "медитация", "осознанность", "выгорание", "TypeScript", "IT"],
+    "sameAs" => [
+        $SITE_CONFIG['social']['telegram'],
+        $SITE_CONFIG['social']['telegramChannel'],
+        $SITE_CONFIG['social']['youtube'],
+        $SITE_CONFIG['social']['vk'],
+        $SITE_CONFIG['social']['rutube'],
+        $SITE_CONFIG['social']['dzen'],
+        $SITE_CONFIG['author']['website'],
+        $SITE_CONFIG['social']['blog'],
+    ]
+];
+
 $homepageSchema = [
     "@context" => "https://schema.org",
-    "@type" => "WebSite",
-    "name" => $SITE_CONFIG['title'],
-    "description" => $SITE_CONFIG['description'],
-    "url" => "https://daniel-ivanov-voice.ru/",
-    "author" => [
-        "@type" => "Person",
-        "name" => $SITE_CONFIG['author']['name']
-    ],
-    "publisher" => [
-        "@type" => "Person",
-        "name" => $SITE_CONFIG['author']['name']
+    "@graph" => [
+        [
+            "@type" => "WebSite",
+            "name" => $SITE_CONFIG['title'],
+            "description" => $SITE_CONFIG['description'],
+            "url" => "https://daniel-ivanov-voice.ru/",
+            "inLanguage" => "ru",
+            "author" => $authorSchema,
+            "publisher" => $authorSchema
+        ],
+        [
+            "@type" => "PodcastSeries",
+            "name" => "Психопогромизм",
+            "description" => $SITE_CONFIG['categories']['podcast']['description'],
+            "url" => "https://daniel-ivanov-voice.ru/podcast/",
+            "inLanguage" => "ru",
+            "author" => ["@type" => "Person", "name" => $SITE_CONFIG['author']['name']],
+            "webFeed" => $SITE_CONFIG['social']['podcastMave']
+        ]
     ]
 ];
 ?>
@@ -203,7 +231,7 @@ $homepageSchema = [
             <h2 class="text-4xl md:text-5xl font-bold text-slate-900">Последние записи</h2>
         </div>
 
-        <div id="audio-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div id="audio-grid" class="grid md:grid-cols-2 gap-8 md:gap-10">
             <?php
             $displayAudio = array_slice($sortedAudio, 0, 9);
             foreach ($displayAudio as $audio) {
