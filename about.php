@@ -16,13 +16,64 @@ require_once __DIR__ . '/includes/header.php';
 // Добавляем структурированные данные для страницы "О проекте"
 $aboutPageSchema = [
     "@context" => "https://schema.org",
-    "@type" => "AboutPage",
-    "name" => "О проекте",
-    "description" => "Информация о проекте Daniel's Voice и его создателе Даниил Иванов",
-    "author" => [
-        "@type" => "Person",
-        "name" => $SITE_CONFIG['author']['name'],
-        "description" => $SITE_CONFIG['author']['bio']
+    "@graph" => [
+        [
+            "@type" => "AboutPage",
+            "name" => "О проекте",
+            "description" => "Информация о проекте Daniel's Voice и его создателе Даниил Иванов",
+            "author" => [
+                "@type" => "Person",
+                "name" => $SITE_CONFIG['author']['name'],
+                "description" => $SITE_CONFIG['author']['bio'],
+                "url" => $SITE_CONFIG['author']['website'],
+                "jobTitle" => "Психолог, психотерапевт",
+                "memberOf" => "АКПН",
+                "sameAs" => [
+                    $SITE_CONFIG['social']['telegram'],
+                    $SITE_CONFIG['social']['telegramChannel'],
+                    $SITE_CONFIG['social']['youtube'],
+                    $SITE_CONFIG['social']['vk'],
+                    $SITE_CONFIG['author']['website'],
+                ]
+            ]
+        ],
+        [
+            "@type" => "FAQPage",
+            "mainEntity" => [
+                [
+                    "@type" => "Question",
+                    "name" => "Кто такой Даниил Иванов?",
+                    "acceptedAnswer" => [
+                        "@type" => "Answer",
+                        "text" => $SITE_CONFIG['author']['bio']
+                    ]
+                ],
+                [
+                    "@type" => "Question",
+                    "name" => "Что такое Daniel's Voice?",
+                    "acceptedAnswer" => [
+                        "@type" => "Answer",
+                        "text" => "Daniel's Voice — бесплатный сайт с медитациями и подкастами от психолога Даниила Иванова. Без подписок, регистраций и модальных окон. Контент создан для IT-специалистов и технарей на основе доказательной психологии, без эзотерики."
+                    ]
+                ],
+                [
+                    "@type" => "Question",
+                    "name" => "Почему весь контент бесплатный?",
+                    "acceptedAnswer" => [
+                        "@type" => "Answer",
+                        "text" => "Автор зарабатывает на индивидуальной терапии. Сайт усиливает личный бренд. Лучшая благодарность — рассказать о материалах другу."
+                    ]
+                ],
+                [
+                    "@type" => "Question",
+                    "name" => "Что такое подкаст Психопогромизм?",
+                    "acceptedAnswer" => [
+                        "@type" => "Answer",
+                        "text" => $SITE_CONFIG['categories']['podcast']['description']
+                    ]
+                ]
+            ]
+        ]
     ]
 ];
 ?>
