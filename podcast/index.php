@@ -109,10 +109,10 @@ $categorySchema = [
                 </div>
             </div>
 
-            <!-- Audio Grid -->
-            <div id="audio-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Episode List -->
+            <div id="audio-grid" class="flex flex-col gap-5">
                 <?php foreach ($sortedAudio as $audio): ?>
-                    <?= renderAudioCard($audio) ?>
+                    <?= renderPodcastEpisode($audio) ?>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>

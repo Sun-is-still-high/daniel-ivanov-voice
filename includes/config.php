@@ -54,8 +54,11 @@ $SITE_CONFIG = [
             'platforms' => [
                 ['name' => 'Mave', 'url' => 'https://mave.stream/rebel-psychology'],
                 ['name' => 'Яндекс Музыка', 'url' => 'https://music.yandex.ru/album/40512697'],
+                ['name' => 'Spotify', 'url' => 'https://open.spotify.com/show/4xzJgQsANEdKzvd9lFxxj2'],
+                ['name' => 'Deezer', 'url' => 'https://deezer.com/show/1002646891'],
                 ['name' => 'Castbox', 'url' => 'https://castbox.fm/channel/id7001251'],
                 ['name' => 'Звук', 'url' => 'https://zvuk.com/podcast/48659120'],
+                ['name' => 'Telegram', 'url' => 'https://t.me/mavestreambot/app?startapp=rebel-psychology'],
             ],
             'disabled' => false,
         ],

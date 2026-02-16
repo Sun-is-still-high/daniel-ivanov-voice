@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -l:*)",
+      "Bash(/c/OSPanel/modules/PHP-8.1/php.exe:*)"
+    ]
+  }
+}

@@ -134,6 +134,92 @@ HTML;
 }
 
 /**
+ * Отрисовка эпизода подкаста (горизонтальная карточка)
+ */
+function renderPodcastEpisode($audio) {
+    global $CATEGORY_BADGE_COLORS, $CATEGORY_LABELS;
+
+    $id = $audio['id'];
+    $slug = e(basename($id));
+    $category = e($audio['category']);
+    $title = e($audio['title']);
+    $description = e($audio['description']);
+    $duration = e($audio['duration']);
+    $audioFile = e($audio['audioFile']);
+    $audioUrl = "/{$category}/{$slug}/";
+    $date = formatDate($audio['publishDate']);
+
+    $badgeColor = $CATEGORY_BADGE_COLORS[$category] ?? '';
+    $categoryLabel = $CATEGORY_LABELS[$category] ?? '';
+
+    $downloadButton = '';
+    if (!empty($audio['audioFile'])) {
+        $downloadButton = <<<HTML
+      <a
+        href="{$audioFile}"
+        download
+        class="px-4 py-3 border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-700 rounded-xl transition-colors"
+        aria-label="Скачать"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        </svg>
+      </a>
+HTML;
+    }
+
+    $durationHtml = '';
+    if (!empty($audio['duration']) && $audio['duration'] !== '00:00') {
+        $durationHtml = <<<HTML
+        <span class="text-sm text-slate-500 font-medium">{$duration}</span>
+        <span class="text-slate-300">·</span>
+HTML;
+    }
+
+    return <<<HTML
+<article class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200" data-category="{$category}" itemscope itemtype="https://schema.org/AudioObject">
+  <meta itemprop="name" content="{$title}">
+  <meta itemprop="description" content="{$description}">
+  <meta itemprop="contentUrl" content="{$audioFile}">
+  <meta itemprop="encodingFormat" content="audio/mpeg">
+  <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <meta itemprop="name" content="{$GLOBALS['SITE_CONFIG']['author']['name']}">
+  </div>
+  <div class="p-6 md:p-8">
+    <div class="flex flex-col md:flex-row md:items-center gap-5">
+      <div class="flex-1 min-w-0">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-full border {$badgeColor}">
+            {$categoryLabel}
+          </span>
+          {$durationHtml}
+          <span class="text-sm text-slate-400">{$date}</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2">
+          <a href="{$audioUrl}" class="hover:text-slate-600 transition-colors" itemprop="url">
+            {$title}
+          </a>
+        </h3>
+        <p class="text-slate-600 leading-relaxed line-clamp-3" itemprop="description">
+          {$description}
+        </p>
+      </div>
+      <div class="flex gap-3 md:flex-shrink-0">
+        <a
+          href="{$audioUrl}"
+          class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-xl transition-colors text-center whitespace-nowrap"
+        >
+          Прослушать
+        </a>
+        {$downloadButton}
+      </div>
+    </div>
+  </div>
+</article>
+HTML;
+}
+
+/**
  * Отрисовка аудиоплеера
  */
 function renderAudioPlayer($audio) {

@@ -38,6 +38,17 @@ $AUDIO_DATA = [
         'publishDate' => '2026-02-10',
         'platforms' => [],
     ],
+    'podcast/bio-neural-guide' => [
+        'id' => 'podcast/bio-neural-guide',
+        'title' => 'Руководство пользователя биологической нейросети',
+        'description' => 'Как не поглупеть от нейросетей? Что делать, чтобы эффективно настроить свою биологическую нейросеть? Базовые правила ухода за своей нервной тканью и много другое вы узнаете в этом руководстве.',
+        'category' => 'podcast',
+        'duration' => '00:00',
+        'audioFile' => '',
+        'publishDate' => '2026-02-16',
+        'platforms' => [],
+        'embedPlayer' => '<iframe src="https://player.mave.digital?podcast=rebel-psychology&episode=3&color=rgb(95,128,245)&mute=1&date=1&download=1" style="width: 100%" height="235" scrolling="no" frameborder="no"></iframe>',
+    ],
     'thoughts/friends-philosophy-alcohol' => [
         'id' => 'thoughts/friends-philosophy-alcohol',
         'title' => 'Друзья, философия, коньяк - не помогло. Что теперь?',
