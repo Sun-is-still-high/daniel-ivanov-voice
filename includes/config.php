@@ -27,8 +27,8 @@ $SITE_CONFIG = [
         'podcastMave' => 'https://mave.stream/rebel-psychology',
     ],
     'categories' => [
-        'mindfulness' => [
-            'title' => 'Медитации осознанности',
+        'inside-the-silence' => [
+            'title' => 'Внутри тишины',
             'description' => 'Когда голова не отключается даже после работы. Короткие практики и медитации, чтобы выйти из режима «вечного дедлайна».',
             'story' => 'Оборотная сторона нашей способности планировать и анализировать — это возможность в этом режиме застрять. Постоянное нахождение в мыслях о делах, переживаниях о прошлом или беспокойстве о будущем может перерасти в форму бытового транса. Я предлагаю техники, которые позволят вам освободиться из плена, сбросить оцепенение и почувствовать, каково это — жить в настоящем.',
             'color' => 'emerald',
@@ -73,13 +73,13 @@ $CATEGORY_COLORS = [
 ];
 
 $CATEGORY_BADGE_COLORS = [
-    'mindfulness' => 'bg-emerald-100 text-emerald-800 border-emerald-200',
+    'inside-the-silence' => 'bg-emerald-100 text-emerald-800 border-emerald-200',
     'netlenka' => 'bg-blue-100 text-blue-800 border-blue-200',
     'podcast' => 'bg-purple-100 text-purple-800 border-purple-200',
 ];
 
 $CATEGORY_LABELS = [
-    'mindfulness' => 'Медитация',
+    'inside-the-silence' => 'Внутри тишины',
     'netlenka' => 'Нетленка',
     'podcast' => 'Подкаст',
 ];

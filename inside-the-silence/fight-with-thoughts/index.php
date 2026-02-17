@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../includes/config.php';
 require_once __DIR__ . '/../../includes/functions.php';
 require_once __DIR__ . '/../../data/audio.php';
 
-$audioId = 'mindfulness/fight-with-thoughts';
+$audioId = 'inside-the-silence/fight-with-thoughts';
 $audio = getAudioById($audioId);
 
 if (!$audio) {
@@ -43,7 +43,6 @@ $formattedDate = formatDate($audio['publishDate']);
         "@type": "Person",
         "name": <?= json_encode($SITE_CONFIG['author']['name'], JSON_UNESCAPED_UNICODE) ?>
     },
-    "contentUrl": "<?= $audio['audioFile'] ?>",
     "encodingFormat": "audio/mpeg"
 }
 </script>
@@ -63,7 +62,6 @@ $formattedDate = formatDate($audio['publishDate']);
     <meta itemprop="description" content="<?= e($audio['description']) ?>">
     <meta itemprop="duration" content="<?= formatDurationForSchema($audio['duration']) ?>">
     <meta itemprop="datePublished" content="<?= e($audio['publishDate']) ?>">
-    <meta itemprop="contentUrl" content="<?= e($audio['audioFile']) ?>">
     <meta itemprop="encodingFormat" content="audio/mpeg">
     <div itemprop="author" itemscope itemtype="https://schema.org/Person">
         <meta itemprop="name" content="<?= e($SITE_CONFIG['author']['name']) ?>">
@@ -85,9 +83,9 @@ $formattedDate = formatDate($audio['publishDate']);
                     </div>
                 </div>
 
-                <!-- Audio Player -->
+                <!-- Mave Player -->
                 <div class="px-6 pb-6">
-                    <?= renderAudioPlayer($audio) ?>
+                    <?= $audio['embedPlayer'] ?>
                 </div>
 
                 <!-- Platform Buttons -->

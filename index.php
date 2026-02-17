@@ -76,10 +76,10 @@ $homepageSchema = [
                 на автопилоте
             </span>
         </h1>
-        <p class="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-12">
+        <h2 class="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-12 font-normal">
             Медитации и подкасты от психолога, который говорит на языке айтишников.
-            Никакой эзотерики — только то, что имеет доказательную базу.
-        </p>
+            Никакой эзотерики — только доказательная психология для IT-специалистов.
+        </h2>
         <div class="flex flex-wrap justify-center gap-6">
             <a
                 href="#audio-catalog"
@@ -88,7 +88,7 @@ $homepageSchema = [
                 Хочу попробовать
             </a>
             <a
-                href="/about.php"
+                href="/about/"
                 class="px-10 py-4 border-2 border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 text-lg font-semibold rounded-xl transition-colors"
             >
                 Как это работает?
@@ -120,7 +120,7 @@ $homepageSchema = [
                 <div class="text-center">
                     <img
                         src="<?= e($SITE_CONFIG['author']['avatar']) ?>"
-                        alt="<?= e($SITE_CONFIG['author']['name']) ?>"
+                        alt="<?= e($SITE_CONFIG['author']['name']) ?> — психолог, психотерапевт"
                         class="w-full max-w-md mx-auto mb-6 object-cover shadow-2xl rounded-2xl"
                     />
                     <p class="text-slate-800 font-semibold text-xl"><?= e($SITE_CONFIG['author']['name']) ?></p>

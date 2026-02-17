@@ -104,7 +104,7 @@ $pageImage = isset($pageImage) ? $pageImage : $SITE_CONFIG['author']['avatar'];
                         </a>
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <a href="/about.php" class="text-slate-700 hover:text-slate-900 font-medium transition-colors">
+                <a href="/about/" class="text-slate-700 hover:text-slate-900 font-medium transition-colors">
                     О проекте
                 </a>
             </div>
@@ -135,7 +135,7 @@ $pageImage = isset($pageImage) ? $pageImage : $SITE_CONFIG['author']['avatar'];
                     </a>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <a href="/about.php" class="block py-2 text-slate-700 hover:text-slate-900 font-medium">
+            <a href="/about/" class="block py-2 text-slate-700 hover:text-slate-900 font-medium">
                 О проекте
             </a>
         </div>

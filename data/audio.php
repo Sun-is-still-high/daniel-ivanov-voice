@@ -4,19 +4,16 @@
  */
 
 $AUDIO_DATA = [
-    'mindfulness/fight-with-thoughts' => [
-        'id' => 'mindfulness/fight-with-thoughts',
+    'inside-the-silence/fight-with-thoughts' => [
+        'id' => 'inside-the-silence/fight-with-thoughts',
         'title' => 'Короткая психологическая практика',
         'description' => 'Моя первая записанная практика. Не совсем техника осознанности, больше практическая демонстрация. Выложил ее на сайт, чтобы точка \'С чего я начал\', была доступна в интернете',
-        'category' => 'mindfulness',
+        'category' => 'inside-the-silence',
         'duration' => '09:47',
-        'audioFile' => '/audio/mindfulness/Про борьбу с мыслями.mp3',
+        'audioFile' => '',
         'publishDate' => '2026-01-15',
-        'platforms' => [
-            // ['name' => 'Apple Podcasts', 'url' => 'https://...'],
-            // ['name' => 'Spotify', 'url' => 'https://...'],
-            // ['name' => 'YouTube', 'url' => 'https://...'],
-        ],
+        'platforms' => [],
+        'embedPlayer' => '<iframe src="https://player.mave.digital?podcast=inside-the-silence&episode=1&color=rgb(95,128,245)&mute=1&date=1&download=1" style="width: 100%" height="235" scrolling="no" frameborder="no"></iframe>',
     ],
     'podcast/trailer' => [
         'id' => 'podcast/trailer',

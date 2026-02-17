@@ -3,15 +3,15 @@
  * Страница "О проекте"
  */
 
-require_once __DIR__ . '/includes/config.php';
-require_once __DIR__ . '/includes/functions.php';
-require_once __DIR__ . '/data/audio.php';
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../data/audio.php';
 
 $pageTitle = 'О проекте';
 $pageDescription = "Информация о проекте Daniel's Voice и его создателе Даниил Иванов";
 $pageImage = $SITE_CONFIG['author']['avatar'];
 
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/../includes/header.php';
 
 // Добавляем структурированные данные для страницы "О проекте"
 $aboutPageSchema = [
@@ -101,7 +101,7 @@ $aboutPageSchema = [
                 </p>
 
                 <p class="text-lg text-slate-600 leading-relaxed mb-8">
-                    <?= e($SITE_CONFIG['title']) ?> — сайт без подобной ерунды. Тут нет прикрученной аналитики, платного контента, модальных окон и email-рассылок.
+                    <?= e($SITE_CONFIG['title']) ?> — сайт без подобной ерунды. Тут нет платного контента, модальных окон и email-рассылок.
                 </p>
 
                 <p class="text-lg text-slate-600 leading-relaxed mb-6">
@@ -165,8 +165,8 @@ $aboutPageSchema = [
                 <h2 class="text-2xl font-bold text-slate-900 mb-6">Категории материалов</h2>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <h3 class="text-lg font-semibold text-emerald-800 mb-2">Медитации</h3>
-                        <p class="text-slate-600"><?= e($SITE_CONFIG['categories']['mindfulness']['description']) ?></p>
+                        <h3 class="text-lg font-semibold text-emerald-800 mb-2">Внутри тишины</h3>
+                        <p class="text-slate-600"><?= e($SITE_CONFIG['categories']['inside-the-silence']['description']) ?></p>
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-blue-800 mb-2">Нетленка</h3>
@@ -190,7 +190,7 @@ $aboutPageSchema = [
                 <div class="flex-shrink-0">
                     <img
                         src="<?= e($SITE_CONFIG['author']['avatar']) ?>"
-                        alt="<?= e($SITE_CONFIG['author']['name']) ?>"
+                        alt="<?= e($SITE_CONFIG['author']['name']) ?> — психолог, психотерапевт"
                         class="w-48 md:w-56 rounded-2xl object-cover shadow-2xl"
                     />
                 </div>
@@ -302,4 +302,4 @@ $aboutPageSchema = [
     </article>
 </main>
 
-<?php require_once __DIR__ . '/includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>

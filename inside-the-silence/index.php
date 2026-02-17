@@ -7,7 +7,7 @@ require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/functions.php';
 require_once __DIR__ . '/../data/audio.php';
 
-$categoryKey = 'mindfulness';
+$categoryKey = 'inside-the-silence';
 $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
 $sortedAudio = getAudioByCategory($categoryKey);
 $categoryColor = $categoryInfo['color'];
