@@ -169,8 +169,8 @@ $aboutPageSchema = [
                         <p class="text-slate-600"><?= e($SITE_CONFIG['categories']['mindfulness']['description']) ?></p>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold text-blue-800 mb-2">Мысли вслух</h3>
-                        <p class="text-slate-600"><?= e($SITE_CONFIG['categories']['thoughts']['description']) ?></p>
+                        <h3 class="text-lg font-semibold text-blue-800 mb-2">Нетленка</h3>
+                        <p class="text-slate-600"><?= e($SITE_CONFIG['categories']['netlenka']['description']) ?></p>
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-purple-800 mb-2">Подкаст</h3>

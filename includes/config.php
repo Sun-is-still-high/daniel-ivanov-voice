@@ -36,10 +36,10 @@ $SITE_CONFIG = [
             'platforms' => [],
             'disabled' => false,
         ],
-        'thoughts' => [
-            'title' => 'Мысли вслух',
-            'description' => 'Аудиоразмышления о том, что обычно остаётся в черновиках. Про выгорание, смыслы и честные разговоры с собой',
-            'story' => 'Эти записи начинались как черновики статей. Такие озвучки показались мне честнее, чем итоговый текст, в который они превращались. Поэтому стал их выпускать одновременно со статьями. Кстати, если хотите почитать мои статьи — добро пожаловать в блог.',
+        'netlenka' => [
+            'title' => 'Нетленка',
+            'description' => 'Нетленка - это блог вслух. Про психологию без эзотерики, про психотерапию без воды, про жизнь без лишних иллюзий.',
+            'story' => 'Коротко. По делу. Иногда неудобно.',
             'color' => 'blue',
             'image' => null,
             'platforms' => [],
@@ -74,12 +74,12 @@ $CATEGORY_COLORS = [
 
 $CATEGORY_BADGE_COLORS = [
     'mindfulness' => 'bg-emerald-100 text-emerald-800 border-emerald-200',
-    'thoughts' => 'bg-blue-100 text-blue-800 border-blue-200',
+    'netlenka' => 'bg-blue-100 text-blue-800 border-blue-200',
     'podcast' => 'bg-purple-100 text-purple-800 border-purple-200',
 ];
 
 $CATEGORY_LABELS = [
     'mindfulness' => 'Медитация',
-    'thoughts' => 'Мысли вслух',
+    'netlenka' => 'Нетленка',
     'podcast' => 'Подкаст',
 ];

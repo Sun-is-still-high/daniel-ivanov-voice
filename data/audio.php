@@ -49,19 +49,16 @@ $AUDIO_DATA = [
         'platforms' => [],
         'embedPlayer' => '<iframe src="https://player.mave.digital?podcast=rebel-psychology&episode=3&color=rgb(95,128,245)&mute=1&date=1&download=1" style="width: 100%" height="235" scrolling="no" frameborder="no"></iframe>',
     ],
-    'thoughts/friends-philosophy-alcohol' => [
-        'id' => 'thoughts/friends-philosophy-alcohol',
+    'netlenka/friends-philosophy-alcohol' => [
+        'id' => 'netlenka/friends-philosophy-alcohol',
         'title' => 'Друзья, философия, коньяк - не помогло. Что теперь?',
         'description' => 'Искал причины, по которым плеяда психологов вообще существует',
-        'category' => 'thoughts',
+        'category' => 'netlenka',
         'duration' => '8:13',
-        'audioFile' => '/audio/thoughts/Друзья, философия, коньяк - не помогло. Что теперь.mp3',
+        'audioFile' => '',
         'publishDate' => '2026-01-08',
-        'platforms' => [
-            // ['name' => 'Apple Podcasts', 'url' => 'https://...'],
-            // ['name' => 'Spotify', 'url' => 'https://...'],
-            // ['name' => 'YouTube', 'url' => 'https://...'],
-        ],
+        'platforms' => [],
+        'embedPlayer' => '<iframe src="https://player.mave.digital?podcast=netlenka&episode=1&color=rgb(95,128,245)&mute=1&date=1&download=1" style="width: 100%" height="235" scrolling="no" frameborder="no"></iframe>',
     ],
 ];
 
