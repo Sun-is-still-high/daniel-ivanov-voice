@@ -83,6 +83,11 @@ $currentYear = date('Y');
         <div class="mt-8 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
             <p>&copy; <?= $currentYear ?> <?= e($SITE_CONFIG['author']['name']) ?>. Все права защищены.</p>
             <p class="mt-2">Помогло? Расскажите другу.</p>
+            <p class="mt-3">
+                <a href="/privacy/" class="text-slate-400 hover:text-white transition-colors underline underline-offset-2">
+                    Политика конфиденциальности
+                </a>
+            </p>
         </div>
     </div>
 </footer>
@@ -145,6 +150,41 @@ document.querySelectorAll('.audio-player-container').forEach((container) => {
         });
     }
 });
+</script>
+
+<!-- Cookie consent banner -->
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-slate-700 px-4 py-4 md:px-8" style="display:none">
+    <div class="container mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-sm text-slate-300 leading-relaxed">
+            Сайт использует файлы cookie и Яндекс Метрику для анализа посещаемости.
+            Данные хранятся на серверах в России в соответствии с&nbsp;152-ФЗ.
+            <a href="/privacy/" class="text-slate-200 underline underline-offset-2 hover:text-white whitespace-nowrap">Подробнее</a>
+        </p>
+        <button
+            id="cookie-accept"
+            type="button"
+            class="flex-shrink-0 px-5 py-2 bg-white hover:bg-slate-100 text-slate-900 text-sm font-semibold rounded-lg transition-colors"
+        >
+            Понятно
+        </button>
+    </div>
+</div>
+
+<script>
+(function() {
+    var banner = document.getElementById('cookie-banner');
+    var btn = document.getElementById('cookie-accept');
+    if (!banner || !btn) return;
+
+    if (!localStorage.getItem('cookie_accepted')) {
+        banner.style.display = 'block';
+    }
+
+    btn.addEventListener('click', function() {
+        localStorage.setItem('cookie_accepted', '1');
+        banner.style.display = 'none';
+    });
+})();
 </script>
 
 </body>

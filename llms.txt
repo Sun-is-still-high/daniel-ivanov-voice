@@ -25,7 +25,12 @@ URL: https://daniel-ivanov-voice.ru/netlenka/
 ### Подкаст «Психопогромизм»
 Психология для технарей, которые привыкли разбираться досконально. Без «успешного успеха» — только доказательная прикладная психология.
 URL: https://daniel-ivanov-voice.ru/podcast/
-Платформы: Mave, Яндекс Музыка, Castbox, Звук
+Платформы: Mave, Яндекс Музыка, Spotify, Deezer, Castbox, Звук, Telegram
+
+Эпизоды:
+- Трейлер: https://daniel-ivanov-voice.ru/podcast/trailer/
+- Пилот («Развиваем психическую устойчивость во время кризиса»): https://daniel-ivanov-voice.ru/podcast/pilot/
+- Руководство пользователя биологической нейросети: https://daniel-ivanov-voice.ru/podcast/bio-neural-guide/
 
 ## Ключевые факты
 
