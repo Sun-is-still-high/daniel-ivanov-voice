@@ -14,7 +14,7 @@ $SITE_CONFIG = [
     ],
     'social' => [
         'telegram' => 'https://t.me/get_handshake_with_daniel_ivanov',
-        'telegramChannel' => 'https://t.me/daniel_ivanov_therapy',
+        'telegramChannel' => 'https://t.me/+Z1YC7eulzBozN2Vi',
         'youtube' => 'https://www.youtube.com/@daniel_ivanov_therapy',
         'rutube' => 'https://rutube.ru/channel/47943864/',
         'vk' => 'https://vk.com/daniel_ivanov_therapy',
