@@ -1,0 +1,5 @@
+Options -Indexes
+RewriteEngine On
+
+# Redirect /podcast/ to /rebel-psychology/
+RewriteRule ^podcast/?$ /rebel-psychology/ [R=301,L]

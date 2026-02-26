@@ -5,11 +5,16 @@
 
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/rss.php';
 require_once __DIR__ . '/../data/audio.php';
 
 $categoryKey = 'inside-the-silence';
 $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
-$sortedAudio = getAudioByCategory($categoryKey);
+
+$rssUrl = $categoryInfo['rssUrl'] ?? '';
+$sortedAudio = $rssUrl
+    ? fetchRssEpisodes($rssUrl, 'inside-the-silence', 'inside-the-silence')
+    : getAudioByCategory($categoryKey);
 $categoryColor = $categoryInfo['color'];
 
 $pageTitle = $categoryInfo['title'];
@@ -109,10 +114,10 @@ $categorySchema = [
                 </div>
             </div>
 
-            <!-- Audio Grid -->
-            <div id="audio-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Episode List -->
+            <div id="audio-grid" class="flex flex-col gap-5">
                 <?php foreach ($sortedAudio as $audio): ?>
-                    <?= renderAudioCard($audio) ?>
+                    <?= renderPodcastEpisode($audio) ?>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
@@ -128,6 +133,8 @@ $categorySchema = [
                 </p>
             </div>
         <?php endif; ?>
+
+        <?php require_once __DIR__ . '/../includes/cta-consultation.php' ?>
     </div>
 </main>
 

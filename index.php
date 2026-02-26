@@ -5,18 +5,27 @@
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/functions.php';
-require_once __DIR__ . '/data/audio.php';
+require_once __DIR__ . '/includes/rss.php';
 
 $pageTitle = $SITE_CONFIG['title'];
 $pageDescription = $SITE_CONFIG['description'];
 $pageImage = $SITE_CONFIG['author']['avatar'];
 
-// Получаем отсортированные аудиозаписи
-$sortedAudio = getSortedAudio();
+// Получаем последние записи из всех RSS-фидов
+$allEpisodes = [];
+foreach ($SITE_CONFIG['categories'] as $key => $category) {
+    if (!empty($category['rssUrl'])) {
+        $episodes = fetchRssEpisodes($category['rssUrl'], $key, $key);
+        $allEpisodes = array_merge($allEpisodes, $episodes);
+    }
+}
+usort($allEpisodes, function($a, $b) {
+    return strtotime($b['publishDate']) - strtotime($a['publishDate']);
+});
+$latestAudio = array_slice($allEpisodes, 0, 9);
 
 require_once __DIR__ . '/includes/header.php';
 
-// Добавляем структурированные данные для главной страницы
 $authorSchema = [
     "@type" => "Person",
     "name" => $SITE_CONFIG['author']['name'],
@@ -53,10 +62,10 @@ $homepageSchema = [
             "@type" => "PodcastSeries",
             "name" => "Психопогромизм",
             "description" => $SITE_CONFIG['categories']['podcast']['description'],
-            "url" => "https://daniel-ivanov-voice.ru/podcast/",
+            "url" => "https://daniel-ivanov-voice.ru/rebel-psychology/",
             "inLanguage" => "ru",
             "author" => ["@type" => "Person", "name" => $SITE_CONFIG['author']['name']],
-            "webFeed" => $SITE_CONFIG['social']['podcastMave']
+            "webFeed" => $SITE_CONFIG['categories']['podcast']['rssUrl']
         ]
     ]
 ];
@@ -67,9 +76,9 @@ $homepageSchema = [
 <?= json_encode($homepageSchema, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
 </script>
 
-<main class="container mx-auto px-6 md:px-8 py-16 md:py-24">
+<main class="container mx-auto px-6 md:px-8 py-24 md:py-36">
     <!-- Hero Section -->
-    <section class="text-center mb-32 md:mb-40">
+    <section class="text-center mb-40 md:mb-56">
         <h1 class="text-5xl md:text-7xl font-bold text-slate-900 mb-8">
             Для тех, кто устал жить
             <span class="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
@@ -91,7 +100,7 @@ $homepageSchema = [
                 href="/about/"
                 class="px-10 py-4 border-2 border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 text-lg font-semibold rounded-xl transition-colors"
             >
-                Как это работает?
+                О проекте
             </a>
         </div>
     </section>
@@ -124,102 +133,32 @@ $homepageSchema = [
                         class="w-full max-w-md mx-auto mb-6 object-cover shadow-2xl rounded-2xl"
                     />
                     <p class="text-slate-800 font-semibold text-xl"><?= e($SITE_CONFIG['author']['name']) ?></p>
-                    <p class="text-slate-600 text-base mt-2">Психолог, психотерапевт, член АКПН. Пишу на Typescript</p>
+                    <p class="text-slate-600 text-base mt-2">Психолог, психотерапевт, член АКПН. Пишет на Typescript</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section id="audio-catalog" class="mb-32">
-        <h2 class="text-5xl font-bold text-slate-900 mb-16 text-center">Категории</h2>
-
-        <div class="grid md:grid-cols-2 gap-10 md:gap-12 mb-16">
-            <?php foreach ($SITE_CONFIG['categories'] as $key => $category): ?>
-                <?php
-                $count = getAudioCountByCategory($key);
-                $isDisabled = $category['disabled'];
-                $colorClasses = $CATEGORY_COLORS[$category['color']] ?? '';
-                ?>
-                <?php if ($isDisabled): ?>
-                    <div class="group relative overflow-hidden bg-white rounded-3xl shadow-lg transition-all duration-300 p-10 md:p-12 opacity-60 cursor-not-allowed">
-                        <div class="absolute top-6 right-6 px-4 py-2 bg-slate-900 text-white text-sm font-semibold rounded-full">
-                            Скоро
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-br <?= $colorClasses ?> opacity-0 transition-opacity"></div>
-                        <div class="relative">
-                            <h3 class="text-3xl font-bold mb-4 text-slate-500">
-                                <?= e($category['title']) ?>
-                            </h3>
-                            <p class="text-lg mb-6 text-slate-400">
-                                <?= e($category['description']) ?>
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm text-slate-400">В разработке</span>
-                            </div>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <a
-                        href="/<?= e($key) ?>"
-                        class="group relative overflow-hidden bg-white rounded-3xl shadow-lg transition-all duration-300 p-10 md:p-12 hover:shadow-2xl cursor-pointer"
-                    >
-                        <div class="absolute inset-0 bg-gradient-to-br <?= $colorClasses ?> opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                        <div class="relative">
-                            <h3 class="text-3xl font-bold mb-4 text-slate-900">
-                                <?= e($category['title']) ?>
-                            </h3>
-                            <p class="text-lg mb-6 text-slate-600">
-                                <?= e($category['description']) ?>
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm text-slate-400">
-                                    <?= $count ?> <?= pluralRecords($count) ?>
-                                </span>
-                                <span class="text-slate-400 group-hover:text-slate-600 transition-colors">→</span>
-                            </div>
-                        </div>
-                    </a>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-    </section>
-
-    <!-- Podcast Platforms -->
-    <section class="mb-32">
-        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-10 md:p-16 text-center">
-            <h2 class="text-4xl font-bold text-slate-900 mb-4">Психопогромизм</h2>
-            <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                Слушайте подкаст на удобной платформе
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://mave.stream/rebel-psychology" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                    Mave
+    <!-- Onboarding -->
+    <section id="audio-catalog" class="mb-20">
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 md:p-10">
+            <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Здесь впервые?</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">С чего начать</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="/inside-the-silence/" class="group block p-6 bg-white border border-emerald-200 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all">
+                    <div class="text-emerald-600 font-bold text-sm mb-2">Нужно успокоиться прямо сейчас</div>
+                    <div class="text-slate-900 font-semibold group-hover:text-emerald-700 transition-colors">Внутри тишины →</div>
+                    <div class="text-slate-500 text-sm mt-1">Короткие практики 8–15 минут</div>
                 </a>
-                <a href="https://music.yandex.ru/album/40512697" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                    Яндекс Музыка
+                <a href="/netlenka/" class="group block p-6 bg-white border border-blue-200 rounded-xl hover:border-blue-400 hover:shadow-md transition-all">
+                    <div class="text-blue-600 font-bold text-sm mb-2">Хочу честный разговор о жизни</div>
+                    <div class="text-slate-900 font-semibold group-hover:text-blue-700 transition-colors">Нетленка →</div>
+                    <div class="text-slate-500 text-sm mt-1">Блог вслух, коротко и по делу</div>
                 </a>
-                <a href="https://castbox.fm/channel/id7001251" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                    Castbox
-                </a>
-                <a href="https://zvuk.com/podcast/48659120" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                    Звук
+                <a href="/rebel-psychology/" class="group block p-6 bg-white border border-purple-200 rounded-xl hover:border-purple-400 hover:shadow-md transition-all">
+                    <div class="text-purple-600 font-bold text-sm mb-2">Хочу разобраться в себе глубже</div>
+                    <div class="text-slate-900 font-semibold group-hover:text-purple-700 transition-colors">Психопогромизм →</div>
+                    <div class="text-slate-500 text-sm mt-1">Подкаст для тех, кто думает системно</div>
                 </a>
             </div>
         </div>
@@ -227,25 +166,16 @@ $homepageSchema = [
 
     <!-- Latest Audio -->
     <section class="mb-32">
-        <div class="flex flex-wrap items-center justify-between mb-10 gap-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-slate-900">Последние записи</h2>
-        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-10">Последние записи</h2>
 
-        <div id="audio-grid" class="grid md:grid-cols-2 gap-8 md:gap-10">
-            <?php
-            $displayAudio = array_slice($sortedAudio, 0, 9);
-            foreach ($displayAudio as $audio) {
-                echo renderAudioCard($audio);
-            }
-            ?>
+        <div class="flex flex-col gap-5">
+            <?php foreach ($latestAudio as $audio): ?>
+                <?= renderPodcastEpisode($audio) ?>
+            <?php endforeach; ?>
         </div>
-
-        <?php if (count($sortedAudio) > 9): ?>
-            <div class="text-center mt-12">
-                <p class="text-slate-600 mb-4">Всего <?= count($sortedAudio) ?> <?= pluralRecords(count($sortedAudio)) ?></p>
-            </div>
-        <?php endif; ?>
     </section>
+
+    <?php require_once __DIR__ . '/includes/cta-consultation.php' ?>
 </main>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

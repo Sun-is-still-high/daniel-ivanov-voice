@@ -1,6 +1,6 @@
 <?php
 /**
- * Страница категории мыслей вслух
+ * Страница подкаста «Психопогромизм»
  */
 
 require_once __DIR__ . '/../includes/config.php';
@@ -8,12 +8,12 @@ require_once __DIR__ . '/../includes/functions.php';
 require_once __DIR__ . '/../includes/rss.php';
 require_once __DIR__ . '/../data/audio.php';
 
-$categoryKey = 'netlenka';
+$categoryKey = 'podcast';
 $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
 
 $rssUrl = $categoryInfo['rssUrl'] ?? '';
 $sortedAudio = $rssUrl
-    ? fetchRssEpisodes($rssUrl, 'netlenka', 'netlenka')
+    ? fetchRssEpisodes($rssUrl, 'rebel-psychology', 'podcast')
     : getAudioByCategory($categoryKey);
 $categoryColor = $categoryInfo['color'];
 

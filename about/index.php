@@ -165,15 +165,21 @@ $aboutPageSchema = [
                 <h2 class="text-2xl font-bold text-slate-900 mb-6">Категории материалов</h2>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <h3 class="text-lg font-semibold text-emerald-800 mb-2">Внутри тишины</h3>
+                        <h3 class="text-lg font-semibold text-emerald-800 mb-2">
+                            <a href="/inside-the-silence/" class="hover:underline">Внутри тишины →</a>
+                        </h3>
                         <p class="text-slate-600"><?= e($SITE_CONFIG['categories']['inside-the-silence']['description']) ?></p>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold text-blue-800 mb-2">Нетленка</h3>
+                        <h3 class="text-lg font-semibold text-blue-800 mb-2">
+                            <a href="/netlenka/" class="hover:underline">Нетленка →</a>
+                        </h3>
                         <p class="text-slate-600"><?= e($SITE_CONFIG['categories']['netlenka']['description']) ?></p>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold text-purple-800 mb-2">Подкаст</h3>
+                        <h3 class="text-lg font-semibold text-purple-800 mb-2">
+                            <a href="/rebel-psychology/" class="hover:underline">Психопогромизм →</a>
+                        </h3>
                         <p class="text-slate-600"><?= e($SITE_CONFIG['categories']['podcast']['description']) ?></p>
                     </div>
                 </div>
@@ -283,22 +289,7 @@ $aboutPageSchema = [
             </div>
         </section>
 
-        <!-- Техническая информация -->
-        <section>
-            <h2 class="text-2xl font-bold text-slate-900 mb-6">
-                О сайте
-            </h2>
-            <div class="prose prose-slate max-w-none">
-                <p class="text-slate-600 leading-relaxed mb-4">
-                    Сайт создан с использованием современных веб-технологий для обеспечения быстрой загрузки
-                    и удобства использования. Все аудиофайлы содержат корректные метаданные и доступны для
-                    скачивания в формате MP3.
-                </p>
-                <p class="text-slate-600 leading-relaxed">
-                    Материалы регулярно обновляются. Подпишитесь на мой Telegram-канал, чтобы не пропустить новые выпуски.
-                </p>
-            </div>
-        </section>
+        <?php require_once __DIR__ . '/../includes/cta-consultation.php' ?>
     </article>
 </main>
 

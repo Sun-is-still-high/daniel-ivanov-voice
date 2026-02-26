@@ -14,6 +14,18 @@ function e($string) {
 }
 
 /**
+ * Форматирование описания: экранирует HTML, затем превращает URL в кликабельные ссылки
+ */
+function formatDescription($text) {
+    $escaped = htmlspecialchars((string)$text, ENT_QUOTES, 'UTF-8');
+    return preg_replace(
+        '/(https?:\/\/[^\s]+)/i',
+        '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline break-all">$1</a>',
+        $escaped
+    );
+}
+
+/**
  * Форматирование даты на русском
  */
 function formatDate($date) {
@@ -74,10 +86,14 @@ function renderAudioCard($audio) {
     $slug = e(basename($id));
     $title = e($audio['title']);
     $description = e($audio['description']);
+    $descriptionHtml = formatDescription($audio['description']);
     $category = e($audio['category']);
     $duration = e($audio['duration']);
     $audioFile = e($audio['audioFile']);
-    $audioUrl = "/{$category}/{$slug}/";
+
+    $isExternal = !empty($audio['externalUrl']);
+    $audioUrl   = $isExternal ? e($audio['externalUrl']) : "/{$category}/{$slug}/";
+    $linkAttrs  = $isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
 
     $badgeColor = $CATEGORY_BADGE_COLORS[$category] ?? '';
     $categoryLabel = $CATEGORY_LABELS[$category] ?? '';
@@ -101,18 +117,18 @@ function renderAudioCard($audio) {
     </div>
 
     <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-3 line-clamp-2 break-words">
-      <a href="{$audioUrl}" class="hover:text-slate-600 transition-colors" itemprop="url">
+      <a href="{$audioUrl}"{$linkAttrs} class="hover:text-slate-600 transition-colors" itemprop="url">
         <span itemprop="name">{$title}</span>
       </a>
     </h3>
 
     <p class="text-slate-600 text-base leading-relaxed mb-5 line-clamp-2 break-words" itemprop="description">
-      {$description}
+      {$descriptionHtml}
     </p>
 
     <div class="flex gap-3">
       <a
-        href="{$audioUrl}"
+        href="{$audioUrl}"{$linkAttrs}
         class="flex-1 px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-xl transition-colors text-center"
       >
         Прослушать
@@ -134,10 +150,14 @@ function renderPodcastEpisode($audio) {
     $category = e($audio['category']);
     $title = e($audio['title']);
     $description = e($audio['description']);
+    $descriptionHtml = formatDescription($audio['description']);
     $duration = e($audio['duration']);
     $audioFile = e($audio['audioFile']);
-    $audioUrl = "/{$category}/{$slug}/";
     $date = formatDate($audio['publishDate']);
+
+    $isExternal = !empty($audio['externalUrl']);
+    $audioUrl   = $isExternal ? e($audio['externalUrl']) : "/{$category}/{$slug}/";
+    $linkAttrs  = $isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
 
     $badgeColor = $CATEGORY_BADGE_COLORS[$category] ?? '';
     $categoryLabel = $CATEGORY_LABELS[$category] ?? '';
@@ -146,7 +166,6 @@ function renderPodcastEpisode($audio) {
     if (!empty($audio['duration']) && $audio['duration'] !== '00:00') {
         $durationHtml = <<<HTML
         <span class="text-sm text-slate-500 font-medium">{$duration}</span>
-        <span class="text-slate-300">·</span>
 HTML;
     }
 
@@ -167,20 +186,19 @@ HTML;
             {$categoryLabel}
           </span>
           {$durationHtml}
-          <span class="text-sm text-slate-400">{$date}</span>
         </div>
         <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2">
-          <a href="{$audioUrl}" class="hover:text-slate-600 transition-colors" itemprop="url">
+          <a href="{$audioUrl}"{$linkAttrs} class="hover:text-slate-600 transition-colors" itemprop="url">
             {$title}
           </a>
         </h3>
         <p class="text-slate-600 leading-relaxed line-clamp-3" itemprop="description">
-          {$description}
+          {$descriptionHtml}
         </p>
       </div>
       <div class="flex gap-3 md:flex-shrink-0">
         <a
-          href="{$audioUrl}"
+          href="{$audioUrl}"{$linkAttrs}
           class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-xl transition-colors text-center whitespace-nowrap"
         >
           Прослушать
