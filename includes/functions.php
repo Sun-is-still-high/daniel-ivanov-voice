@@ -14,6 +14,58 @@ function e($string) {
 }
 
 /**
+ * Простой slugify для латиницы/кириллицы
+ */
+function slugify($text) {
+    $text = trim((string) $text);
+    if ($text === '') {
+        return '';
+    }
+
+    $map = [
+        'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd',
+        'е' => 'e', 'ё' => 'e', 'ж' => 'zh', 'з' => 'z', 'и' => 'i',
+        'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n',
+        'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't',
+        'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'ts', 'ч' => 'ch',
+        'ш' => 'sh', 'щ' => 'sch', 'ъ' => '', 'ы' => 'y', 'ь' => '',
+        'э' => 'e', 'ю' => 'yu', 'я' => 'ya',
+        'А' => 'a', 'Б' => 'b', 'В' => 'v', 'Г' => 'g', 'Д' => 'd',
+        'Е' => 'e', 'Ё' => 'e', 'Ж' => 'zh', 'З' => 'z', 'И' => 'i',
+        'Й' => 'y', 'К' => 'k', 'Л' => 'l', 'М' => 'm', 'Н' => 'n',
+        'О' => 'o', 'П' => 'p', 'Р' => 'r', 'С' => 's', 'Т' => 't',
+        'У' => 'u', 'Ф' => 'f', 'Х' => 'h', 'Ц' => 'ts', 'Ч' => 'ch',
+        'Ш' => 'sh', 'Щ' => 'sch', 'Ъ' => '', 'Ы' => 'y', 'Ь' => '',
+        'Э' => 'e', 'Ю' => 'yu', 'Я' => 'ya',
+    ];
+
+    $text = strtr($text, $map);
+    $text = mb_strtolower($text, 'UTF-8');
+    $text = preg_replace('/[^a-z0-9]+/u', '-', $text);
+    $text = preg_replace('/-+/', '-', $text);
+
+    return trim($text, '-');
+}
+
+/**
+ * URL аудиозаписи: сначала внутренняя страница, затем внешний URL
+ */
+function getAudioUrl($audio) {
+    if (!empty($audio['pageUrl'])) {
+        return (string) $audio['pageUrl'];
+    }
+
+    if (!empty($audio['externalUrl'])) {
+        return (string) $audio['externalUrl'];
+    }
+
+    $category = basename((string) ($audio['category'] ?? ''));
+    $slug = basename((string) ($audio['slug'] ?? basename((string) ($audio['id'] ?? ''))));
+
+    return "/{$category}/{$slug}/";
+}
+
+/**
  * Форматирование описания: экранирует HTML, затем превращает URL в кликабельные ссылки
  */
 function formatDescription($text) {
@@ -83,7 +135,6 @@ function renderAudioCard($audio) {
     global $CATEGORY_BADGE_COLORS, $CATEGORY_LABELS;
 
     $id = $audio['id'];
-    $slug = e(basename($id));
     $title = e($audio['title']);
     $description = e($audio['description']);
     $descriptionHtml = formatDescription($audio['description']);
@@ -91,8 +142,8 @@ function renderAudioCard($audio) {
     $duration = e($audio['duration']);
     $audioFile = e($audio['audioFile']);
 
-    $isExternal = !empty($audio['externalUrl']);
-    $audioUrl   = $isExternal ? e($audio['externalUrl']) : "/{$category}/{$slug}/";
+    $audioUrl   = e(getAudioUrl($audio));
+    $isExternal = !empty($audio['externalUrl']) && empty($audio['pageUrl']);
     $linkAttrs  = $isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
 
     $badgeColor = $CATEGORY_BADGE_COLORS[$category] ?? '';
@@ -145,8 +196,6 @@ HTML;
 function renderPodcastEpisode($audio) {
     global $CATEGORY_BADGE_COLORS, $CATEGORY_LABELS;
 
-    $id = $audio['id'];
-    $slug = e(basename($id));
     $category = e($audio['category']);
     $title = e($audio['title']);
     $description = e($audio['description']);
@@ -155,8 +204,8 @@ function renderPodcastEpisode($audio) {
     $audioFile = e($audio['audioFile']);
     $date = formatDate($audio['publishDate']);
 
-    $isExternal = !empty($audio['externalUrl']);
-    $audioUrl   = $isExternal ? e($audio['externalUrl']) : "/{$category}/{$slug}/";
+    $audioUrl   = e(getAudioUrl($audio));
+    $isExternal = !empty($audio['externalUrl']) && empty($audio['pageUrl']);
     $linkAttrs  = $isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
 
     $badgeColor = $CATEGORY_BADGE_COLORS[$category] ?? '';

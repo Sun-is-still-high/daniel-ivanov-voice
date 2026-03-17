@@ -10,7 +10,6 @@
 
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/functions.php';
-require_once __DIR__ . '/../data/audio.php';
 
 $pageTitle = isset($pageTitle) ? getPageTitle($pageTitle) : $SITE_CONFIG['title'];
 $pageDescription = isset($pageDescription) ? $pageDescription : $SITE_CONFIG['description'];

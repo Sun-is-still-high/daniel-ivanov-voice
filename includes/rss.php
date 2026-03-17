@@ -24,10 +24,113 @@ function rssFormatDuration($raw) {
 }
 
 /**
+ * Извлечь короткий идентификатор выпуска из внешней ссылки, например "ep-3"
+ */
+function rssExtractLinkSlug($url) {
+    $path = parse_url((string) $url, PHP_URL_PATH);
+    if (!$path) {
+        return '';
+    }
+
+    return trim(basename($path), '/');
+}
+
+/**
+ * Извлечь номер эпизода из Mave slug вида ep-5
+ */
+function rssExtractEpisodeNumber($linkSlug) {
+    if (preg_match('/^ep-(\d+)$/', (string) $linkSlug, $matches)) {
+        return $matches[1];
+    }
+
+    return null;
+}
+
+/**
+ * Построить URL Mave embed-плеера для выпуска
+ */
+function buildMaveEmbedUrl($categoryKey, $linkSlug) {
+    global $SITE_CONFIG;
+
+    $podcastSlug = $SITE_CONFIG['categories'][$categoryKey]['mavePodcast'] ?? '';
+    $episodeNumber = rssExtractEpisodeNumber($linkSlug);
+
+    if ($podcastSlug === '' || $episodeNumber === null) {
+        return null;
+    }
+
+    $query = http_build_query([
+        'podcast' => $podcastSlug,
+        'episode' => $episodeNumber,
+        'color' => 'rgb(95,128,245)',
+        'mute' => '1',
+        'date' => '1',
+        'download' => '1',
+    ]);
+
+    return 'https://player.mave.digital?' . $query;
+}
+
+/**
+ * Построить slug для внутренней страницы выпуска
+ */
+function rssBuildEpisodeSlug($title, $fallback = '') {
+    $normalizedTitle = mb_strtolower(trim((string) $title), 'UTF-8');
+
+    if ($normalizedTitle === 'трейлер') {
+        return 'trailer';
+    }
+
+    if ($normalizedTitle === 'пилот' || str_starts_with($normalizedTitle, 'пилот.')) {
+        return 'pilot';
+    }
+
+    $slug = slugify($title);
+
+    if ($slug !== '') {
+        return $slug;
+    }
+
+    return slugify($fallback);
+}
+
+/**
+ * Поддержать старые ручные slug для уже опубликованных выпусков
+ */
+function rssResolvePageSlug($categoryKey, $title, $linkSlug) {
+    global $SITE_CONFIG;
+
+    $legacySlugs = $SITE_CONFIG['categories'][$categoryKey]['legacyEpisodeSlugs'] ?? [];
+    $legacySlug = array_search($linkSlug, $legacySlugs, true);
+
+    if ($legacySlug !== false) {
+        return $legacySlug;
+    }
+
+    return rssBuildEpisodeSlug($title, $linkSlug);
+}
+
+/**
+ * Собрать все допустимые алиасы slug для выпуска
+ */
+function rssBuildEpisodeAliases($canonicalSlug, $title, $linkSlug) {
+    $aliases = [];
+    $titleSlug = rssBuildEpisodeSlug($title, $linkSlug);
+
+    foreach ([$canonicalSlug, $titleSlug, $linkSlug, slugify($title)] as $candidate) {
+        $candidate = trim((string) $candidate);
+        if ($candidate === '' || $candidate === $canonicalSlug) {
+            continue;
+        }
+
+        $aliases[$candidate] = true;
+    }
+
+    return array_keys($aliases);
+}
+
+/**
  * Получить эпизоды подкаста из RSS с файловым кэшем.
- * Возвращает массив эпизодов, совместимый с форматом $AUDIO_DATA,
- * плюс ключ 'externalUrl' с прямой ссылкой на эпизод.
- *
  * @param string $rssUrl    URL RSS-ленты
  * @param string $cacheKey  Ключ для файла кэша (напр. 'rebel-psychology')
  * @param int    $ttl       Время жизни кэша в минутах (по умолчанию 60)
@@ -74,19 +177,103 @@ function fetchRssEpisodes($rssUrl, $cacheKey, $categoryKey = 'podcast', $ttl = 6
         ));
 
         $audioFile = $enclosure ? (string)$enclosure['url'] : '';
+        $externalUrl = trim((string)$item->link);
+        $linkSlug = rssExtractLinkSlug($externalUrl);
+        $pageSlug = rssResolvePageSlug($categoryKey, (string) $item->title, $linkSlug);
+        $image = trim((string) ($itunes->image['href'] ?? ''));
+        $episodeType = trim((string) $itunes->episodeType);
+        $aliases = rssBuildEpisodeAliases($pageSlug, (string) $item->title, $linkSlug);
+        $embedUrl = buildMaveEmbedUrl($categoryKey, $linkSlug);
 
         $episodes[] = [
-            'id'          => '', // не используется при наличии externalUrl
+            'id'          => $categoryKey . '/' . $pageSlug,
             'category'    => $categoryKey,
+            'slug'        => $pageSlug,
+            'linkSlug'    => $linkSlug,
+            'aliases'     => $aliases,
             'title'       => trim((string)$item->title),
             'description' => $description,
             'publishDate' => $date,
             'duration'    => rssFormatDuration((string)$itunes->duration),
             'audioFile'   => $audioFile,
+            'image'       => $image,
+            'episodeType' => $episodeType,
+            'embedUrl'    => $embedUrl,
             'platforms'   => [],
-            'externalUrl' => trim((string)$item->link),
+            'pageUrl'     => '/' . $categoryKey . '/' . $pageSlug . '/',
+            'externalUrl' => $externalUrl,
         ];
     }
 
     return $episodes;
+}
+
+/**
+ * Получить эпизоды категории из RSS-ленты, описанной в конфиге
+ */
+function getRssEpisodesByCategory($categoryKey, $ttl = 60) {
+    global $SITE_CONFIG;
+
+    $category = $SITE_CONFIG['categories'][$categoryKey] ?? null;
+    if (!$category || empty($category['rssUrl'])) {
+        return [];
+    }
+
+    $cacheKey = $category['slug'] ?? $categoryKey;
+
+    return fetchRssEpisodes($category['rssUrl'], $cacheKey, $categoryKey, $ttl);
+}
+
+/**
+ * Найти выпуск по внутреннему slug либо по Mave slug вида ep-3
+ */
+function getRssEpisodeBySlug($categoryKey, $slug, $ttl = 60) {
+    $episodes = getRssEpisodesByCategory($categoryKey, $ttl);
+
+    foreach ($episodes as $episode) {
+        $aliases = $episode['aliases'] ?? [];
+        if (($episode['slug'] ?? '') === $slug || ($episode['linkSlug'] ?? '') === $slug || in_array($slug, $aliases, true)) {
+            return $episode;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Получить похожие выпуски в рамках той же RSS-рубрики
+ */
+function getRssRelatedEpisodes($categoryKey, $currentSlug, $limit = 3, $ttl = 60) {
+    $episodes = array_filter(
+        getRssEpisodesByCategory($categoryKey, $ttl),
+        function ($episode) use ($currentSlug) {
+            return ($episode['slug'] ?? '') !== $currentSlug
+                && ($episode['linkSlug'] ?? '') !== $currentSlug;
+        }
+    );
+
+    return array_slice(array_values($episodes), 0, $limit);
+}
+
+/**
+ * Получить все RSS-выпуски со всех активных категорий
+ */
+function getAllRssEpisodes($ttl = 60) {
+    global $SITE_CONFIG;
+
+    $allEpisodes = [];
+
+    foreach ($SITE_CONFIG['categories'] as $categoryKey => $category) {
+        if (!empty($category['disabled']) || empty($category['rssUrl'])) {
+            continue;
+        }
+
+        $allEpisodes = array_merge($allEpisodes, getRssEpisodesByCategory($categoryKey, $ttl));
+    }
+
+    usort($allEpisodes, function ($a, $b) {
+        return strtotime($b['publishDate']) - strtotime($a['publishDate']);
+    });
+
+    return $allEpisodes;
 }

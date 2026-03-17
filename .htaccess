@@ -1,5 +1,18 @@
 Options -Indexes
 RewriteEngine On
 
+# Category landing pages
+RewriteRule ^inside-the-silence/?$ /inside-the-silence/index.php [L]
+RewriteRule ^netlenka/?$ /netlenka/index.php [L]
+RewriteRule ^rebel-psychology/?$ /rebel-psychology/index.php [L]
+
+# Dynamic episode pages from RSS
+RewriteRule ^(podcast|inside-the-silence|netlenka)/([^/]+)/?$ /episode.php?category=$1&episode=$2 [L,QSA]
+
+# Do not rewrite existing files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
 # Redirect /podcast/ to /rebel-psychology/
 RewriteRule ^podcast/?$ /rebel-psychology/ [R=301,L]

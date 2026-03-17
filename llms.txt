@@ -27,10 +27,7 @@ URL: https://daniel-ivanov-voice.ru/netlenka/
 URL: https://daniel-ivanov-voice.ru/podcast/
 Платформы: Mave, Яндекс Музыка, Spotify, Deezer, Castbox, Звук, Telegram
 
-Эпизоды:
-- Трейлер: https://daniel-ivanov-voice.ru/podcast/trailer/
-- Пилот («Развиваем психическую устойчивость во время кризиса»): https://daniel-ivanov-voice.ru/podcast/pilot/
-- Руководство пользователя биологической нейросети: https://daniel-ivanov-voice.ru/podcast/bio-neural-guide/
+Эпизоды подтягиваются автоматически из RSS и получают отдельные страницы на сайте.
 
 ## Ключевые факты
 

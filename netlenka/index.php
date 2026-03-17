@@ -6,15 +6,10 @@
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/functions.php';
 require_once __DIR__ . '/../includes/rss.php';
-require_once __DIR__ . '/../data/audio.php';
 
 $categoryKey = 'netlenka';
 $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
-
-$rssUrl = $categoryInfo['rssUrl'] ?? '';
-$sortedAudio = $rssUrl
-    ? fetchRssEpisodes($rssUrl, 'netlenka', 'netlenka')
-    : getAudioByCategory($categoryKey);
+$sortedAudio = getRssEpisodesByCategory($categoryKey);
 $categoryColor = $categoryInfo['color'];
 
 $pageTitle = $categoryInfo['title'];

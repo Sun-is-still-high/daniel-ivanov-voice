@@ -5,7 +5,6 @@
 
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/functions.php';
-require_once __DIR__ . '/../data/audio.php';
 
 $pageTitle = 'Политика конфиденциальности';
 $pageDescription = 'Политика конфиденциальности сайта Daniel\'s Voice. Информация об обработке персональных данных в соответствии с 152-ФЗ.';
