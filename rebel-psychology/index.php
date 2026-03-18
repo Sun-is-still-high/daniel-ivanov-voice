@@ -109,7 +109,7 @@ $categorySchema = [
             <div class="podcast-section-heading">
                 <div>
                     <p class="soft-kicker mb-3 text-violet-700">Архив выпусков</p>
-                    <h2 class="display-title text-4xl md:text-5xl">Разговоры, в которые стоит входить не с края</h2>
+                    <h2 class="display-title text-4xl md:text-5xl">Разговоры, в которые не стоит заходить с края</h2>
                 </div>
                 <p class="max-w-2xl text-slate-600 leading-relaxed">
                     Эта лента не про фон. Здесь лучше слушать с вниманием: мысли цепляются друг за друга, а вопросы часто звучат важнее ответов.

@@ -792,6 +792,175 @@ if (strpos((string) $pageImage, 'http://') !== 0 && strpos((string) $pageImage, 
         .breadcrumb-link:hover {
             color: var(--accent-strong);
         }
+
+        @media (max-width: 380px) {
+            html,
+            body {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            * {
+                min-width: 0;
+            }
+
+            p,
+            h1,
+            h2,
+            h3,
+            li,
+            a,
+            span {
+                overflow-wrap: anywhere;
+            }
+
+            img,
+            svg,
+            video,
+            audio,
+            iframe {
+                max-width: 100%;
+            }
+
+            .container {
+                padding-left: 0.9rem !important;
+                padding-right: 0.9rem !important;
+            }
+
+            .site-header .container {
+                padding-top: 0.8rem !important;
+                padding-bottom: 0.8rem !important;
+            }
+
+            .site-logo {
+                font-size: 1.4rem !important;
+                line-height: 1.05;
+            }
+
+            #mobile-menu {
+                padding-top: 0.75rem;
+            }
+
+            main.container {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.8rem !important;
+            }
+
+            .display-title,
+            .episode-title,
+            h1.text-5xl,
+            h1.text-6xl,
+            h1.text-7xl {
+                font-size: clamp(2rem, 10vw, 2.45rem) !important;
+                line-height: 1.05 !important;
+                letter-spacing: -0.04em;
+            }
+
+            .text-7xl,
+            .text-6xl,
+            .text-5xl {
+                font-size: clamp(2rem, 10vw, 2.45rem) !important;
+                line-height: 1.05 !important;
+            }
+
+            .text-4xl {
+                font-size: clamp(1.65rem, 8.2vw, 2rem) !important;
+                line-height: 1.12 !important;
+            }
+
+            .text-3xl {
+                font-size: 1.45rem !important;
+                line-height: 1.18 !important;
+            }
+
+            .text-2xl {
+                font-size: 1.25rem !important;
+                line-height: 1.24 !important;
+            }
+
+            .text-xl {
+                font-size: 1rem !important;
+                line-height: 1.55 !important;
+            }
+
+            .text-lg {
+                font-size: 0.98rem !important;
+                line-height: 1.6 !important;
+            }
+
+            .rounded-\[2rem\] {
+                border-radius: 1.15rem !important;
+            }
+
+            .rounded-\[1\.75rem\] {
+                border-radius: 1rem !important;
+            }
+
+            .rounded-\[1\.5rem\] {
+                border-radius: 0.95rem !important;
+            }
+
+            .podcast-hero-grid,
+            .podcast-stream-panel,
+            .podcast-story-panel,
+            .episode-layout-card,
+            .episode-sidebar-card,
+            .player-panel {
+                padding: 1rem !important;
+            }
+
+            .podcast-hero-grid {
+                gap: 1rem;
+            }
+
+            .podcast-cover-wrap {
+                max-width: 100%;
+            }
+
+            .podcast-lead {
+                font-size: 1rem;
+                line-height: 1.65;
+            }
+
+            .eyebrow,
+            .category-chip {
+                gap: 0.4rem;
+                padding: 0.52rem 0.7rem;
+                font-size: 0.64rem;
+                letter-spacing: 0.1em;
+                white-space: normal;
+            }
+
+            .soft-kicker {
+                font-size: 0.68rem;
+                letter-spacing: 0.07em;
+            }
+
+            .theme-card,
+            .podcast-page-card,
+            .episode-card,
+            .footer-card {
+                padding: 1rem !important;
+            }
+
+            .whitespace-nowrap {
+                white-space: normal !important;
+            }
+
+            .episode-meta-pill {
+                font-size: 0.72rem;
+            }
+
+            .cta-panel a {
+                max-width: 100%;
+                white-space: normal;
+                text-align: left;
+            }
+
+            #cookie-banner .container {
+                gap: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen theme-<?= e($pageTheme) ?>">
