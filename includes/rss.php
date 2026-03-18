@@ -123,7 +123,7 @@ function rssBuildEpisodeSlug($title, $fallback = '') {
         return 'trailer';
     }
 
-    if ($normalizedTitle === 'пилот' || str_starts_with($normalizedTitle, 'пилот.')) {
+    if ($normalizedTitle === 'пилот' || strpos($normalizedTitle, 'пилот.') === 0) {
         return 'pilot';
     }
 
