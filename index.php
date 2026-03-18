@@ -8,7 +8,7 @@ require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/rss.php';
 
 $pageTitle = $SITE_CONFIG['title'];
-$pageDescription = $SITE_CONFIG['description'];
+$pageDescription = 'Подкасты и медитации Даниила Иванова для IT-специалистов и технарей: выгорание, стресс, внутренний шум и доказательная психология без эзотерики.';
 $pageImage = $SITE_CONFIG['author']['avatar'];
 $pageTheme = 'home';
 
@@ -83,13 +83,13 @@ $homepageSchema = [
             <div>
                 <span class="eyebrow mb-6">
                     <span class="accent-dot"></span>
-                    Психология без эзотерики
+                    Доказательная психология для технарей
                 </span>
                 <h1 class="display-title text-5xl md:text-7xl text-slate-900 mb-6">
-                    Для тех, кто устал жить на автопилоте
+                    Подкасты и медитации для тех, кто устал жить на автопилоте
                 </h1>
                 <p class="text-xl md:text-2xl text-slate-700 max-w-3xl leading-relaxed mb-10">
-                    Медитации и подкасты от психолога, который говорит с айтишниками не сверху вниз, а на одном языке.
+                    Daniel's Voice — это сайт психолога Даниила Иванова с медитациями, аудиопрактиками и подкастом о выгорании, стрессе, внутреннем шуме и жизни без эзотерики. Здесь говорят с айтишниками и системно мыслящими людьми на равных, без маркетинговой суеты и пустых обещаний.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="#audio-catalog" class="btn-accent px-8 py-4 rounded-2xl text-lg font-semibold transition-all">
@@ -103,9 +103,9 @@ $homepageSchema = [
             <div class="glass-panel rounded-[1.75rem] p-6 md:p-8">
                 <p class="soft-kicker mb-4">Что здесь важно</p>
                 <div class="space-y-5 text-slate-700">
-                    <p class="leading-relaxed">Без подписок, лишних экранов и обещаний «починить жизнь за 5 минут».</p>
+                    <p class="leading-relaxed">Без подписок, лишних экранов и обещаний «починить жизнь за пять минут».</p>
                     <p class="leading-relaxed">Только ясный голос, прикладная психология и контент, который можно слушать между релизами, созвонами и дедлайнами.</p>
-                    <p class="leading-relaxed font-semibold text-slate-900">Нужен покой, честный разговор или интеллектуальная провокация — на сайте есть свой маршрут для каждого состояния.</p>
+                    <p class="leading-relaxed font-semibold text-slate-900">Если нужен выдох, честный разговор о психологии или глубокий подкаст для технарей, на сайте есть свой маршрут для каждого состояния.</p>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@ $homepageSchema = [
                 </p>
                 <div class="quote-panel rounded-[1.5rem] p-6 mb-6">
                     <p class="relative z-10 text-slate-700 leading-relaxed">
-                        Контент здесь устроен как спокойный, но требовательный разговор: без мистики, без инфошума и без снисходительного тона.
+                        Здесь контент устроен как спокойный, но требовательный разговор о выгорании, тревоге, самонаблюдении и внутренней опоре без мистики, инфошума и снисходительного тона.
                     </p>
                 </div>
                 <a
@@ -154,27 +154,27 @@ $homepageSchema = [
                 <h2 class="display-title text-4xl md:text-5xl">С чего начать</h2>
             </div>
             <p class="max-w-xl text-slate-600 leading-relaxed">
-                Каждая рубрика отвечает на разное состояние: от перегруза и внутреннего шума до желания подумать глубже и честнее.
+                Каждая рубрика отвечает на разное состояние: от перегруза и внутреннего шума до желания подумать глубже о себе, терапии, стрессе и том, как вообще устроена психика.
             </p>
         </div>
         <div class="theme-grid">
             <a href="/inside-the-silence/" class="theme-card block">
                 <p class="soft-kicker mb-3 text-emerald-700">Когда нужен выдох</p>
                 <h3 class="text-2xl font-bold text-slate-900 mb-3">Внутри тишины</h3>
-                <p class="text-slate-600 leading-relaxed mb-5">Мягкий, медленный ритм. Практики, которые помогают вернуться в тело и убрать лишний шум.</p>
-                <span class="font-semibold text-emerald-800">Короткие практики 8–15 минут</span>
+                <p class="text-slate-600 leading-relaxed mb-5">Медитации и короткие аудиопрактики для перегруженной головы, тревоги, усталости и возвращения внимания в настоящее.</p>
+                <span class="font-semibold text-emerald-800">Короткие практики на 8–15 минут</span>
             </a>
             <a href="/netlenka/" class="theme-card block">
                 <p class="soft-kicker mb-3 text-blue-700">Когда нужен честный текст</p>
                 <h3 class="text-2xl font-bold text-slate-900 mb-3">Нетленка</h3>
-                <p class="text-slate-600 leading-relaxed mb-5">Блог вслух без воды. Разговорный, плотный, местами неудобный, но живой.</p>
+                <p class="text-slate-600 leading-relaxed mb-5">Аудиоблог о психологии, терапии и жизни без воды, красивых ширм и мотивационного мусора.</p>
                 <span class="font-semibold text-blue-800">Коротко, по делу, без иллюзий</span>
             </a>
             <a href="/rebel-psychology/" class="theme-card block">
                 <p class="soft-kicker mb-3 text-violet-700">Когда хочется думать глубже</p>
                 <h3 class="text-2xl font-bold text-slate-900 mb-3">Психопогромизм</h3>
-                <p class="text-slate-600 leading-relaxed mb-5">Большой разговор для тех, кто привык разбираться в системах и хочет так же разбираться в себе.</p>
-                <span class="font-semibold text-violet-800">Психология для технарей</span>
+                <p class="text-slate-600 leading-relaxed mb-5">Подкаст о психологии для технарей: выгорание, стресс, самоотношение, терапия и привычка разбираться в себе так же тщательно, как в системах.</p>
+                <span class="font-semibold text-violet-800">Психология для системно мыслящих людей</span>
             </a>
         </div>
     </section>

@@ -8,7 +8,7 @@ $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
 $sortedAudio = getRssEpisodesByCategory($categoryKey);
 
 $pageTitle = $categoryInfo['title'];
-$pageDescription = $categoryInfo['description'];
+$pageDescription = 'Медитации и короткие аудиопрактики для перегруза, тревоги, внутреннего шума и усталости. Бережный формат, чтобы выдохнуть и вернуться в настоящее.';
 $pageImage = $SITE_CONFIG['author']['avatar'];
 $pageTheme = getCategoryPageTheme($categoryKey);
 
@@ -50,7 +50,7 @@ $categorySchema = [
                         <?= e($categoryInfo['description']) ?>
                     </p>
                     <div class="podcast-story-panel max-w-3xl">
-                        <p class="soft-kicker mb-3 text-emerald-700">Состояние</p>
+                        <p class="soft-kicker mb-3 text-emerald-700">Для какого состояния</p>
                         <p class="text-slate-700 leading-relaxed text-lg">
                             <?= e($categoryInfo['story']) ?>
                         </p>
@@ -62,11 +62,11 @@ $categorySchema = [
         <section class="podcast-notes-grid mb-12">
             <article class="podcast-note-card">
                 <p class="soft-kicker mb-3 text-emerald-700">Когда включать</p>
-                <p class="text-slate-700 leading-relaxed">После перегруженного дня, между задачами, перед сном или в тот момент, когда внутренний шум стал громче вас.</p>
+                <p class="text-slate-700 leading-relaxed">После перегруженного дня, между задачами, перед сном или в тот момент, когда тревога, внутренний шум и усталость стали громче вас.</p>
             </article>
             <article class="podcast-note-card">
                 <p class="soft-kicker mb-3 text-emerald-700">Как звучит</p>
-                <p class="text-slate-700 leading-relaxed">Мягко, медленно и без избыточной драматизации. Здесь важны пауза, дыхание и возвращение внимания в тело.</p>
+                <p class="text-slate-700 leading-relaxed">Мягко, медленно и без избыточной драматизации. Здесь важны пауза, дыхание и возвращение внимания в тело, а не эффектная подача.</p>
             </article>
         </section>
 

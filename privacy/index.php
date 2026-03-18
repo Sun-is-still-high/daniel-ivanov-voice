@@ -7,7 +7,7 @@ require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/functions.php';
 
 $pageTitle = 'Политика конфиденциальности';
-$pageDescription = 'Политика конфиденциальности сайта Daniel\'s Voice. Информация об обработке персональных данных в соответствии с 152-ФЗ.';
+$pageDescription = 'Политика конфиденциальности Daniel\'s Voice: какие данные обрабатываются на сайте, как используется аналитика и какие права есть у посетителя.';
 
 require_once __DIR__ . '/../includes/header.php';
 ?>
@@ -18,7 +18,7 @@ require_once __DIR__ . '/../includes/header.php';
         <?= renderBreadcrumbs([['label' => 'Политика конфиденциальности']]) ?>
 
         <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Политика конфиденциальности</h1>
-        <p class="text-slate-500 mb-12">Последнее обновление: 16 февраля 2026 г.</p>
+        <p class="text-slate-500 mb-12">Последнее обновление: 16 февраля 2026 г. Здесь коротко и ясно описано, какие технические данные собирает сайт и как они используются.</p>
 
         <div class="prose prose-slate max-w-none space-y-10 text-slate-700 leading-relaxed">
 

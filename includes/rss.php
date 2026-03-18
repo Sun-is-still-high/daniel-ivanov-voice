@@ -4,6 +4,48 @@
  */
 
 /**
+ * Нормализовать описание выпуска: убрать HTML, лишние пробелы и пустые хвосты.
+ */
+function rssNormalizeDescription($text) {
+    $text = html_entity_decode((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $text = trim(strip_tags($text));
+    $text = preg_replace('/\s+/u', ' ', $text);
+
+    return trim((string) $text);
+}
+
+/**
+ * Построить более понятное описание для карточек и SEO, если RSS-summary слишком короткий.
+ */
+function rssBuildEpisodeDescription($categoryKey, $title, $rawDescription) {
+    global $SITE_CONFIG;
+
+    $description = rssNormalizeDescription($rawDescription);
+    $category = $SITE_CONFIG['categories'][$categoryKey] ?? [];
+    $categoryTitle = trim((string) ($category['title'] ?? ''));
+    $categoryDescription = rssNormalizeDescription($category['description'] ?? '');
+
+    if ($description === '') {
+        if ($categoryTitle !== '' && $categoryDescription !== '') {
+            return '«' . trim((string) $title) . '» — выпуск из рубрики «' . $categoryTitle . '». ' . $categoryDescription;
+        }
+
+        return '«' . trim((string) $title) . '» — выпуск Даниила Иванова о психологии без эзотерики.';
+    }
+
+    if (mb_strlen($description, 'UTF-8') < 110 && $categoryDescription !== '') {
+        $lowerDescription = mb_strtolower($description, 'UTF-8');
+        $lowerCategoryDescription = mb_strtolower($categoryDescription, 'UTF-8');
+
+        if (strpos($lowerDescription, $lowerCategoryDescription) === false) {
+            $description .= ' ' . $categoryDescription;
+        }
+    }
+
+    return trim($description);
+}
+
+/**
  * Конвертировать длительность из RSS в формат MM:SS или H:MM:SS
  * RSS может отдавать: секунды ("1234"), MM:SS ("20:34"), HH:MM:SS ("1:20:34")
  */
@@ -172,9 +214,11 @@ function fetchRssEpisodes($rssUrl, $cacheKey, $categoryKey = 'podcast', $ttl = 6
         $pubDate = (string)$item->pubDate;
         $date    = $pubDate ? date('Y-m-d', strtotime($pubDate)) : date('Y-m-d');
 
-        $description = trim(strip_tags(
-            (string)($itunes->summary ?: $item->description)
-        ));
+        $description = rssBuildEpisodeDescription(
+            $categoryKey,
+            (string) $item->title,
+            (string) ($itunes->summary ?: $item->description)
+        );
 
         $audioFile = $enclosure ? (string)$enclosure['url'] : '';
         $externalUrl = trim((string)$item->link);

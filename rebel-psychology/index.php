@@ -8,7 +8,7 @@ $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
 $sortedAudio = getRssEpisodesByCategory($categoryKey);
 
 $pageTitle = $categoryInfo['title'];
-$pageDescription = $categoryInfo['description'];
+$pageDescription = 'Психопогромизм — подкаст о психологии для технарей: выгорание, стресс, терапия, самоотношение и системный взгляд на себя без эзотерики.';
 $pageImage = $SITE_CONFIG['author']['avatar'];
 $pageTheme = getCategoryPageTheme($categoryKey);
 
@@ -62,11 +62,11 @@ $categorySchema = [
         <section class="podcast-metrics-grid mb-8">
             <article class="podcast-metric-card">
                 <p class="soft-kicker mb-3 text-violet-700">Характер</p>
-                <p class="text-slate-700 leading-relaxed">Интеллектуальный, спорящий, неуспокаивающий. Не терапия-как-сервис, а разговор, в котором хочется участвовать.</p>
+                <p class="text-slate-700 leading-relaxed">Интеллектуальный, спорящий, местами неуспокаивающий. Не терапия-как-сервис, а разговор о психологии, в котором хочется участвовать, а не просто потреблять выводы.</p>
             </article>
             <article class="podcast-metric-card">
                 <p class="soft-kicker mb-3 text-violet-700">Собеседник</p>
-                <p class="text-slate-700 leading-relaxed">Технари, системно мыслящие люди и все, кому важно понимать не только что чувствовать, но и как это устроено.</p>
+                <p class="text-slate-700 leading-relaxed">Технари, системно мыслящие люди и все, кому важно понимать не только что чувствовать, но и как устроены выгорание, стресс, защита психики и изменения в терапии.</p>
             </article>
             <article class="podcast-metric-card">
                 <p class="soft-kicker mb-3 text-violet-700">В ленте</p>

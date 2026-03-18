@@ -78,6 +78,29 @@ function formatDescription($text) {
 }
 
 /**
+ * Короткий анонс без обрыва на полуслове для карточек.
+ */
+function buildDescriptionTeaser($text, $limit = 190) {
+    $text = trim((string) $text);
+    if ($text === '') {
+        return '';
+    }
+
+    if (mb_strlen($text, 'UTF-8') <= $limit) {
+        return $text;
+    }
+
+    $slice = mb_substr($text, 0, $limit, 'UTF-8');
+    $lastSpace = mb_strrpos($slice, ' ', 0, 'UTF-8');
+
+    if ($lastSpace !== false) {
+        $slice = mb_substr($slice, 0, $lastSpace, 'UTF-8');
+    }
+
+    return rtrim($slice, " \t\n\r\0\x0B,.;:-") . '…';
+}
+
+/**
  * Форматирование даты на русском
  */
 function formatDate($date) {
@@ -147,7 +170,7 @@ function renderAudioCard($audio) {
     $id = $audio['id'];
     $title = e($audio['title']);
     $description = e($audio['description']);
-    $descriptionHtml = formatDescription($audio['description']);
+    $descriptionHtml = formatDescription(buildDescriptionTeaser($audio['description'], 170));
     $category = e($audio['category']);
     $duration = e($audio['duration']);
     $audioFile = e($audio['audioFile']);
@@ -209,7 +232,7 @@ function renderPodcastEpisode($audio) {
     $category = e($audio['category']);
     $title = e($audio['title']);
     $description = e($audio['description']);
-    $descriptionHtml = formatDescription($audio['description']);
+    $descriptionHtml = formatDescription(buildDescriptionTeaser($audio['description'], 220));
     $duration = e($audio['duration']);
     $audioFile = e($audio['audioFile']);
     $date = formatDate($audio['publishDate']);

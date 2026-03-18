@@ -5,32 +5,32 @@ $footerTheme = $pageTheme ?? 'site';
 $footerContent = [
     'site' => [
         'kicker' => 'Daniel\'s Voice',
-        'lead' => 'Сайт с медитациями, подкастами и честным разговором о психологии без эзотерики.',
-        'note' => 'Открытый архив голоса, к которому можно возвращаться в разном состоянии.',
+        'lead' => 'Сайт с медитациями, подкастами и честным разговором о психологии, выгорании и внутреннем шуме без эзотерики.',
+        'note' => 'Открытый архив, к которому можно возвращаться за выдохом, ясностью и более точным языком для себя.',
     ],
     'home' => [
         'kicker' => 'Библиотека голоса',
-        'lead' => 'Главная собирает все маршруты сайта: выдох, честный текст и большой разговор.',
+        'lead' => 'Главная собирает все маршруты сайта: выдох, честный текст и большой разговор о психологии для технарей.',
         'note' => 'Выбирайте не по формату, а по состоянию, в котором вы сейчас находитесь.',
     ],
     'about' => [
         'kicker' => 'О проекте',
-        'lead' => 'Этот сайт задуман как пространство без воронок, подписок и маркетинговой суеты.',
-        'note' => 'Пусть в конце страницы остается не давление, а ощущение ясности и уважения к вниманию.',
+        'lead' => 'Этот сайт задуман как пространство без воронок, подписок и маркетинговой суеты вокруг психологии.',
+        'note' => 'Пусть в конце страницы остаётся не давление, а ощущение ясности и уважения к вашему вниманию.',
     ],
     'netlenka' => [
         'kicker' => 'Нетленка',
-        'lead' => 'Короткие тексты вслух, где важнее точность и честность, чем терапевтический декор.',
+        'lead' => 'Короткие тексты вслух о психологии и жизни, где важнее точность и честность, чем терапевтический декор.',
         'note' => 'Если нужен другой режим разговора, внизу есть остальные линии проекта.',
     ],
     'podcast' => [
         'kicker' => 'Психопогромизм',
-        'lead' => 'Подкаст для тех, кто привык думать системно и не любит, когда с ним говорят сверху вниз.',
+        'lead' => 'Подкаст о психологии для тех, кто привык думать системно и не любит, когда с ним говорят сверху вниз.',
         'note' => 'Большой разговор не заканчивается на одном выпуске: можно уйти в другие режимы сайта.',
     ],
     'inside-the-silence' => [
         'kicker' => 'Внутри тишины',
-        'lead' => 'Практики и медитации для моментов, когда шум стал слишком плотным и нужен выдох.',
+        'lead' => 'Практики и медитации для моментов, когда внутренний шум, тревога или усталость стали слишком плотными и нужен выдох.',
         'note' => 'Если вам сейчас нужен другой ритм, рядом остаются и более разговорные разделы проекта.',
     ],
 ];
@@ -50,7 +50,7 @@ $footer = $footerContent[$footerTheme] ?? $footerContent['site'];
                 </div>
 
                 <div class="footer-card">
-                    <h3 class="text-lg font-semibold text-white mb-4">Разделы</h3>
+                    <h3 class="text-lg font-semibold text-white mb-4">Разделы сайта</h3>
                     <ul class="space-y-2">
                         <?php foreach ($SITE_CONFIG['categories'] as $key => $category): ?>
                             <li>
@@ -66,7 +66,7 @@ $footer = $footerContent[$footerTheme] ?? $footerContent['site'];
                 </div>
 
                 <div class="footer-card">
-                    <h3 class="text-lg font-semibold text-white mb-4">Связь и площадки</h3>
+                    <h3 class="text-lg font-semibold text-white mb-4">Контакты и площадки</h3>
                     <div class="space-y-2 text-sm">
                         <a href="<?= e($SITE_CONFIG['social']['telegram']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Telegram</a>
                         <a href="<?= e($SITE_CONFIG['social']['telegramChannel']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Telegram-канал</a>
@@ -143,11 +143,11 @@ document.querySelectorAll('.audio-player-container').forEach((container) => {
 <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-slate-700 px-4 py-4 md:px-8" style="display:none">
     <div class="container mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <p class="text-sm text-slate-300 leading-relaxed">
-            Сайт использует cookie и Яндекс Метрику для анализа посещаемости.
+            Сайт использует cookie и Яндекс Метрику, чтобы понимать посещаемость и улучшать содержимое без навязчивого трекинга.
             <a href="/privacy/" class="text-slate-200 underline underline-offset-2 hover:text-white whitespace-nowrap">Подробнее</a>
         </p>
         <button id="cookie-accept" type="button" class="flex-shrink-0 px-5 py-2 bg-white hover:bg-slate-100 text-slate-900 text-sm font-semibold rounded-lg transition-colors">
-            Понятно
+            Принять
         </button>
     </div>
 </div>

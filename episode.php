@@ -33,8 +33,14 @@ $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
 $relatedAudio = getRssRelatedEpisodes($categoryKey, $audio['slug'], 3);
 $platforms = $audio['platforms'] ?? [];
 
-$pageTitle = $audio['title'];
-$pageDescription = $audio['description'];
+$pageTitle = $audio['title'] . ' | ' . $categoryInfo['title'];
+$pageDescription = trim($audio['description']);
+if ($pageDescription === '') {
+    $pageDescription = $categoryInfo['title'] . ' — выпуск Даниила Иванова о психологии без эзотерики.';
+}
+if (mb_strlen($pageDescription, 'UTF-8') > 160) {
+    $pageDescription = buildDescriptionTeaser($pageDescription, 157);
+}
 $pageType = 'article';
 $pageImage = $audio['image'] ?: $SITE_CONFIG['author']['avatar'];
 $pageTheme = getCategoryPageTheme($categoryKey);

@@ -8,7 +8,7 @@ $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
 $sortedAudio = getRssEpisodesByCategory($categoryKey);
 
 $pageTitle = $categoryInfo['title'];
-$pageDescription = $categoryInfo['description'];
+$pageDescription = 'Нетленка — аудиоблог о психологии, терапии и жизни без воды, эзотерики и мотивационного мусора. Короткие, плотные и честные тексты.';
 $pageImage = $SITE_CONFIG['author']['avatar'];
 $pageTheme = 'netlenka';
 
@@ -25,7 +25,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <img src="<?= e($categoryInfo['image']) ?>" alt="<?= e($categoryInfo['title']) ?>" class="w-full max-w-sm rounded-[2rem] shadow-2xl" />
                 </div>
                 <div>
-                    <span class="category-chip mb-5">Блог вслух</span>
+                    <span class="category-chip mb-5">Аудиоблог</span>
                     <h1 class="display-title text-5xl md:text-7xl mb-5"><?= e($categoryInfo['title']) ?></h1>
                     <p class="text-xl text-slate-700 leading-relaxed mb-6"><?= e($categoryInfo['description']) ?></p>
                     <div class="quote-panel rounded-[1.5rem] p-6">
@@ -38,11 +38,11 @@ require_once __DIR__ . '/../includes/header.php';
         <section class="grid md:grid-cols-3 gap-6 mb-12">
             <div class="theme-card">
                 <p class="soft-kicker mb-3 text-blue-700">Тембр</p>
-                <p class="text-slate-700 leading-relaxed">Редакционный, плотный, без лишней нежности. Словно заметки в полях, которые читают вслух.</p>
+                <p class="text-slate-700 leading-relaxed">Редакционный, плотный, без лишней нежности. Словно заметки на полях о психологии и жизни, которые читают вслух.</p>
             </div>
             <div class="theme-card">
                 <p class="soft-kicker mb-3 text-blue-700">Для кого</p>
-                <p class="text-slate-700 leading-relaxed">Для тех, кому нужен короткий, точный и иногда неудобный разговор о психологии и жизни.</p>
+                <p class="text-slate-700 leading-relaxed">Для тех, кому нужен короткий, точный и иногда неудобный разговор о психологии, терапии, самообмане и жизни без красивых ширм.</p>
             </div>
             <div class="theme-card">
                 <p class="soft-kicker mb-3 text-blue-700">Формат</p>

@@ -16,6 +16,10 @@ $pageDescription = isset($pageDescription) ? $pageDescription : $SITE_CONFIG['de
 $pageType = isset($pageType) ? $pageType : 'website';
 $pageImage = isset($pageImage) ? $pageImage : $SITE_CONFIG['author']['avatar'];
 $pageTheme = isset($pageTheme) ? $pageTheme : 'site';
+
+if (strpos((string) $pageImage, 'http://') !== 0 && strpos((string) $pageImage, 'https://') !== 0) {
+    $pageImage = 'https://daniel-ivanov-voice.ru' . $pageImage;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -46,7 +50,6 @@ $pageTheme = isset($pageTheme) ? $pageTheme : 'site';
     <!-- Additional SEO -->
     <meta name="author" content="<?= e($SITE_CONFIG['author']['name']) ?>">
     <meta name="robots" content="index, follow">
-    <meta name="keywords" content="психология, медитация, осознанность, подкаст, айти, выгорание, стресс, психотерапия, mindfulness">
     <link rel="alternate" type="application/rss+xml" title="Daniel's Voice RSS Feed" href="/rss.xml">
 
     <title><?= e($pageTitle) ?></title>
