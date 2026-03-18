@@ -129,6 +129,16 @@ function getPageTitle($title = null) {
 }
 
 /**
+ * Соответствие темы страницы ключу категории
+ */
+function getCategoryPageTheme($categoryKey) {
+    if ($categoryKey === 'podcast') {
+        return 'podcast';
+    }
+    return basename((string) $categoryKey);
+}
+
+/**
  * Отрисовка карточки аудио
  */
 function renderAudioCard($audio) {
@@ -150,7 +160,7 @@ function renderAudioCard($audio) {
     $categoryLabel = $CATEGORY_LABELS[$category] ?? '';
 
     return <<<HTML
-<article class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200" data-category="{$category}" itemscope itemtype="https://schema.org/AudioObject">
+<article class="theme-card overflow-hidden" data-category="{$category}" itemscope itemtype="https://schema.org/AudioObject">
   <meta itemprop="name" content="{$title}">
   <meta itemprop="description" content="{$description}">
   <meta itemprop="duration" content="{$duration}">
@@ -168,7 +178,7 @@ function renderAudioCard($audio) {
     </div>
 
     <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-3 line-clamp-2 break-words">
-      <a href="{$audioUrl}"{$linkAttrs} class="hover:text-slate-600 transition-colors" itemprop="url">
+      <a href="{$audioUrl}"{$linkAttrs} class="hover:opacity-80 transition-opacity" itemprop="url">
         <span itemprop="name">{$title}</span>
       </a>
     </h3>
@@ -180,7 +190,7 @@ function renderAudioCard($audio) {
     <div class="flex gap-3">
       <a
         href="{$audioUrl}"{$linkAttrs}
-        class="flex-1 px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-xl transition-colors text-center"
+        class="flex-1 px-5 py-3 btn-accent text-sm font-medium rounded-xl transition-all text-center"
       >
         Прослушать
       </a>
@@ -219,7 +229,7 @@ HTML;
     }
 
     return <<<HTML
-<article class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200" data-category="{$category}" itemscope itemtype="https://schema.org/AudioObject">
+<article class="episode-card rounded-2xl transition-all duration-300" data-category="{$category}" itemscope itemtype="https://schema.org/AudioObject">
   <meta itemprop="name" content="{$title}">
   <meta itemprop="description" content="{$description}">
   <meta itemprop="contentUrl" content="{$audioFile}">
@@ -234,10 +244,11 @@ HTML;
           <span class="text-xs font-semibold px-3 py-1.5 rounded-full border {$badgeColor}">
             {$categoryLabel}
           </span>
+          <span class="episode-meta-pill">{$date}</span>
           {$durationHtml}
         </div>
         <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2">
-          <a href="{$audioUrl}"{$linkAttrs} class="hover:text-slate-600 transition-colors" itemprop="url">
+          <a href="{$audioUrl}"{$linkAttrs} class="hover:opacity-80 transition-opacity" itemprop="url">
             {$title}
           </a>
         </h3>
@@ -248,7 +259,7 @@ HTML;
       <div class="flex gap-3 md:flex-shrink-0">
         <a
           href="{$audioUrl}"{$linkAttrs}
-          class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-xl transition-colors text-center whitespace-nowrap"
+          class="px-6 py-3 btn-accent text-sm font-medium rounded-xl transition-all text-center whitespace-nowrap"
         >
           Прослушать
         </a>
@@ -267,7 +278,7 @@ function renderAudioPlayer($audio) {
     $audioId = e($audio['id']);
 
     return <<<HTML
-<div class="bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-6 audio-player-container" data-audio-id="{$audioId}">
+<div class="player-panel audio-player-container" data-audio-id="{$audioId}">
   <audio controls class="w-full mb-4 audio-player" preload="metadata">
     <source src="{$audioFile}" type="audio/mpeg" />
     Ваш браузер не поддерживает аудио.
@@ -276,7 +287,7 @@ function renderAudioPlayer($audio) {
   <div class="flex gap-3 flex-wrap">
     <button
       type="button"
-      class="play-pause-btn px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
+      class="play-pause-btn px-6 py-3 btn-accent font-semibold rounded-lg transition-all flex items-center gap-2"
       aria-label="Воспроизвести / Пауза"
     >
       <svg class="play-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -344,7 +355,7 @@ function renderPlatformButtons($platforms) {
         $name = e($platform['name']);
         $url = e($platform['url']);
         $html .= '<a href="' . $url . '" target="_blank" rel="noopener noreferrer" ';
-        $html .= 'class="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors">';
+        $html .= 'class="inline-flex items-center gap-2 px-5 py-3 btn-accent font-medium rounded-xl transition-all">';
         $html .= '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">';
         $html .= '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>';
         $html .= '</svg>';
@@ -362,7 +373,7 @@ function renderBreadcrumbs($items) {
     $html = '<nav aria-label="Breadcrumb" class="mb-8">
   <ol class="flex items-center gap-2 text-sm flex-wrap">
     <li class="flex items-center">
-      <a href="/" class="flex items-center gap-1 text-slate-600 hover:text-slate-900 transition-colors" aria-label="Главная">
+      <a href="/" class="breadcrumb-link flex items-center gap-1 text-slate-600 transition-colors" aria-label="Главная">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
         </svg>
@@ -384,7 +395,7 @@ function renderBreadcrumbs($items) {
             $html .= '<span class="text-slate-900 font-medium"' . ($isLast ? ' aria-current="page"' : '') . '>' . $label . '</span>';
         } else {
             $href = e($item['href']);
-            $html .= '<a href="' . $href . '" class="text-slate-600 hover:text-slate-900 transition-colors">' . $label . '</a>';
+            $html .= '<a href="' . $href . '" class="breadcrumb-link text-slate-600 transition-colors">' . $label . '</a>';
         }
 
         $html .= '</li>';

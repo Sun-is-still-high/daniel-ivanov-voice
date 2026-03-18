@@ -1,100 +1,91 @@
 <?php
-/**
- * Подвал сайта и закрывающие теги HTML
- */
 $currentYear = date('Y');
+$footerTheme = $pageTheme ?? 'site';
+
+$footerContent = [
+    'site' => [
+        'kicker' => 'Daniel\'s Voice',
+        'lead' => 'Сайт с медитациями, подкастами и честным разговором о психологии без эзотерики.',
+        'note' => 'Открытый архив голоса, к которому можно возвращаться в разном состоянии.',
+    ],
+    'home' => [
+        'kicker' => 'Библиотека голоса',
+        'lead' => 'Главная собирает все маршруты сайта: выдох, честный текст и большой разговор.',
+        'note' => 'Выбирайте не по формату, а по состоянию, в котором вы сейчас находитесь.',
+    ],
+    'about' => [
+        'kicker' => 'О проекте',
+        'lead' => 'Этот сайт задуман как пространство без воронок, подписок и маркетинговой суеты.',
+        'note' => 'Пусть в конце страницы остается не давление, а ощущение ясности и уважения к вниманию.',
+    ],
+    'netlenka' => [
+        'kicker' => 'Нетленка',
+        'lead' => 'Короткие тексты вслух, где важнее точность и честность, чем терапевтический декор.',
+        'note' => 'Если нужен другой режим разговора, внизу есть остальные линии проекта.',
+    ],
+    'podcast' => [
+        'kicker' => 'Психопогромизм',
+        'lead' => 'Подкаст для тех, кто привык думать системно и не любит, когда с ним говорят сверху вниз.',
+        'note' => 'Большой разговор не заканчивается на одном выпуске: можно уйти в другие режимы сайта.',
+    ],
+    'inside-the-silence' => [
+        'kicker' => 'Внутри тишины',
+        'lead' => 'Практики и медитации для моментов, когда шум стал слишком плотным и нужен выдох.',
+        'note' => 'Если вам сейчас нужен другой ритм, рядом остаются и более разговорные разделы проекта.',
+    ],
+];
+
+$footer = $footerContent[$footerTheme] ?? $footerContent['site'];
 ?>
 
-<footer class="bg-slate-900 text-slate-300 mt-20">
-    <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- About -->
-            <div>
-                <h3 class="text-xl font-bold text-white mb-4"><?= e($SITE_CONFIG['author']['name']) ?></h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    <?= e($SITE_CONFIG['author']['bio']) ?>
-                </p>
-            </div>
+<footer class="mt-20 text-slate-300">
+    <div class="container mx-auto px-6 md:px-8">
+        <div class="footer-shell rounded-[2rem] p-8 md:p-10">
+            <div class="relative z-10 grid gap-10 md:grid-cols-[1.15fr_0.85fr_0.85fr]">
+                <div class="footer-card">
+                    <p class="footer-kicker mb-3"><?= e($footer['kicker']) ?></p>
+                    <h3 class="site-logo text-2xl text-white mb-4"><?= e($SITE_CONFIG['title']) ?></h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4"><?= e($footer['lead']) ?></p>
+                    <p class="text-sm text-slate-400 leading-relaxed"><?= e($footer['note']) ?></p>
+                </div>
 
-            <!-- Quick Links -->
-            <div>
-                <h3 class="text-lg font-semibold text-white mb-4">Рубрики</h3>
-                <ul class="space-y-2">
-                    <?php foreach ($SITE_CONFIG['categories'] as $key => $category): ?>
-                        <li>
-                            <?php if ($category['disabled']): ?>
-                                <span class="text-slate-500 cursor-not-allowed">
-                                    <?= e($category['title']) ?> <span class="text-xs">(Скоро)</span>
-                                </span>
-                            <?php else: ?>
-                                <a href="/<?= e($key) ?>/" class="text-slate-400 hover:text-white transition-colors">
-                                    <?= e($category['title']) ?>
-                                </a>
-                            <?php endif; ?>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+                <div class="footer-card">
+                    <h3 class="text-lg font-semibold text-white mb-4">Разделы</h3>
+                    <ul class="space-y-2">
+                        <?php foreach ($SITE_CONFIG['categories'] as $key => $category): ?>
+                            <li>
+                                <?php if ($category['disabled']): ?>
+                                    <span class="text-slate-500"><?= e($category['title']) ?> <span class="text-xs">(Скоро)</span></span>
+                                <?php else: ?>
+                                    <a href="/<?= e($key) ?>/" class="footer-link text-slate-300 transition-colors"><?= e($category['title']) ?></a>
+                                <?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
+                        <li><a href="/about/" class="footer-link text-slate-300 transition-colors">О проекте</a></li>
+                    </ul>
+                </div>
 
-            <!-- Social Links -->
-            <div>
-                <h3 class="text-lg font-semibold text-white mb-4">Контакты и ссылки</h3>
-                <div class="space-y-2 text-sm">
-                    <a href="<?= e($SITE_CONFIG['social']['telegram']) ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                        </svg>
-                        <span>Telegram (личный)</span>
-                    </a>
-                    <a href="<?= e($SITE_CONFIG['social']['telegramChannel']) ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
-                        </svg>
-                        <span>Telegram канал</span>
-                    </a>
-                    <a href="<?= e($SITE_CONFIG['social']['youtube']) ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                        </svg>
-                        <span>YouTube</span>
-                    </a>
-                    <a href="<?= e($SITE_CONFIG['social']['vk']) ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                        <span>ВКонтакте</span>
-                    </a>
-                    <a href="<?= e($SITE_CONFIG['social']['blog']) ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        <span>Блог</span>
-                    </a>
-                    <a href="<?= e($SITE_CONFIG['social']['contacts']) ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                        <span>Запись на консультации</span>
-                    </a>
+                <div class="footer-card">
+                    <h3 class="text-lg font-semibold text-white mb-4">Связь и площадки</h3>
+                    <div class="space-y-2 text-sm">
+                        <a href="<?= e($SITE_CONFIG['social']['telegram']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Telegram</a>
+                        <a href="<?= e($SITE_CONFIG['social']['telegramChannel']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Telegram-канал</a>
+                        <a href="<?= e($SITE_CONFIG['social']['youtube']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">YouTube</a>
+                        <a href="<?= e($SITE_CONFIG['social']['blog']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Блог</a>
+                        <a href="<?= e($SITE_CONFIG['social']['contacts']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Запись на консультацию</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="mt-8 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
-            <p>&copy; <?= $currentYear ?> <?= e($SITE_CONFIG['author']['name']) ?>. Все права защищены.</p>
-            <p class="mt-2">Помогло? Расскажите другу.</p>
-            <p class="mt-3">
-                <a href="/privacy/" class="text-slate-400 hover:text-white transition-colors underline underline-offset-2">
-                    Политика конфиденциальности
-                </a>
-            </p>
+            <div class="relative z-10 mt-10 pt-8 border-t border-white/10 text-sm text-slate-400 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <p>&copy; <?= $currentYear ?> <?= e($SITE_CONFIG['author']['name']) ?>.</p>
+                <a href="/privacy/" class="footer-link underline underline-offset-2 text-slate-300 transition-colors">Политика конфиденциальности</a>
+            </div>
         </div>
     </div>
 </footer>
 
-<!-- JavaScript для мобильного меню и аудиоплеера -->
 <script>
-// Мобильное меню
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -104,7 +95,6 @@ if (mobileMenuButton && mobileMenu) {
     });
 }
 
-// Аудиоплеер
 document.querySelectorAll('.audio-player-container').forEach((container) => {
     const audioPlayer = container.querySelector('.audio-player');
     const playPauseBtn = container.querySelector('.play-pause-btn');
@@ -116,7 +106,6 @@ document.querySelectorAll('.audio-player-container').forEach((container) => {
 
     if (!audioPlayer || !playPauseBtn) return;
 
-    // Play/Pause
     playPauseBtn.addEventListener('click', () => {
         if (audioPlayer.paused) {
             audioPlayer.play();
@@ -137,7 +126,6 @@ document.querySelectorAll('.audio-player-container').forEach((container) => {
         if (playPauseText) playPauseText.textContent = 'Воспроизвести';
     });
 
-    // Skip controls
     if (skipBackBtn) {
         skipBackBtn.addEventListener('click', () => {
             audioPlayer.currentTime = Math.max(0, audioPlayer.currentTime - 10);
@@ -152,19 +140,13 @@ document.querySelectorAll('.audio-player-container').forEach((container) => {
 });
 </script>
 
-<!-- Cookie consent banner -->
 <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-slate-700 px-4 py-4 md:px-8" style="display:none">
     <div class="container mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <p class="text-sm text-slate-300 leading-relaxed">
-            Сайт использует файлы cookie и Яндекс Метрику для анализа посещаемости.
-            Данные хранятся на серверах в России в соответствии с&nbsp;152-ФЗ.
+            Сайт использует cookie и Яндекс Метрику для анализа посещаемости.
             <a href="/privacy/" class="text-slate-200 underline underline-offset-2 hover:text-white whitespace-nowrap">Подробнее</a>
         </p>
-        <button
-            id="cookie-accept"
-            type="button"
-            class="flex-shrink-0 px-5 py-2 bg-white hover:bg-slate-100 text-slate-900 text-sm font-semibold rounded-lg transition-colors"
-        >
+        <button id="cookie-accept" type="button" class="flex-shrink-0 px-5 py-2 bg-white hover:bg-slate-100 text-slate-900 text-sm font-semibold rounded-lg transition-colors">
             Понятно
         </button>
     </div>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Главная страница
+ * Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°
  */
 
 require_once __DIR__ . '/includes/config.php';
@@ -10,8 +10,9 @@ require_once __DIR__ . '/includes/rss.php';
 $pageTitle = $SITE_CONFIG['title'];
 $pageDescription = $SITE_CONFIG['description'];
 $pageImage = $SITE_CONFIG['author']['avatar'];
+$pageTheme = 'home';
 
-// Получаем последние записи из всех RSS-фидов
+// РџРѕР»СѓС‡Р°РµРј РїРѕСЃР»РµРґРЅРёРµ Р·Р°РїРёСЃРё РёР· РІСЃРµС… RSS-С„РёРґРѕРІ
 $allEpisodes = [];
 foreach ($SITE_CONFIG['categories'] as $key => $category) {
     if (!empty($category['rssUrl'])) {
@@ -32,8 +33,8 @@ $authorSchema = [
     "description" => $SITE_CONFIG['author']['bio'],
     "url" => $SITE_CONFIG['author']['website'],
     "image" => "https://daniel-ivanov-voice.ru" . $SITE_CONFIG['author']['avatar'],
-    "jobTitle" => "Психолог, психотерапевт",
-    "knowsAbout" => ["психология", "психотерапия", "медитация", "осознанность", "выгорание", "TypeScript", "IT"],
+    "jobTitle" => "РџСЃРёС…РѕР»РѕРі, РїСЃРёС…РѕС‚РµСЂР°РїРµРІС‚",
+    "knowsAbout" => ["РїСЃРёС…РѕР»РѕРіРёСЏ", "РїСЃРёС…РѕС‚РµСЂР°РїРёСЏ", "РјРµРґРёС‚Р°С†РёСЏ", "РѕСЃРѕР·РЅР°РЅРЅРѕСЃС‚СЊ", "РІС‹РіРѕСЂР°РЅРёРµ", "TypeScript", "IT"],
     "sameAs" => [
         $SITE_CONFIG['social']['telegram'],
         $SITE_CONFIG['social']['telegramChannel'],
@@ -60,7 +61,7 @@ $homepageSchema = [
         ],
         [
             "@type" => "PodcastSeries",
-            "name" => "Психопогромизм",
+            "name" => "РџСЃРёС…РѕРїРѕРіСЂРѕРјРёР·Рј",
             "description" => $SITE_CONFIG['categories']['podcast']['description'],
             "url" => "https://daniel-ivanov-voice.ru/rebel-psychology/",
             "inLanguage" => "ru",
@@ -76,98 +77,118 @@ $homepageSchema = [
 <?= json_encode($homepageSchema, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
 </script>
 
-<main class="container mx-auto px-6 md:px-8 py-24 md:py-36">
-    <!-- Hero Section -->
-    <section class="text-center mb-40 md:mb-56">
-        <h1 class="text-5xl md:text-7xl font-bold text-slate-900 mb-8">
-            Для тех, кто устал жить
-            <span class="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
-                на автопилоте
-            </span>
-        </h1>
-        <h2 class="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-12 font-normal">
-            Медитации и подкасты от психолога, который говорит на языке айтишников.
-            Никакой эзотерики — только доказательная психология для IT-специалистов.
-        </h2>
-        <div class="flex flex-wrap justify-center gap-6">
-            <a
-                href="#audio-catalog"
-                class="px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white text-lg font-semibold rounded-xl transition-colors shadow-lg"
-            >
-                Хочу попробовать
-            </a>
-            <a
-                href="/about/"
-                class="px-10 py-4 border-2 border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 text-lg font-semibold rounded-xl transition-colors"
-            >
-                О проекте
-            </a>
-        </div>
-    </section>
-
-    <!-- About Author -->
-    <section class="mb-32 bg-white rounded-3xl shadow-xl p-10 md:p-16">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+<main class="container mx-auto px-6 md:px-8 py-16 md:py-24">
+    <section class="hero-panel rounded-[2rem] px-8 py-10 md:px-14 md:py-16 mb-14">
+        <div class="relative z-10 grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
             <div>
-                <h2 class="text-4xl font-bold text-slate-900 mb-6">Об авторе</h2>
-                <p class="text-lg text-slate-600 leading-relaxed mb-8">
-                    <?= e($SITE_CONFIG['author']['bio']) ?>
+                <span class="eyebrow mb-6">
+                    <span class="accent-dot"></span>
+                    Психология без эзотерики
+                </span>
+                <h1 class="display-title text-5xl md:text-7xl text-slate-900 mb-6">
+                    Для тех, кто устал жить на автопилоте
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-700 max-w-3xl leading-relaxed mb-10">
+                    Медитации и подкасты от психолога, который говорит с айтишниками не сверху вниз, а на одном языке.
                 </p>
-                <a
-                    href="<?= e($SITE_CONFIG['author']['website']) ?>"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
-                >
-                    Посетить личный сайт
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                </a>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#audio-catalog" class="btn-accent px-8 py-4 rounded-2xl text-lg font-semibold transition-all">
+                        Выбрать формат
+                    </a>
+                    <a href="/about/" class="btn-ghost px-8 py-4 rounded-2xl text-lg font-semibold transition-all">
+                        О проекте
+                    </a>
+                </div>
             </div>
-            <div class="flex items-center justify-center">
-                <div class="text-center">
-                    <img
-                        src="<?= e($SITE_CONFIG['author']['avatar']) ?>"
-                        alt="<?= e($SITE_CONFIG['author']['name']) ?> — психолог, психотерапевт"
-                        class="w-full max-w-md mx-auto mb-6 object-cover shadow-2xl rounded-2xl"
-                    />
-                    <p class="text-slate-800 font-semibold text-xl"><?= e($SITE_CONFIG['author']['name']) ?></p>
-                    <p class="text-slate-600 text-base mt-2">Психолог, психотерапевт, член АКПН. Пишет на Typescript</p>
+            <div class="glass-panel rounded-[1.75rem] p-6 md:p-8">
+                <p class="soft-kicker mb-4">Что здесь важно</p>
+                <div class="space-y-5 text-slate-700">
+                    <p class="leading-relaxed">Без подписок, лишних экранов и обещаний «починить жизнь за 5 минут».</p>
+                    <p class="leading-relaxed">Только ясный голос, прикладная психология и контент, который можно слушать между релизами, созвонами и дедлайнами.</p>
+                    <p class="leading-relaxed font-semibold text-slate-900">Нужен покой, честный разговор или интеллектуальная провокация — на сайте есть свой маршрут для каждого состояния.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Onboarding -->
-    <section id="audio-catalog" class="mb-20">
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 md:p-10">
-            <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Здесь впервые?</p>
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">С чего начать</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <a href="/inside-the-silence/" class="group block p-6 bg-white border border-emerald-200 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all">
-                    <div class="text-emerald-600 font-bold text-sm mb-2">Нужно успокоиться прямо сейчас</div>
-                    <div class="text-slate-900 font-semibold group-hover:text-emerald-700 transition-colors">Внутри тишины →</div>
-                    <div class="text-slate-500 text-sm mt-1">Короткие практики 8–15 минут</div>
-                </a>
-                <a href="/netlenka/" class="group block p-6 bg-white border border-blue-200 rounded-xl hover:border-blue-400 hover:shadow-md transition-all">
-                    <div class="text-blue-600 font-bold text-sm mb-2">Хочу честный разговор о жизни</div>
-                    <div class="text-slate-900 font-semibold group-hover:text-blue-700 transition-colors">Нетленка →</div>
-                    <div class="text-slate-500 text-sm mt-1">Блог вслух, коротко и по делу</div>
-                </a>
-                <a href="/rebel-psychology/" class="group block p-6 bg-white border border-purple-200 rounded-xl hover:border-purple-400 hover:shadow-md transition-all">
-                    <div class="text-purple-600 font-bold text-sm mb-2">Хочу разобраться в себе глубже</div>
-                    <div class="text-slate-900 font-semibold group-hover:text-purple-700 transition-colors">Психопогромизм →</div>
-                    <div class="text-slate-500 text-sm mt-1">Подкаст для тех, кто думает системно</div>
+    <section class="section-shell rounded-[2rem] p-8 md:p-12 mb-14">
+        <div class="grid md:grid-cols-[0.95fr_1.05fr] gap-10 md:gap-14 items-center">
+            <div class="relative">
+                <div class="absolute -inset-4 rounded-[2rem] bg-white/30 blur-2xl"></div>
+                <img
+                    src="<?= e($SITE_CONFIG['author']['avatar']) ?>"
+                    alt="<?= e($SITE_CONFIG['author']['name']) ?> — психолог, психотерапевт"
+                    class="relative w-full max-w-md mx-auto rounded-[2rem] object-cover shadow-2xl"
+                />
+            </div>
+            <div>
+                <p class="soft-kicker mb-4">Автор проекта</p>
+                <h2 class="display-title text-4xl md:text-5xl mb-5">Даниил Иванов</h2>
+                <p class="text-lg text-slate-700 leading-relaxed mb-6">
+                    <?= e($SITE_CONFIG['author']['bio']) ?>
+                </p>
+                <div class="quote-panel rounded-[1.5rem] p-6 mb-6">
+                    <p class="relative z-10 text-slate-700 leading-relaxed">
+                        Контент здесь устроен как спокойный, но требовательный разговор: без мистики, без инфошума и без снисходительного тона.
+                    </p>
+                </div>
+                <a
+                    href="<?= e($SITE_CONFIG['author']['website']) ?>"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-[color:var(--accent-strong)] hover:opacity-80 font-semibold transition-opacity"
+                >
+                    Личный сайт
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Latest Audio -->
-    <section class="mb-32">
-        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-10">Последние записи</h2>
+    <section id="audio-catalog" class="mb-14">
+        <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
+            <div>
+                <p class="soft-kicker mb-3">Здесь впервые?</p>
+                <h2 class="display-title text-4xl md:text-5xl">С чего начать</h2>
+            </div>
+            <p class="max-w-xl text-slate-600 leading-relaxed">
+                Каждая рубрика отвечает на разное состояние: от перегруза и внутреннего шума до желания подумать глубже и честнее.
+            </p>
+        </div>
+        <div class="theme-grid">
+            <a href="/inside-the-silence/" class="theme-card block">
+                <p class="soft-kicker mb-3 text-emerald-700">Когда нужен выдох</p>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Внутри тишины</h3>
+                <p class="text-slate-600 leading-relaxed mb-5">Мягкий, медленный ритм. Практики, которые помогают вернуться в тело и убрать лишний шум.</p>
+                <span class="font-semibold text-emerald-800">Короткие практики 8–15 минут</span>
+            </a>
+            <a href="/netlenka/" class="theme-card block">
+                <p class="soft-kicker mb-3 text-blue-700">Когда нужен честный текст</p>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Нетленка</h3>
+                <p class="text-slate-600 leading-relaxed mb-5">Блог вслух без воды. Разговорный, плотный, местами неудобный, но живой.</p>
+                <span class="font-semibold text-blue-800">Коротко, по делу, без иллюзий</span>
+            </a>
+            <a href="/rebel-psychology/" class="theme-card block">
+                <p class="soft-kicker mb-3 text-violet-700">Когда хочется думать глубже</p>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Психопогромизм</h3>
+                <p class="text-slate-600 leading-relaxed mb-5">Большой разговор для тех, кто привык разбираться в системах и хочет так же разбираться в себе.</p>
+                <span class="font-semibold text-violet-800">Психология для технарей</span>
+            </a>
+        </div>
+    </section>
 
+    <section class="mb-20">
+        <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
+            <div>
+                <p class="soft-kicker mb-3">Свежие записи</p>
+                <h2 class="display-title text-4xl md:text-5xl">Последнее в эфире</h2>
+            </div>
+            <p class="max-w-xl text-slate-600 leading-relaxed">
+                Последние выпуски со всех лент в одном месте, чтобы можно было быстро понять, что вышло новым.
+            </p>
+        </div>
         <div class="flex flex-col gap-5">
             <?php foreach ($latestAudio as $audio): ?>
                 <?= renderPodcastEpisode($audio) ?>

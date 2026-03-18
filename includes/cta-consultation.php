@@ -1,18 +1,64 @@
-<div class="mt-16 bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-10 text-white">
-    <h2 class="text-2xl md:text-3xl font-bold mb-3">Хотите разобраться со своим запросом?</h2>
-    <p class="text-slate-300 text-lg leading-relaxed mb-6">
-        Контент — это старт. Если чувствуете, что нужно глубже — работаю индивидуально.
-        Один сеанс, чтобы понять, куда двигаться дальше.
-    </p>
-    <a
-        href="<?= e($SITE_CONFIG['social']['contacts']) ?>"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-7 py-4 bg-white hover:bg-slate-100 text-slate-900 font-semibold rounded-xl transition-colors"
-    >
-        Записаться на консультацию
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
-    </a>
+<?php
+$ctaTheme = $pageTheme ?? 'site';
+
+$ctaContent = [
+    'site' => [
+        'kicker' => 'Если нужно глубже',
+        'title' => 'Разобрать запрос в личной работе',
+        'body' => 'Контент на сайте может стать хорошей точкой входа. Если чувствуете, что нужно больше ясности, структуры и живого контакта, работаю индивидуально.',
+        'button' => 'Записаться на консультацию',
+    ],
+    'home' => [
+        'kicker' => 'Если нужен следующий шаг',
+        'title' => 'Разобрать запрос в личной работе',
+        'body' => 'Сайт помогает выбрать состояние и язык разговора. Если хочется не только слушать, но и двигаться глубже в собственный запрос, можно пойти в индивидуальную работу.',
+        'button' => 'Записаться на консультацию',
+    ],
+    'about' => [
+        'kicker' => 'Если откликается подход',
+        'title' => 'Продолжить разговор уже не в формате сайта',
+        'body' => 'Здесь вы увидели, как я думаю и как строю разговор. Если вам подходит такой тон и нужна персональная работа, можно обсудить ваш запрос напрямую.',
+        'button' => 'Обсудить запрос',
+    ],
+    'netlenka' => [
+        'kicker' => 'Если нужен разговор без ширмы',
+        'title' => 'Разобрать запрос так же честно, как в Нетленке',
+        'body' => 'Если вам ближе прямой разговор без успокаивающего тумана, можем так же предметно разобрать и ваш личный запрос: что происходит, где узкое место и куда двигаться дальше.',
+        'button' => 'Перейти к консультации',
+    ],
+    'podcast' => [
+        'kicker' => 'Если хочется глубже',
+        'title' => 'Продолжить большой разговор уже про вашу жизнь',
+        'body' => 'Психопогромизм задает вопросы в общем поле. В личной работе мы можем перенести этот уровень глубины на вашу конкретную ситуацию, без упрощений и готовых лозунгов.',
+        'button' => 'Обсудить личный запрос',
+    ],
+    'inside-the-silence' => [
+        'kicker' => 'Если нужна не только пауза',
+        'title' => 'Перейти от выдоха к более глубокой работе',
+        'body' => 'Иногда практики помогают стабилизироваться, но не решают сам узел. Если чувствуете, что за шумом стоит более важный запрос, можно аккуратно разобрать его в личной работе.',
+        'button' => 'Записаться бережно',
+    ],
+];
+
+$cta = $ctaContent[$ctaTheme] ?? $ctaContent['site'];
+?>
+<div class="cta-panel mt-16 rounded-[2rem] p-8 md:p-10 text-white shadow-2xl">
+    <div class="relative z-10 max-w-3xl">
+        <p class="soft-kicker mb-3 text-slate-200"><?= e($cta['kicker']) ?></p>
+        <h2 class="display-title text-3xl md:text-5xl mb-4 text-white"><?= e($cta['title']) ?></h2>
+        <p class="text-slate-300 text-lg leading-relaxed max-w-2xl mb-6">
+            <?= e($cta['body']) ?>
+        </p>
+        <a
+            href="<?= e($SITE_CONFIG['social']['contacts']) ?>"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-7 py-4 bg-white hover:bg-slate-100 text-slate-900 font-semibold rounded-2xl transition-colors"
+        >
+            <?= e($cta['button']) ?>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+        </a>
+    </div>
 </div>

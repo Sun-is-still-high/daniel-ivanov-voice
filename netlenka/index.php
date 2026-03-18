@@ -1,8 +1,4 @@
 <?php
-/**
- * Страница категории мыслей вслух
- */
-
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/functions.php';
 require_once __DIR__ . '/../includes/rss.php';
@@ -10,124 +6,73 @@ require_once __DIR__ . '/../includes/rss.php';
 $categoryKey = 'netlenka';
 $categoryInfo = $SITE_CONFIG['categories'][$categoryKey];
 $sortedAudio = getRssEpisodesByCategory($categoryKey);
-$categoryColor = $categoryInfo['color'];
 
 $pageTitle = $categoryInfo['title'];
 $pageDescription = $categoryInfo['description'];
 $pageImage = $SITE_CONFIG['author']['avatar'];
+$pageTheme = 'netlenka';
 
 require_once __DIR__ . '/../includes/header.php';
-
-// Добавляем структурированные данные для категории
-$categorySchema = [
-    "@context" => "https://schema.org",
-    "@type" => "CollectionPage",
-    "name" => $categoryInfo['title'],
-    "description" => $categoryInfo['description'],
-    "creator" => [
-        "@type" => "Person",
-        "name" => $SITE_CONFIG['author']['name']
-    ]
-];
 ?>
 
-<!-- Schema.org structured data -->
-<script type="application/ld+json">
-<?= json_encode($categorySchema, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
-</script>
-
 <main class="container mx-auto px-6 md:px-8 py-16 md:py-24">
-    <div class="max-w-4xl mx-auto">
-        <!-- Breadcrumbs -->
+    <div class="max-w-6xl mx-auto">
         <?= renderBreadcrumbs([['label' => $categoryInfo['title']]]) ?>
 
-        <!-- Category Header -->
-        <div class="mb-12">
-            <?php if (!empty($categoryInfo['image'])): ?>
-                <div class="flex flex-col md:flex-row gap-8 items-start mb-8">
-                    <div class="flex-shrink-0">
-                        <img
-                            src="<?= e($categoryInfo['image']) ?>"
-                            alt="<?= e($categoryInfo['title']) ?>"
-                            class="w-64 md:w-80 rounded-2xl shadow-2xl"
-                        />
+        <section class="podcast-page-card podcast-masthead mb-12">
+            <div class="relative z-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-8 items-center p-8 md:p-12">
+                <div>
+                    <img src="<?= e($categoryInfo['image']) ?>" alt="<?= e($categoryInfo['title']) ?>" class="w-full max-w-sm rounded-[2rem] shadow-2xl" />
+                </div>
+                <div>
+                    <span class="category-chip mb-5">Блог вслух</span>
+                    <h1 class="display-title text-5xl md:text-7xl mb-5"><?= e($categoryInfo['title']) ?></h1>
+                    <p class="text-xl text-slate-700 leading-relaxed mb-6"><?= e($categoryInfo['description']) ?></p>
+                    <div class="quote-panel rounded-[1.5rem] p-6">
+                        <p class="relative z-10 text-slate-700 leading-relaxed"><?= e($categoryInfo['story']) ?></p>
                     </div>
-                    <div class="flex-1">
-                        <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4 break-words">
-                            <?= e($categoryInfo['title']) ?>
-                        </h1>
-                        <p class="text-lg md:text-xl text-slate-600 mb-6 break-words">
-                            <?= e($categoryInfo['description']) ?>
-                        </p>
-                        <?php if (!empty($categoryInfo['platforms'])): ?>
-                            <div class="flex flex-wrap gap-3 mt-2">
-                                <?php foreach ($categoryInfo['platforms'] as $platform): ?>
-                                    <a
-                                        href="<?= e($platform['url']) ?>"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-colors"
-                                    >
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                        </svg>
-                                        <?= e($platform['name']) ?>
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="theme-card">
+                <p class="soft-kicker mb-3 text-blue-700">Тембр</p>
+                <p class="text-slate-700 leading-relaxed">Редакционный, плотный, без лишней нежности. Словно заметки в полях, которые читают вслух.</p>
+            </div>
+            <div class="theme-card">
+                <p class="soft-kicker mb-3 text-blue-700">Для кого</p>
+                <p class="text-slate-700 leading-relaxed">Для тех, кому нужен короткий, точный и иногда неудобный разговор о психологии и жизни.</p>
+            </div>
+            <div class="theme-card">
+                <p class="soft-kicker mb-3 text-blue-700">Формат</p>
+                <p class="text-slate-700 leading-relaxed"><?= count($sortedAudio) ?> <?= pluralRecords(count($sortedAudio)) ?> в ленте. Небольшие выпуски, которые хочется включить между делами.</p>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
+                <div>
+                    <p class="soft-kicker mb-3 text-blue-700">Лента выпусков</p>
+                    <h2 class="display-title text-4xl md:text-5xl">Честные записи без воды</h2>
+                </div>
+                <p class="max-w-2xl text-slate-600 leading-relaxed">
+                    Здесь работает тот же принцип, что и во всём проекте: один выпуск, одна мысль, один точный поворот внимания.
+                </p>
+            </div>
+
+            <?php if (count($sortedAudio) > 0): ?>
+                <div class="flex flex-col gap-5">
+                    <?php foreach ($sortedAudio as $audio): ?>
+                        <?= renderPodcastEpisode($audio) ?>
+                    <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4 break-words">
-                    <?= e($categoryInfo['title']) ?>
-                </h1>
-                <p class="text-lg md:text-xl text-slate-600 mb-6 break-words">
-                    <?= e($categoryInfo['description']) ?>
-                </p>
-            <?php endif; ?>
-
-            <?php if (!empty($categoryInfo['story'])): ?>
-                <div class="bg-gradient-to-br from-slate-50 to-blue-50 border-l-4 border-<?= e($categoryColor) ?>-500 rounded-xl p-6 mb-8">
-                    <p class="text-slate-700 leading-relaxed italic">
-                        <?= e($categoryInfo['story']) ?>
-                    </p>
+                <div class="section-shell rounded-[2rem] p-10 text-center text-slate-600">
+                    Выпуски скоро появятся.
                 </div>
             <?php endif; ?>
-        </div>
-
-        <?php if (count($sortedAudio) > 0): ?>
-            <!-- Audio Stats -->
-            <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900">
-                        Все записи
-                        <span class="text-slate-500 font-normal ml-2">
-                            (<?= count($sortedAudio) ?> <?= pluralRecords(count($sortedAudio)) ?>)
-                        </span>
-                    </h2>
-                </div>
-            </div>
-
-            <!-- Episode List -->
-            <div id="audio-grid" class="flex flex-col gap-5">
-                <?php foreach ($sortedAudio as $audio): ?>
-                    <?= renderPodcastEpisode($audio) ?>
-                <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <div class="text-center py-20">
-                <div class="flex justify-center mb-4">
-                    <svg class="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-slate-900 mb-2">Пока нет записей</h3>
-                <p class="text-slate-600">
-                    Аудиоматериалы в этой категории скоро появятся
-                </p>
-            </div>
-        <?php endif; ?>
+        </section>
 
         <?php require_once __DIR__ . '/../includes/cta-consultation.php' ?>
     </div>

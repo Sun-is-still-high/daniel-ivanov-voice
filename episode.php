@@ -1,8 +1,4 @@
 <?php
-/**
- * Универсальная страница выпуска из RSS
- */
-
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/rss.php';
@@ -13,17 +9,16 @@ $episodeSlug = (string) ($_GET['episode'] ?? '');
 if ($categoryKey === '' || $episodeSlug === '' || empty($SITE_CONFIG['categories'][$categoryKey])) {
     header('HTTP/1.0 404 Not Found');
     require_once __DIR__ . '/includes/header.php';
-    echo '<main class="container mx-auto px-6 md:px-8 py-16 md:py-24"><h1 class="text-3xl font-bold text-slate-900 mb-4">Страница не найдена</h1><p class="text-slate-600">Такого выпуска нет.</p></main>';
+    echo '<main class="container mx-auto px-6 md:px-8 py-16 md:py-24"><div class="section-shell rounded-[2rem] p-10"><h1 class="display-title text-4xl mb-4">Страница не найдена</h1><p class="text-slate-600">Такого выпуска нет.</p></div></main>';
     require_once __DIR__ . '/includes/footer.php';
     exit;
 }
 
 $audio = getRssEpisodeBySlug($categoryKey, $episodeSlug);
-
 if (!$audio) {
     header('HTTP/1.0 404 Not Found');
     require_once __DIR__ . '/includes/header.php';
-    echo '<main class="container mx-auto px-6 md:px-8 py-16 md:py-24"><h1 class="text-3xl font-bold text-slate-900 mb-4">Страница не найдена</h1><p class="text-slate-600">Такого выпуска нет.</p></main>';
+    echo '<main class="container mx-auto px-6 md:px-8 py-16 md:py-24"><div class="section-shell rounded-[2rem] p-10"><h1 class="display-title text-4xl mb-4">Страница не найдена</h1><p class="text-slate-600">Такого выпуска нет.</p></div></main>';
     require_once __DIR__ . '/includes/footer.php';
     exit;
 }
@@ -42,10 +37,9 @@ $pageTitle = $audio['title'];
 $pageDescription = $audio['description'];
 $pageType = 'article';
 $pageImage = $audio['image'] ?: $SITE_CONFIG['author']['avatar'];
+$pageTheme = getCategoryPageTheme($categoryKey);
 
 require_once __DIR__ . '/includes/header.php';
-
-$formattedDate = formatDate($audio['publishDate']);
 ?>
 
 <script type="application/ld+json">
@@ -68,37 +62,39 @@ $formattedDate = formatDate($audio['publishDate']);
 <main class="container mx-auto px-6 md:px-8 py-16 md:py-24" itemscope itemtype="https://schema.org/AudioObject">
     <link rel="canonical" href="https://daniel-ivanov-voice.ru<?= e($audio['pageUrl']) ?>">
 
-    <?= renderBreadcrumbs([
-        ['label' => $categoryInfo['title'], 'href' => '/' . e($categoryKey)],
-        ['label' => $audio['title']]
-    ]) ?>
+    <div class="max-w-6xl mx-auto">
+        <?= renderBreadcrumbs([
+            ['label' => $categoryInfo['title'], 'href' => '/' . e($categoryKey)],
+            ['label' => $audio['title']]
+        ]) ?>
 
-    <meta itemprop="name" content="<?= e($audio['title']) ?>">
-    <meta itemprop="description" content="<?= e($audio['description']) ?>">
-    <meta itemprop="duration" content="<?= formatDurationForSchema($audio['duration']) ?>">
-    <meta itemprop="datePublished" content="<?= e($audio['publishDate']) ?>">
-    <meta itemprop="contentUrl" content="<?= e($audio['audioFile']) ?>">
-    <meta itemprop="encodingFormat" content="audio/mpeg">
-    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-        <meta itemprop="name" content="<?= e($SITE_CONFIG['author']['name']) ?>">
-    </div>
+        <meta itemprop="name" content="<?= e($audio['title']) ?>">
+        <meta itemprop="description" content="<?= e($audio['description']) ?>">
+        <meta itemprop="duration" content="<?= formatDurationForSchema($audio['duration']) ?>">
+        <meta itemprop="datePublished" content="<?= e($audio['publishDate']) ?>">
+        <meta itemprop="contentUrl" content="<?= e($audio['audioFile']) ?>">
+        <meta itemprop="encodingFormat" content="audio/mpeg">
+        <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <meta itemprop="name" content="<?= e($SITE_CONFIG['author']['name']) ?>">
+        </div>
 
-    <div class="grid lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-2">
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
-                <div class="px-6 pt-6 pb-6">
-                    <h1 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4 break-words">
-                        <?= e($audio['title']) ?>
-                    </h1>
-                    <div class="flex items-center gap-4 text-sm text-slate-500">
-                        <span><?= $formattedDate ?></span>
+        <div class="grid lg:grid-cols-[1.35fr_0.65fr] gap-8">
+            <section class="episode-layout-card">
+                <div class="podcast-masthead mb-6">
+                    <div class="flex flex-wrap items-center gap-2 mb-5">
+                        <span class="category-chip"><?= e($categoryInfo['title']) ?></span>
+                        <span class="episode-meta-pill"><?= formatDate($audio['publishDate']) ?></span>
                         <?php if (!empty($audio['duration'])): ?>
-                            <span><?= e($audio['duration']) ?></span>
+                            <span class="episode-meta-pill"><?= e($audio['duration']) ?></span>
                         <?php endif; ?>
                     </div>
+                    <h1 class="episode-title text-4xl md:text-6xl mb-5"><?= e($audio['title']) ?></h1>
+                    <p class="text-lg text-slate-600 leading-relaxed max-w-3xl" itemprop="description">
+                        <?= formatDescription($audio['description']) ?>
+                    </p>
                 </div>
 
-                <div class="px-6 pb-6">
+                <div class="mb-6">
                     <?php if (!empty($audio['embedUrl'])): ?>
                         <iframe
                             src="<?= e($audio['embedUrl']) ?>"
@@ -114,77 +110,64 @@ $formattedDate = formatDate($audio['publishDate']);
                     <?php endif; ?>
                 </div>
 
-                <?= renderPlatformButtons($platforms) ?>
+                <?php if (!empty($platforms)): ?>
+                    <?= renderPlatformButtons($platforms) ?>
+                <?php endif; ?>
 
-                <div class="px-6 pb-6 border-t border-slate-100 pt-6">
-                    <h2 class="text-xl font-bold text-slate-900 mb-3">Описание</h2>
-                    <p class="text-slate-600 leading-relaxed">
-                        <?= formatDescription($audio['description']) ?>
-                    </p>
-                    <?php if (!empty($audio['externalUrl'])): ?>
-                        <p class="mt-4">
-                            <a
-                                href="<?= e($audio['externalUrl']) ?>"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-blue-600 hover:text-blue-700 underline"
-                            >
-                                Открыть выпуск на Mave
-                            </a>
+                <div class="pt-2">
+                    <div class="quote-panel rounded-[1.5rem] p-6 mb-6">
+                        <p class="relative z-10 text-slate-700 leading-relaxed">
+                            <?= e($categoryInfo['story']) ?>
                         </p>
+                    </div>
+                    <?php if (!empty($audio['externalUrl'])): ?>
+                        <a
+                            href="<?= e($audio['externalUrl']) ?>"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-[color:var(--accent-strong)] hover:opacity-80 font-semibold transition-opacity"
+                        >
+                            Открыть выпуск на Mave
+                        </a>
                     <?php endif; ?>
                 </div>
-            </div>
+            </section>
 
-            <div class="bg-white rounded-2xl shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-slate-900 mb-4">Об авторе</h2>
-                <p class="text-slate-600 leading-relaxed mb-4">
-                    <?= e($SITE_CONFIG['author']['bio']) ?>
-                </p>
-                <a
-                    href="<?= e($SITE_CONFIG['author']['website']) ?>"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
-                >
-                    Посетить личный сайт
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
+            <aside class="space-y-6">
+                <div class="episode-sidebar-card sticky top-28">
+                    <p class="soft-kicker mb-3">Об авторе</p>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3"><?= e($SITE_CONFIG['author']['name']) ?></h2>
+                    <p class="text-slate-600 leading-relaxed mb-4"><?= e($SITE_CONFIG['author']['bio']) ?></p>
+                    <a
+                        href="<?= e($SITE_CONFIG['author']['website']) ?>"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-[color:var(--accent-strong)] hover:opacity-80 font-semibold transition-opacity"
+                    >
+                        Личный сайт
+                    </a>
+                </div>
 
-        <div class="lg:col-span-1">
-            <?php if (count($relatedAudio) > 0): ?>
-                <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
-                    <h2 class="text-xl font-bold text-slate-900 mb-4">Похожие записи</h2>
-                    <div class="space-y-4">
-                        <?php foreach ($relatedAudio as $related): ?>
-                            <a href="<?= e($related['pageUrl']) ?>" class="block group">
-                                <div class="p-4 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors">
-                                    <h3 class="font-semibold text-slate-900 group-hover:text-blue-600 mb-2 line-clamp-2">
-                                        <?= e($related['title']) ?>
-                                    </h3>
-                                    <div class="flex items-center gap-3 text-sm text-slate-500">
+                <?php if (count($relatedAudio) > 0): ?>
+                    <div class="episode-sidebar-card">
+                        <p class="soft-kicker mb-3">Рядом по теме</p>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Похожие записи</h2>
+                        <div class="space-y-4">
+                            <?php foreach ($relatedAudio as $related): ?>
+                                <a href="<?= e($related['pageUrl']) ?>" class="theme-card block">
+                                    <h3 class="font-semibold text-slate-900 mb-2 line-clamp-2"><?= e($related['title']) ?></h3>
+                                    <div class="flex flex-wrap gap-3 text-sm text-slate-500">
                                         <?php if (!empty($related['duration'])): ?>
                                             <span><?= e($related['duration']) ?></span>
                                         <?php endif; ?>
                                         <span><?= formatDate($related['publishDate']) ?></span>
                                     </div>
-                                </div>
-                            </a>
-                        <?php endforeach; ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-
-                    <a
-                        href="/<?= e($categoryKey) ?>"
-                        class="block mt-6 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-center font-medium rounded-lg transition-colors"
-                    >
-                        Все записи категории
-                    </a>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
+            </aside>
         </div>
     </div>
 </main>

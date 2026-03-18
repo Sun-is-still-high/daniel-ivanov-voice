@@ -7,7 +7,7 @@ RewriteRule ^netlenka/?$ /netlenka/index.php [L]
 RewriteRule ^rebel-psychology/?$ /rebel-psychology/index.php [L]
 
 # Dynamic episode pages from RSS
-RewriteRule ^(podcast|inside-the-silence|netlenka)/([^/]+)/?$ /episode.php?category=$1&episode=$2 [L,QSA]
+RewriteRule ^(podcast|inside-the-silence|netlenka)/(?!index\.php$)([^/]+)/?$ /episode.php?category=$1&episode=$2 [L,QSA]
 
 # Do not rewrite existing files or directories
 RewriteCond %{REQUEST_FILENAME} -f [OR]
