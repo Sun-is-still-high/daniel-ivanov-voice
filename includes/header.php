@@ -72,8 +72,8 @@ if (strpos((string) $pageImage, 'http://') !== 0 && strpos((string) $pageImage, 
     <noscript><div><img src="https://mc.yandex.ru/watch/106894387" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS -->
+    <script src="/assets/js/tailwindcss.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -88,7 +88,93 @@ if (strpos((string) $pageImage, 'http://') !== 0 && strpos((string) $pageImage, 
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+        @font-face {
+            font-family: 'Manrope';
+            src: url('/assets/fonts/manrope-400.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Manrope';
+            src: url('/assets/fonts/manrope-500.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Manrope';
+            src: url('/assets/fonts/manrope-600.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Manrope';
+            src: url('/assets/fonts/manrope-700.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Manrope';
+            src: url('/assets/fonts/manrope-800.ttf') format('truetype');
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Literata';
+            src: url('/assets/fonts/literata-500.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Literata';
+            src: url('/assets/fonts/literata-700.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'IBM Plex Sans';
+            src: url('/assets/fonts/ibm-plex-sans-400.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'IBM Plex Sans';
+            src: url('/assets/fonts/ibm-plex-sans-500.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'IBM Plex Sans';
+            src: url('/assets/fonts/ibm-plex-sans-600.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'IBM Plex Sans';
+            src: url('/assets/fonts/ibm-plex-sans-700.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
 
         :root {
             --page-bg: #f4efe6;
