@@ -50,6 +50,33 @@ require_once __DIR__ . '/../includes/header.php';
             </div>
         </section>
 
+        <?php if (!empty($categoryInfo['platforms'])): ?>
+            <section class="podcast-stream-panel mb-12">
+                <div class="podcast-section-heading">
+                    <div>
+                        <p class="soft-kicker mb-3 text-blue-700">Площадки</p>
+                        <h2 class="display-title text-4xl md:text-5xl">Слушать там, где вам удобно</h2>
+                    </div>
+                    <p class="max-w-2xl text-slate-600 leading-relaxed">
+                        Выберите удобную платформу и продолжайте слушать в привычной среде.
+                    </p>
+                </div>
+                <div class="podcast-platform-grid">
+                    <?php foreach ($categoryInfo['platforms'] as $platform): ?>
+                        <a
+                            href="<?= e($platform['url']) ?>"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="podcast-platform-card hover:-translate-y-1 transition-transform"
+                        >
+                            <p class="soft-kicker mb-2 text-blue-700">Площадка</p>
+                            <p class="text-xl font-semibold text-slate-900"><?= e($platform['name']) ?></p>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+        <?php endif; ?>
+
         <section class="mb-16">
             <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
                 <div>

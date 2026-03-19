@@ -51,7 +51,16 @@ $SITE_CONFIG = [
             'legacyEpisodeSlugs' => [
                 'friends-philosophy-alcohol' => 'ep-1',
             ],
-            'platforms' => [],
+            'platforms' => [
+                ['name' => 'Mave', 'url' => 'https://netlenka.mave.digital'],
+                ['name' => 'Telegram', 'url' => 'https://t.me/mavestreambot/app?startapp=netlenka'],
+                ['name' => 'Яндекс Музыка', 'url' => 'https://music.yandex.ru/album/40954035'],
+                ['name' => 'Castbox', 'url' => 'https://castbox.fm/channel/id7114876?country=us'],
+                ['name' => 'SoundStream', 'url' => 'https://soundstream.media/channel/netlenka'],
+                ['name' => 'Spotify', 'url' => 'https://open.spotify.com/show/73hauZ5h7oVInyP0yCDsxs'],
+                ['name' => 'Deezer', 'url' => 'https://www.deezer.com/us/show/1002730411'],
+                ['name' => 'Звук', 'url' => 'https://zvuk.com/podcast/49311084'],
+            ],
             'rssUrl' => 'https://cloud.mave.digital/69739',
             'disabled' => false,
         ],
