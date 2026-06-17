@@ -1,6 +1,6 @@
 <?php
 /**
- * Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°
+ * Главная страница
  */
 
 require_once __DIR__ . '/includes/config.php';
@@ -33,8 +33,8 @@ $authorSchema = [
     "description" => $SITE_CONFIG['author']['bio'],
     "url" => $SITE_CONFIG['author']['website'],
     "image" => "https://daniel-ivanov-voice.ru" . $SITE_CONFIG['author']['avatar'],
-    "jobTitle" => "РџСЃРёС…РѕР»РѕРі, РїСЃРёС…РѕС‚РµСЂР°РїРµРІС‚",
-    "knowsAbout" => ["РїСЃРёС…РѕР»РѕРіРёСЏ", "РїСЃРёС…РѕС‚РµСЂР°РїРёСЏ", "РјРµРґРёС‚Р°С†РёСЏ", "РѕСЃРѕР·РЅР°РЅРЅРѕСЃС‚СЊ", "РІС‹РіРѕСЂР°РЅРёРµ", "TypeScript", "IT"],
+    "jobTitle" => "Психолог, психотерапевт",
+    "knowsAbout" => ["психология", "психотерапия", "медитация", "осознанность", "выгорание", "TypeScript", "IT"],
     "sameAs" => [
         $SITE_CONFIG['social']['telegram'],
         $SITE_CONFIG['social']['telegramChannel'],
@@ -61,7 +61,7 @@ $homepageSchema = [
         ],
         [
             "@type" => "PodcastSeries",
-            "name" => "РџСЃРёС…РѕРїРѕРіСЂРѕРјРёР·Рј",
+            "name" => "Психопогромизм",
             "description" => $SITE_CONFIG['categories']['podcast']['description'],
             "url" => "https://daniel-ivanov-voice.ru/rebel-psychology/",
             "inLanguage" => "ru",
@@ -78,57 +78,57 @@ $homepageSchema = [
 </script>
 
 <main class="container mx-auto px-6 md:px-8 py-16 md:py-24">
-    <section class="hero-panel rounded-[2rem] px-8 py-10 md:px-14 md:py-16 mb-14">
+    <section class="hero-panel rounded-[8px] px-8 py-10 md:px-14 md:py-16 mb-14">
         <div class="relative z-10 grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
             <div>
                 <span class="eyebrow mb-6">
                     <span class="accent-dot"></span>
                     Доказательная психология
                 </span>
-                <h1 class="display-title text-5xl md:text-7xl text-slate-900 mb-6">
+                <h1 class="display-title text-4xl md:text-6xl mb-6">
                     Подкасты и медитации для тех, кто устал жить на автопилоте
                 </h1>
-                <p class="text-xl md:text-2xl text-slate-700 max-w-3xl leading-relaxed mb-10">
+                <p class="text-xl md:text-2xl text-[color:var(--ink-2)] max-w-3xl leading-relaxed mb-10">
                     Daniel's Voice — это сайт психолога Даниила Иванова с медитациями, аудиопрактиками и подкастом о выгорании, стрессе, внутреннем шуме и жизни без эзотерики. Здесь говорят с системно мыслящими людьми на равных, без маркетинговой суеты и пустых обещаний.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#audio-catalog" class="btn-accent px-8 py-4 rounded-2xl text-lg font-semibold transition-all">
+                    <a href="#audio-catalog" class="btn-accent px-8 py-4 text-lg transition-all">
                         Выбрать формат
                     </a>
-                    <a href="/about/" class="btn-ghost px-8 py-4 rounded-2xl text-lg font-semibold transition-all">
+                    <a href="/about/" class="btn-ghost px-8 py-4 text-lg transition-all">
                         О проекте
                     </a>
                 </div>
             </div>
-            <div class="glass-panel rounded-[1.75rem] p-6 md:p-8">
+            <div class="glass-panel rounded-[8px] p-6 md:p-8">
                 <p class="soft-kicker mb-4">Что здесь важно</p>
-                <div class="space-y-5 text-slate-700">
+                <div class="space-y-5 text-[color:var(--ink-2)]">
                     <p class="leading-relaxed">Без подписок, лишних экранов и обещаний «починить жизнь за пять минут».</p>
                     <p class="leading-relaxed">Только ясный голос, прикладная психология и контент, который можно слушать между релизами, созвонами и дедлайнами.</p>
-                    <p class="leading-relaxed font-semibold text-slate-900">Если нужен выдох, честный разговор о психологии или глубокий подкаст для технарей, на сайте есть свой маршрут для каждого состояния.</p>
+                    <p class="leading-relaxed font-semibold text-[color:var(--ink)]">Если нужен выдох, честный разговор о психологии или глубокий подкаст для технарей, на сайте есть свой маршрут для каждого состояния.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-shell rounded-[2rem] p-8 md:p-12 mb-14">
+    <section class="section-shell rounded-[8px] p-8 md:p-12 mb-14">
         <div class="grid md:grid-cols-[0.95fr_1.05fr] gap-10 md:gap-14 items-center">
             <div class="relative">
-                <div class="absolute -inset-4 rounded-[2rem] bg-white/30 blur-2xl"></div>
                 <img
                     src="<?= e($SITE_CONFIG['author']['avatar']) ?>"
                     alt="<?= e($SITE_CONFIG['author']['name']) ?> — психолог, психотерапевт"
-                    class="relative w-full max-w-md mx-auto rounded-[2rem] object-cover shadow-2xl"
+                    class="portrait-mono relative w-full max-w-md mx-auto rounded-[8px] object-cover"
+                    style="box-shadow: var(--shadow-3);"
                 />
             </div>
             <div>
                 <p class="soft-kicker mb-4">Автор проекта</p>
-                <h2 class="display-title text-4xl md:text-5xl mb-5">Даниил Иванов</h2>
-                <p class="text-lg text-slate-700 leading-relaxed mb-6">
+                <h2 class="display-title text-3xl md:text-4xl mb-5">Даниил Иванов</h2>
+                <p class="text-lg text-[color:var(--ink-2)] leading-relaxed mb-6">
                     <?= e($SITE_CONFIG['author']['bio']) ?>
                 </p>
-                <div class="quote-panel rounded-[1.5rem] p-6 mb-6">
-                    <p class="relative z-10 text-slate-700 leading-relaxed">
+                <div class="quote-panel rounded-[8px] p-6 mb-6">
+                    <p class="relative z-10 text-[color:var(--ink-2)] leading-relaxed">
                         Здесь контент устроен как спокойный, но емкий разговор о выгорании, тревоге, самонаблюдении и внутренней опоре без мистики, инфошума и снисходительного тона.
                     </p>
                 </div>
@@ -136,7 +136,7 @@ $homepageSchema = [
                     href="<?= e($SITE_CONFIG['author']['website']) ?>"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 text-[color:var(--accent-strong)] hover:opacity-80 font-semibold transition-opacity"
+                    class="inline-flex items-center gap-2 text-[color:var(--accent)] hover:opacity-80 font-semibold transition-opacity"
                 >
                     Личный сайт
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,30 +151,30 @@ $homepageSchema = [
         <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
             <div>
                 <p class="soft-kicker mb-3">Здесь впервые?</p>
-                <h2 class="display-title text-4xl md:text-5xl">С чего начать</h2>
+                <h2 class="display-title text-3xl md:text-4xl">С чего начать</h2>
             </div>
-            <p class="max-w-xl text-slate-600 leading-relaxed">
+            <p class="max-w-xl text-[color:var(--ink-3)] leading-relaxed">
                 Каждая рубрика отвечает на разное состояние: от перегруза и внутреннего шума до желания подумать глубже о себе, терапии, стрессе и том, как вообще устроена психика.
             </p>
         </div>
         <div class="theme-grid">
-            <a href="/inside-the-silence/" class="theme-card block">
-                <p class="soft-kicker mb-3 text-emerald-700">Когда нужен выдох</p>
-                <h3 class="text-2xl font-bold text-slate-900 mb-3">Внутри тишины</h3>
-                <p class="text-slate-600 leading-relaxed mb-5">Медитации и короткие аудиопрактики для перегруженной головы, тревоги, усталости и возвращения внимания в настоящее.</p>
-                <span class="font-semibold text-emerald-800">Короткие практики на 8–15 минут</span>
+            <a href="/inside-the-silence/" class="theme-card">
+                <p class="soft-kicker mb-3">Когда нужен выдох</p>
+                <h3 class="text-2xl font-bold text-[color:var(--ink)] mb-3">Внутри тишины</h3>
+                <p class="text-[color:var(--ink-2)] leading-relaxed mb-5">Медитации и короткие аудиопрактики для перегруженной головы, тревоги, усталости и возвращения внимания в настоящее.</p>
+                <span class="font-semibold text-[color:var(--accent)]">Короткие практики на 8–15 минут</span>
             </a>
-            <a href="/netlenka/" class="theme-card block">
-                <p class="soft-kicker mb-3 text-blue-700">Когда нужен честный текст</p>
-                <h3 class="text-2xl font-bold text-slate-900 mb-3">Нетленка</h3>
-                <p class="text-slate-600 leading-relaxed mb-5">Аудиоблог о психологии, терапии и жизни без воды, красивых ширм и мотивационного мусора.</p>
-                <span class="font-semibold text-blue-800">Коротко, по делу, без иллюзий</span>
+            <a href="/netlenka/" class="theme-card">
+                <p class="soft-kicker mb-3">Когда нужен честный текст</p>
+                <h3 class="text-2xl font-bold text-[color:var(--ink)] mb-3">Нетленка</h3>
+                <p class="text-[color:var(--ink-2)] leading-relaxed mb-5">Аудиоблог о психологии, терапии и жизни без воды, красивых ширм и мотивационного мусора.</p>
+                <span class="font-semibold text-[color:var(--accent)]">Коротко, по делу, без иллюзий</span>
             </a>
-            <a href="/rebel-psychology/" class="theme-card block">
-                <p class="soft-kicker mb-3 text-violet-700">Когда хочется думать глубже</p>
-                <h3 class="text-2xl font-bold text-slate-900 mb-3">Психопогромизм</h3>
-                <p class="text-slate-600 leading-relaxed mb-5">Подкаст о психологии для технарей: выгорание, стресс, самоотношение, терапия и привычка разбираться в себе так же тщательно, как в системах.</p>
-                <span class="font-semibold text-violet-800">Психология для системно мыслящих людей</span>
+            <a href="/rebel-psychology/" class="theme-card">
+                <p class="soft-kicker mb-3">Когда хочется думать глубже</p>
+                <h3 class="text-2xl font-bold text-[color:var(--ink)] mb-3">Психопогромизм</h3>
+                <p class="text-[color:var(--ink-2)] leading-relaxed mb-5">Подкаст о психологии для технарей: выгорание, стресс, самоотношение, терапия и привычка разбираться в себе так же тщательно, как в системах.</p>
+                <span class="font-semibold text-[color:var(--accent)]">Психология для системно мыслящих людей</span>
             </a>
         </div>
     </section>
@@ -183,9 +183,9 @@ $homepageSchema = [
         <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
             <div>
                 <p class="soft-kicker mb-3">Свежие записи</p>
-                <h2 class="display-title text-4xl md:text-5xl">Последнее в эфире</h2>
+                <h2 class="display-title text-3xl md:text-4xl">Последнее в эфире</h2>
             </div>
-            <p class="max-w-xl text-slate-600 leading-relaxed">
+            <p class="max-w-xl text-[color:var(--ink-3)] leading-relaxed">
                 Последние выпуски со всех лент в одном месте, чтобы можно было быстро понять, что вышло новым.
             </p>
         </div>

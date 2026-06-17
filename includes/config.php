@@ -100,9 +100,9 @@ $CATEGORY_COLORS = [
 ];
 
 $CATEGORY_BADGE_COLORS = [
-    'inside-the-silence' => 'bg-emerald-100 text-emerald-800 border-emerald-200',
-    'netlenka' => 'bg-blue-100 text-blue-800 border-blue-200',
-    'podcast' => 'bg-purple-100 text-purple-800 border-purple-200',
+    'inside-the-silence' => 'category-badge',
+    'netlenka' => 'category-badge',
+    'podcast' => 'category-badge',
 ];
 
 $CATEGORY_LABELS = [

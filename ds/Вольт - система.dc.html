@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #08090C; }
+  ::selection { background: rgba(70,215,255,0.28); color: #F2F4F8; }
+</style>
+</helmet>
+
+<div style="background:#08090C; min-height:100vh; font-family:'Manrope',sans-serif; color:#F2F4F8; padding-bottom:120px;">
+
+  <!-- ============ MASTHEAD ============ -->
+  <div style="border-bottom:1px solid #20222B; padding:72px 56px 56px;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="width:13px; height:13px; border-radius:50%; background:#46D7FF; box-shadow:0 0 22px rgba(70,215,255,0.7);"></span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:#8A8F9E;">Дизайн-система · Вольт</span>
+      </div>
+      <h1 style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:72px; line-height:0.98; letter-spacing:-0.03em; margin:28px 0 0; text-transform:uppercase;">Даниил<br>Иванов</h1>
+      <p style="font-family:'Manrope',sans-serif; font-size:18px; line-height:1.6; color:#B4B8C2; max-width:560px; margin:26px 0 0;">Тёмная, кинематографичная система с одним электрическим акцентом. Серьёзный психолог, доказательный ACT-подход — без поп-психологии и без светлой «бумаги».</p>
+      <div style="display:flex; gap:10px; margin-top:34px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E;">
+        <span style="border:1px solid #2A2D37; border-radius:999px; padding:7px 14px;">Сайт</span>
+        <span style="border:1px solid #2A2D37; border-radius:999px; padding:7px 14px;">Обложки видео</span>
+        <span style="border:1px solid #2A2D37; border-radius:999px; padding:7px 14px;">Шортсы</span>
+        <span style="border:1px solid #2A2D37; border-radius:999px; padding:7px 14px;">Карусели</span>
+        <span style="border:1px solid #2A2D37; border-radius:999px; padding:7px 14px;">Презентации</span>
+        <span style="border:1px solid #2A2D37; border-radius:999px; padding:7px 14px;">Инфографика</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ §01 ПАЛИТРА ============ -->
+  <div style="padding:80px 56px 0;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.16em; color:#46D7FF;">§ 01</div>
+      <h2 style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:40px; letter-spacing:-0.02em; text-transform:uppercase; margin:14px 0 8px;">Палитра</h2>
+      <p style="font-family:'Manrope',sans-serif; font-size:16px; color:#8A8F9E; max-width:560px; margin:0 0 40px;">Глубокий стек фонов от почти-чёрного к приподнятым поверхностям. Один акцент — электрический циан — несёт всё внимание. Дисциплина важнее разнообразия.</p>
+
+      <!-- backgrounds row -->
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:14px;">Фоны и поверхности</div>
+      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:40px;">
+        <div style="border:1px solid #20222B; border-radius:6px; overflow:hidden;"><div style="height:108px; background:#08090C;"></div><div style="padding:14px;"><div style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600;">Фон</div><div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E; margin-top:4px;">--bg · 08090C</div></div></div>
+        <div style="border:1px solid #20222B; border-radius:6px; overflow:hidden;"><div style="height:108px; background:#0C0D11;"></div><div style="padding:14px;"><div style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600;">Альт. секция</div><div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E; margin-top:4px;">--bg-2 · 0C0D11</div></div></div>
+        <div style="border:1px solid #20222B; border-radius:6px; overflow:hidden;"><div style="height:108px; background:#111319;"></div><div style="padding:14px;"><div style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600;">Карточка</div><div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E; margin-top:4px;">--surface · 111319</div></div></div>
+        <div style="border:1px solid #20222B; border-radius:6px; overflow:hidden;"><div style="height:108px; background:#1A1D26;"></div><div style="padding:14px;"><div style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600;">Приподнятая</div><div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E; margin-top:4px;">--surface-2 · 1A1D26</div></div></div>
+        <div style="border:1px solid #20222B; border-radius:6px; overflow:hidden;"><div style="height:108px; background:#1A1D26; display:flex; align-items:center; justify-content:center;"><span style="width:60%; height:1px; background:#2A2D37;"></span></div><div style="padding:14px;"><div style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600;">Линии</div><div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E; margin-top:4px;">--line · 20222B</div></div></div>
+      </div>
+
+      <!-- accent + text + semantic -->
+      <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:40px;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:14px;">Акцент</div>
+          <div style="border-radius:6px; overflow:hidden; border:1px solid #20222B;">
+            <div style="height:128px; background:#46D7FF; box-shadow:inset 0 0 60px rgba(255,255,255,0.18); display:flex; align-items:flex-end; padding:16px;"><span style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:22px; color:#04141A; text-transform:uppercase;">Циан</span></div>
+            <div style="display:flex;">
+              <div style="flex:1; padding:12px 14px; border-right:1px solid #20222B;"><div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#46D7FF;">46D7FF</div><div style="font-family:'Manrope',sans-serif; font-size:12px; color:#8A8F9E; margin-top:3px;">--accent</div></div>
+              <div style="flex:1; padding:12px 14px;"><div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#2FC4EE;">2FC4EE</div><div style="font-family:'Manrope',sans-serif; font-size:12px; color:#8A8F9E; margin-top:3px;">--accent-press</div></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:14px;">Чернила</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:34px; height:34px; border-radius:4px; background:#F2F4F8;"></span><span style="font-family:'Manrope',sans-serif; font-size:14px; color:#F2F4F8;">Основной</span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#565A64; margin-left:auto;">F2F4F8</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:34px; height:34px; border-radius:4px; background:#B4B8C2;"></span><span style="font-family:'Manrope',sans-serif; font-size:14px; color:#B4B8C2;">Вторичный</span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#565A64; margin-left:auto;">B4B8C2</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:34px; height:34px; border-radius:4px; background:#8A8F9E;"></span><span style="font-family:'Manrope',sans-serif; font-size:14px; color:#8A8F9E;">Подписи</span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#565A64; margin-left:auto;">8A8F9E</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:34px; height:34px; border-radius:4px; background:#565A64;"></span><span style="font-family:'Manrope',sans-serif; font-size:14px; color:#565A64;">Мета</span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#565A64; margin-left:auto;">565A64</span></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:14px;">Семантика</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:34px; height:34px; border-radius:4px; background:#4FE3A0;"></span><span style="font-family:'Manrope',sans-serif; font-size:14px; color:#B4B8C2;">Успех</span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#565A64; margin-left:auto;">4FE3A0</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:34px; height:34px; border-radius:4px; background:#F2C14B;"></span><span style="font-family:'Manrope',sans-serif; font-size:14px; color:#B4B8C2;">Внимание</span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#565A64; margin-left:auto;">F2C14B</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:34px; height:34px; border-radius:4px; background:#FF6B5C;"></span><span style="font-family:'Manrope',sans-serif; font-size:14px; color:#B4B8C2;">Ошибка</span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#565A64; margin-left:auto;">FF6B5C</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ §02 ТИПОГРАФИКА ============ -->
+  <div style="padding:88px 56px 0;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.16em; color:#46D7FF;">§ 02</div>
+      <h2 style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:40px; letter-spacing:-0.02em; text-transform:uppercase; margin:14px 0 8px;">Типографика</h2>
+      <p style="font-family:'Manrope',sans-serif; font-size:16px; color:#8A8F9E; max-width:560px; margin:0 0 40px;">Плакатный геометрический гротеск Unbounded в заголовках — крупно, верхним регистром, с минусовым трекингом. Manrope несёт текст и интерфейс. JetBrains Mono — метки и данные.</p>
+
+      <div style="display:grid; grid-template-columns:1fr; gap:0; border-top:1px solid #20222B;">
+        <div style="display:grid; grid-template-columns:170px 1fr; gap:32px; padding:28px 0; border-bottom:1px solid #20222B; align-items:baseline;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E;">Unbounded 800<br>92 / 0.98 / −0.03em</div>
+          <div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:68px; line-height:0.98; letter-spacing:-0.03em; text-transform:uppercase;">Тревога не враг</div>
+        </div>
+        <div style="display:grid; grid-template-columns:170px 1fr; gap:32px; padding:28px 0; border-bottom:1px solid #20222B; align-items:baseline;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E;">Unbounded 700<br>40 / 1.05 / −0.02em</div>
+          <div style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:36px; line-height:1.05; letter-spacing:-0.02em;">Психологическая гибкость</div>
+        </div>
+        <div style="display:grid; grid-template-columns:170px 1fr; gap:32px; padding:28px 0; border-bottom:1px solid #20222B; align-items:baseline;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E;">Manrope 800<br>24 / 1.3</div>
+          <div style="font-family:'Manrope',sans-serif; font-weight:800; font-size:24px; line-height:1.3;">Подзаголовок и врезки в тексте</div>
+        </div>
+        <div style="display:grid; grid-template-columns:170px 1fr; gap:32px; padding:28px 0; border-bottom:1px solid #20222B; align-items:baseline;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E;">Manrope 400<br>18 / 1.65</div>
+          <div style="font-family:'Manrope',sans-serif; font-weight:400; font-size:18px; line-height:1.65; color:#B4B8C2; max-width:620px;">Основной текст. ACT — терапия принятия и ответственности: подход учит замечать мысли, не сливаясь с ними, и действовать в согласии с ценностями — даже когда тревога рядом.</div>
+        </div>
+        <div style="display:grid; grid-template-columns:170px 1fr; gap:32px; padding:28px 0; border-bottom:1px solid #20222B; align-items:baseline;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E;">JetBrains Mono<br>13 / 0.14em / caps</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:#46D7FF;">YOUTUBE · 14 МИН · ВЫПУСК № 12</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ §03 ОСНОВЫ ============ -->
+  <div style="padding:88px 56px 0;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.16em; color:#46D7FF;">§ 03</div>
+      <h2 style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:40px; letter-spacing:-0.02em; text-transform:uppercase; margin:14px 0 8px;">Основы</h2>
+      <p style="font-family:'Manrope',sans-serif; font-size:16px; color:#8A8F9E; max-width:560px; margin:0 0 40px;">Сетка по 4px, почти прямые углы, тени дают глубину, циан даёт свечение. Движение сдержанное.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+        <!-- spacing + radius -->
+        <div style="background:#111319; border:1px solid #20222B; border-radius:6px; padding:28px;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:18px;">Отступы — шаг 4px</div>
+          <div style="display:flex; align-items:flex-end; gap:10px; margin-bottom:28px;">
+            <div style="width:8px; height:8px; background:#46D7FF;"></div>
+            <div style="width:16px; height:16px; background:#46D7FF;"></div>
+            <div style="width:24px; height:24px; background:#46D7FF;"></div>
+            <div style="width:32px; height:32px; background:#46D7FF;"></div>
+            <div style="width:48px; height:48px; background:#46D7FF;"></div>
+            <div style="width:64px; height:64px; background:#46D7FF;"></div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E;">8 · 16 · 24 · 32 · 48 · 64 · 96 · 128</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin:28px 0 16px;">Скругления</div>
+          <div style="display:flex; gap:16px; align-items:flex-end;">
+            <div style="text-align:center;"><div style="width:54px; height:54px; background:#1A1D26; border:1px solid #2A2D37; border-radius:2px;"></div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8A8F9E; margin-top:8px;">2px</div></div>
+            <div style="text-align:center;"><div style="width:54px; height:54px; background:#1A1D26; border:1px solid #2A2D37; border-radius:4px;"></div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8A8F9E; margin-top:8px;">4px</div></div>
+            <div style="text-align:center;"><div style="width:54px; height:54px; background:#1A1D26; border:1px solid #2A2D37; border-radius:8px;"></div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8A8F9E; margin-top:8px;">8px</div></div>
+            <div style="text-align:center;"><div style="width:54px; height:54px; background:#1A1D26; border:1px solid #2A2D37; border-radius:999px;"></div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8A8F9E; margin-top:8px;">pill</div></div>
+          </div>
+        </div>
+        <!-- glow + motion -->
+        <div style="background:#111319; border:1px solid #20222B; border-radius:6px; padding:28px;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:18px;">Глубина и свечение</div>
+          <div style="display:flex; gap:18px; margin-bottom:30px;">
+            <div style="width:78px; height:78px; background:#1A1D26; border-radius:4px; box-shadow:0 4px 14px rgba(0,0,0,0.5);"></div>
+            <div style="width:78px; height:78px; background:#1A1D26; border-radius:4px; box-shadow:0 12px 40px rgba(0,0,0,0.6);"></div>
+            <div style="width:78px; height:78px; background:#46D7FF; border-radius:4px; box-shadow:0 0 32px rgba(70,215,255,0.45);"></div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8F9E;">тень-2 · тень-3 · свечение акцента</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin:28px 0 14px;">Движение</div>
+          <p style="font-family:'Manrope',sans-serif; font-size:14px; line-height:1.6; color:#B4B8C2; margin:0;">120ms микро · 200ms стандарт · 360ms входы секций. Только fade и сдвиг 4–8px. Никаких bounce и parallax.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ §04 КОМПОНЕНТЫ ============ -->
+  <div style="padding:88px 56px 0;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.16em; color:#46D7FF;">§ 04</div>
+      <h2 style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:40px; letter-spacing:-0.02em; text-transform:uppercase; margin:14px 0 8px;">Компоненты</h2>
+      <p style="font-family:'Manrope',sans-serif; font-size:16px; color:#8A8F9E; max-width:560px; margin:0 0 40px;">Базовый набор для сайта и постов. Циан — только на действиях и акцентах.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <!-- buttons -->
+        <div style="background:#111319; border:1px solid #20222B; border-radius:6px; padding:28px;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:20px;">Кнопки</div>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+            <span style="font-family:'Manrope',sans-serif; font-size:15px; font-weight:700; color:#04141A; background:#46D7FF; padding:13px 22px; border-radius:2px; box-shadow:0 0 24px rgba(70,215,255,0.3);">Записаться на консультацию</span>
+            <span style="font-family:'Manrope',sans-serif; font-size:15px; font-weight:600; color:#F2F4F8; padding:13px 22px; border-radius:2px; border:1px solid #2A2D37;">Узнать подробнее</span>
+            <span style="font-family:'Manrope',sans-serif; font-size:15px; font-weight:600; color:#46D7FF;">Смотреть на YouTube →</span>
+          </div>
+        </div>
+        <!-- tags -->
+        <div style="background:#111319; border:1px solid #20222B; border-radius:6px; padding:28px;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:20px;">Теги и метки</div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#04141A; background:#46D7FF; padding:5px 11px; border-radius:2px;">Статьи</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#B4B8C2; border:1px solid #2A2D37; padding:5px 11px; border-radius:2px;">О практике</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#B4B8C2; border:1px solid #2A2D37; padding:5px 11px; border-radius:2px;">Заметки</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#4FE3A0; border:1px solid #1E5A4A; padding:5px 11px; border-radius:2px;">Свободно</span>
+          </div>
+        </div>
+        <!-- input / form -->
+        <div style="background:#111319; border:1px solid #20222B; border-radius:6px; padding:28px;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:20px;">Форма записи</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="font-family:'Manrope',sans-serif; font-size:15px; color:#565A64; background:#08090C; border:1px solid #2A2D37; border-radius:2px; padding:13px 15px;">Ваше имя</div>
+            <div style="font-family:'Manrope',sans-serif; font-size:15px; color:#F2F4F8; background:#08090C; border:1px solid #46D7FF; border-radius:2px; padding:13px 15px; box-shadow:0 0 0 3px rgba(70,215,255,0.12);">daniil@почта.ру<span style="float:right; color:#46D7FF;">|</span></div>
+            <span style="font-family:'Manrope',sans-serif; font-size:15px; font-weight:700; color:#04141A; background:#46D7FF; padding:13px 22px; border-radius:2px; text-align:center;">Отправить заявку</span>
+          </div>
+        </div>
+        <!-- blockquote + stat -->
+        <div style="background:#111319; border:1px solid #20222B; border-radius:6px; padding:28px; display:flex; flex-direction:column; gap:24px;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#565A64; text-transform:uppercase; margin-bottom:16px;">Цитата</div>
+            <div style="border-left:3px solid #46D7FF; padding-left:18px;">
+              <p style="font-family:'Manrope',sans-serif; font-size:18px; line-height:1.55; color:#F2F4F8; margin:0; font-weight:500;">«Боль неизбежна. Страдание — это то, что мы добавляем, когда боремся с болью».</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:32px; border-top:1px solid #20222B; padding-top:22px;">
+            <div><div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:34px; color:#46D7FF; letter-spacing:-0.02em;">8</div><div style="font-family:'Manrope',sans-serif; font-size:13px; color:#8A8F9E; margin-top:4px;">лет практики</div></div>
+            <div><div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:34px; color:#F2F4F8; letter-spacing:-0.02em;">24ч</div><div style="font-family:'Manrope',sans-serif; font-size:13px; color:#8A8F9E; margin-top:4px;">ответ на заявку</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ §05 ПРИМЕНЕНИЕ ============ -->
+  <div style="padding:96px 56px 0;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.16em; color:#46D7FF;">§ 05</div>
+      <h2 style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:40px; letter-spacing:-0.02em; text-transform:uppercase; margin:14px 0 8px;">Применение</h2>
+      <p style="font-family:'Manrope',sans-serif; font-size:16px; color:#8A8F9E; max-width:560px; margin:0 0 40px;">Одна система — все форматы. Везде один и тот же ритм: глубокий фон, плакатный заголовок, циановый акцент.</p>
+
+      <!-- SITE -->
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#565A64; margin-bottom:14px;">Сайт — главный экран</div>
+      <div style="border-radius:8px; overflow:hidden; border:1px solid #20222B; background:#08090C; margin-bottom:56px;">
+        <div style="height:40px; background:#0C0D11; display:flex; align-items:center; padding:0 16px; gap:7px; border-bottom:1px solid #16171D;">
+          <span style="width:10px; height:10px; border-radius:50%; background:#25272F;"></span>
+          <span style="width:10px; height:10px; border-radius:50%; background:#25272F;"></span>
+          <span style="width:10px; height:10px; border-radius:50%; background:#25272F;"></span>
+          <span style="margin-left:14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#565A64;">daniilivanov.ru</span>
+        </div>
+        <div style="padding:28px 44px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #101117;">
+          <span style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:15px;">ДАНИИЛ ИВАНОВ</span>
+          <div style="display:flex; gap:30px; font-family:'Manrope',sans-serif; font-size:14px; font-weight:500; color:#8A8F9E;"><span>Статьи</span><span>Видео</span><span>О практике</span><span style="color:#46D7FF;">Запись</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; padding:64px 44px; align-items:center;">
+          <div>
+            <div style="font-family:'Manrope',sans-serif; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#46D7FF; font-weight:700;">Онлайн-практика · ACT</div>
+            <h3 style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:52px; line-height:0.98; letter-spacing:-0.03em; margin:20px 0 0; text-transform:uppercase;">Работа<br>с тем, что<br>нельзя<br>выключить</h3>
+            <p style="font-family:'Manrope',sans-serif; font-size:17px; line-height:1.6; color:#B4B8C2; margin:24px 0 0; max-width:440px;">Индивидуальные сессии в подходе принятия и ответственности. Доказательно, без поп-психологии и обещаний быстрых решений.</p>
+            <div style="display:flex; gap:14px; margin-top:30px;">
+              <span style="font-family:'Manrope',sans-serif; font-size:15px; font-weight:700; color:#04141A; background:#46D7FF; padding:14px 24px; border-radius:2px; box-shadow:0 0 28px rgba(70,215,255,0.3);">Записаться на консультацию</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:15px; font-weight:600; color:#F2F4F8; padding:14px 24px; border-radius:2px; border:1px solid #2A2D37;">Смотреть на YouTube →</span>
+            </div>
+          </div>
+          <div style="position:relative; aspect-ratio:4/5; border-radius:6px; overflow:hidden; border:1px solid #25272F;">
+            <img src="assets/portrait.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 16%; filter:grayscale(0.88) contrast(1.12) brightness(0.74);">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,9,12,0) 40%, rgba(8,9,12,0.7) 100%);"></div>
+            <div style="position:absolute; inset:0; background:rgba(70,215,255,0.06); mix-blend-mode:screen;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COVERS -->
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#565A64; margin-bottom:14px;">Обложки — YouTube 16:9 · Шортс 9:16</div>
+      <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap; margin-bottom:56px;">
+        <div style="position:relative; height:320px; aspect-ratio:16/9; border-radius:8px; overflow:hidden; border:1px solid #20222B;">
+          <img src="assets/portrait.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:64% 14%; filter:grayscale(0.92) contrast(1.16) brightness(0.6);">
+          <div style="position:absolute; inset:0; background:linear-gradient(95deg, rgba(8,9,12,0.97) 30%, rgba(8,9,12,0.08) 100%);"></div>
+          <div style="position:absolute; inset:0; background:rgba(70,215,255,0.06); mix-blend-mode:screen;"></div>
+          <div style="position:absolute; left:32px; top:30px; right:40%;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.12em; color:#46D7FF;">YOUTUBE · 14 МИН</div>
+            <div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:34px; line-height:1.0; margin-top:16px; text-transform:uppercase; letter-spacing:-0.02em;">Счастье — плохая цель</div>
+          </div>
+          <div style="position:absolute; left:32px; bottom:26px; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; border-radius:50%; background:#46D7FF; box-shadow:0 0 12px #46D7FF;"></span><span style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:12px;">ДАНИИЛ ИВАНОВ</span></div>
+        </div>
+        <div style="position:relative; height:320px; aspect-ratio:9/16; border-radius:8px; overflow:hidden; border:1px solid #20222B;">
+          <img src="assets/portrait.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 12%; filter:grayscale(0.92) contrast(1.16) brightness(0.6);">
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,9,12,0.1) 0%, rgba(8,9,12,0.3) 40%, rgba(8,9,12,0.98) 100%);"></div>
+          <div style="position:absolute; left:18px; right:18px; bottom:22px;">
+            <div style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#04141A; background:#46D7FF; padding:4px 9px; border-radius:2px;">ШОРТС</div>
+            <div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:25px; line-height:1.02; margin-top:14px; text-transform:uppercase; letter-spacing:-0.02em;">Хватит бороться с тревогой</div>
+          </div>
+        </div>
+        <!-- annotation -->
+        <div style="flex:1; min-width:200px; padding-top:6px;">
+          <p style="font-family:'Manrope',sans-serif; font-size:15px; line-height:1.65; color:#8A8F9E; margin:0;">Портрет уводится в почти-монохром, текст — крупный Unbounded слева/снизу, тонкая циановая засечка как подпись бренда. Один акцент держит кадр читаемым в превью-размере.</p>
+        </div>
+      </div>
+
+      <!-- CAROUSEL -->
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#565A64; margin-bottom:14px;">Карусель — Telegram / соцсети (1:1)</div>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:56px;">
+        <!-- slide 1 cover -->
+        <div style="position:relative; width:300px; height:300px; border-radius:6px; overflow:hidden; border:1px solid #20222B; background:#08090C;">
+          <div style="position:absolute; inset:0; padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#46D7FF;">ЗАМЕТКА · 1/7</div>
+            <div>
+              <div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:30px; line-height:1.02; text-transform:uppercase; letter-spacing:-0.02em;">Мысль — это просто мысль</div>
+              <div style="width:40px; height:3px; background:#46D7FF; margin-top:20px; box-shadow:0 0 14px rgba(70,215,255,0.6);"></div>
+            </div>
+            <div style="font-family:'Manrope',sans-serif; font-size:13px; font-weight:600; color:#565A64;">Листайте →</div>
+          </div>
+        </div>
+        <!-- slide 2 content -->
+        <div style="position:relative; width:300px; height:300px; border-radius:6px; overflow:hidden; border:1px solid #20222B; background:#111319;">
+          <div style="position:absolute; inset:0; padding:28px; display:flex; flex-direction:column;">
+            <div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:54px; color:#46D7FF; letter-spacing:-0.03em;">01</div>
+            <div style="font-family:'Manrope',sans-serif; font-weight:700; font-size:20px; line-height:1.25; margin-top:14px;">Заметьте мысль как событие</div>
+            <p style="font-family:'Manrope',sans-serif; font-size:14px; line-height:1.55; color:#8A8F9E; margin:14px 0 0;">«У меня появилась мысль, что я не справлюсь» — вместо «я не справлюсь». Это меняет дистанцию.</p>
+          </div>
+        </div>
+        <!-- slide 3 CTA -->
+        <div style="position:relative; width:300px; height:300px; border-radius:6px; overflow:hidden; border:1px solid #20222B; background:#08090C;">
+          <div style="position:absolute; inset:0; padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div style="display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; border-radius:50%; background:#46D7FF; box-shadow:0 0 12px #46D7FF;"></span><span style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:12px;">ДАНИИЛ ИВАНОВ</span></div>
+            <div>
+              <div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:24px; line-height:1.05; text-transform:uppercase; letter-spacing:-0.02em;">Больше — в Telegram</div>
+              <p style="font-family:'Manrope',sans-serif; font-size:14px; line-height:1.55; color:#8A8F9E; margin:12px 0 0;">Доказательная психология без поп-советов.</p>
+            </div>
+            <span style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:700; color:#04141A; background:#46D7FF; padding:11px 18px; border-radius:2px; align-self:flex-start;">Подписаться →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRESENTATION + INFOGRAPHIC -->
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#565A64; margin-bottom:14px;">Презентация (16:9) · Инфографика</div>
+      <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:24px;">
+        <!-- presentation slide -->
+        <div style="position:relative; aspect-ratio:16/9; border-radius:8px; overflow:hidden; border:1px solid #20222B; background:#08090C;">
+          <div style="position:absolute; inset:0; padding:44px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:#46D7FF;">МОДЕЛЬ ACT · ГЕКСАФЛЕКС</span>
+              <span style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:12px; color:#565A64;">04 / 18</span>
+            </div>
+            <div>
+              <div style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:46px; line-height:1.0; letter-spacing:-0.03em; text-transform:uppercase; max-width:80%;">Шесть процессов гибкости</div>
+              <div style="display:flex; gap:10px; margin-top:26px; flex-wrap:wrap;">
+                <span style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600; color:#B4B8C2; border:1px solid #2A2D37; padding:9px 14px; border-radius:2px;">Принятие</span>
+                <span style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600; color:#B4B8C2; border:1px solid #2A2D37; padding:9px 14px; border-radius:2px;">Разделение</span>
+                <span style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:700; color:#04141A; background:#46D7FF; padding:9px 14px; border-radius:2px;">Контакт с настоящим</span>
+                <span style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600; color:#B4B8C2; border:1px solid #2A2D37; padding:9px 14px; border-radius:2px;">Я-как-контекст</span>
+                <span style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600; color:#B4B8C2; border:1px solid #2A2D37; padding:9px 14px; border-radius:2px;">Ценности</span>
+                <span style="font-family:'Manrope',sans-serif; font-size:14px; font-weight:600; color:#B4B8C2; border:1px solid #2A2D37; padding:9px 14px; border-radius:2px;">Действие</span>
+              </div>
+            </div>
+            <div style="font-family:'Unbounded',sans-serif; font-weight:700; font-size:11px; color:#565A64;">ДАНИИЛ ИВАНОВ · ПСИХОЛОГ</div>
+          </div>
+        </div>
+        <!-- infographic -->
+        <div style="position:relative; aspect-ratio:1/1; border-radius:8px; overflow:hidden; border:1px solid #20222B; background:#111319; max-height:none;">
+          <div style="position:absolute; inset:0; padding:30px; display:flex; flex-direction:column;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#46D7FF;">ОТ СЛИЯНИЯ К ДЕЙСТВИЮ</div>
+            <div style="display:flex; flex-direction:column; gap:14px; margin-top:24px;">
+              <div style="display:flex; align-items:center; gap:14px;"><span style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:16px; color:#565A64; width:24px;">01</span><div style="flex:1; height:34px; background:#1A1D26; border-radius:2px; display:flex; align-items:center; padding:0 14px; font-family:'Manrope',sans-serif; font-size:13px; color:#B4B8C2;">Слияние с мыслью</div></div>
+              <div style="display:flex; align-items:center; gap:14px;"><span style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:16px; color:#565A64; width:24px;">02</span><div style="flex:1; height:42px; background:#1A1D26; border-radius:2px; display:flex; align-items:center; padding:0 14px; font-family:'Manrope',sans-serif; font-size:13px; color:#B4B8C2;">Замечание</div></div>
+              <div style="display:flex; align-items:center; gap:14px;"><span style="font-family:'Unbounded',sans-serif; font-weight:800; font-size:16px; color:#46D7FF; width:24px;">03</span><div style="flex:1; height:52px; background:linear-gradient(90deg,#1E5A6E,#46D7FF); border-radius:2px; display:flex; align-items:center; padding:0 14px; font-family:'Manrope',sans-serif; font-size:14px; font-weight:700; color:#04141A;">Действие по ценностям</div></div>
+            </div>
+            <div style="margin-top:auto; font-family:'Manrope',sans-serif; font-size:12px; color:#565A64; line-height:1.5;">Цель не в том, чтобы убрать мысль, а в том, чтобы вернуть свободу выбора.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

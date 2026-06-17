@@ -4,7 +4,20 @@
       "Bash(php -l:*)",
       "Bash(/c/OSPanel/modules/PHP-8.1/php.exe:*)",
       "Bash(ls:*)",
-      "Bash(echo \"*:*)"
+      "Bash(echo \"*:*)",
+      "Bash(git checkout *)",
+      "Bash(xxd)",
+      "Read(//c//**)",
+      "Bash(npx --yes playwright --version)",
+      "Bash(npm --version)",
+      "Bash(npm ls *)",
+      "Bash(command -v chromium-cli)",
+      "Bash(rm -f \"/c/Users/sunis/AppData/Local/Temp/volt-screens/home2.png\")",
+      "Bash(sed -i 's/theme-card block/theme-card/g' episode.php \"about/index.php\" index.php)",
+      "Bash(grep -rn \"theme-card block\" .)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\sunis\\AppData\\Local\\Temp\\volt-screens"
     ]
   }
 }

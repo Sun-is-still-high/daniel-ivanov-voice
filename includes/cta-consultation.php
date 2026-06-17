@@ -42,18 +42,18 @@ $ctaContent = [
 
 $cta = $ctaContent[$ctaTheme] ?? $ctaContent['site'];
 ?>
-<div class="cta-panel mt-16 rounded-[2rem] p-8 md:p-10 text-white shadow-2xl">
+<div class="cta-panel mt-16 rounded-[8px] p-8 md:p-10">
     <div class="relative z-10 max-w-3xl">
-        <p class="soft-kicker mb-3 text-slate-200"><?= e($cta['kicker']) ?></p>
-        <h2 class="display-title text-3xl md:text-5xl mb-4 text-white"><?= e($cta['title']) ?></h2>
-        <p class="text-slate-300 text-lg leading-relaxed max-w-2xl mb-6">
+        <p class="soft-kicker mb-3"><?= e($cta['kicker']) ?></p>
+        <h2 class="display-title text-3xl md:text-4xl mb-4"><?= e($cta['title']) ?></h2>
+        <p class="text-[color:var(--ink-2)] text-lg leading-relaxed max-w-2xl mb-6">
             <?= e($cta['body']) ?>
         </p>
         <a
             href="<?= e($SITE_CONFIG['social']['contacts']) ?>"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-7 py-4 bg-white hover:bg-slate-100 text-slate-900 font-semibold rounded-2xl transition-colors"
+            class="btn-accent inline-flex items-center gap-2 px-7 py-4 transition-colors"
         >
             <?= e($cta['button']) ?>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

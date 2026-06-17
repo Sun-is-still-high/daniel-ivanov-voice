@@ -9,7 +9,7 @@ $episodeSlug = (string) ($_GET['episode'] ?? '');
 if ($categoryKey === '' || $episodeSlug === '' || empty($SITE_CONFIG['categories'][$categoryKey])) {
     header('HTTP/1.0 404 Not Found');
     require_once __DIR__ . '/includes/header.php';
-    echo '<main class="container mx-auto px-6 md:px-8 py-16 md:py-24"><div class="section-shell rounded-[2rem] p-10"><h1 class="display-title text-4xl mb-4">Страница не найдена</h1><p class="text-slate-600">Такого выпуска нет.</p></div></main>';
+    echo '<main class="container mx-auto px-6 md:px-8 py-16 md:py-24"><div class="section-shell rounded-[2rem] p-10"><h1 class="display-title text-4xl mb-4">Страница не найдена</h1><p class="text-[color:var(--ink-3)]">Такого выпуска нет.</p></div></main>';
     require_once __DIR__ . '/includes/footer.php';
     exit;
 }
@@ -18,7 +18,7 @@ $audio = getRssEpisodeBySlug($categoryKey, $episodeSlug);
 if (!$audio) {
     header('HTTP/1.0 404 Not Found');
     require_once __DIR__ . '/includes/header.php';
-    echo '<main class="container mx-auto px-6 md:px-8 py-16 md:py-24"><div class="section-shell rounded-[2rem] p-10"><h1 class="display-title text-4xl mb-4">Страница не найдена</h1><p class="text-slate-600">Такого выпуска нет.</p></div></main>';
+    echo '<main class="container mx-auto px-6 md:px-8 py-16 md:py-24"><div class="section-shell rounded-[2rem] p-10"><h1 class="display-title text-4xl mb-4">Страница не найдена</h1><p class="text-[color:var(--ink-3)]">Такого выпуска нет.</p></div></main>';
     require_once __DIR__ . '/includes/footer.php';
     exit;
 }
@@ -95,7 +95,7 @@ require_once __DIR__ . '/includes/header.php';
                         <?php endif; ?>
                     </div>
                     <h1 class="episode-title text-4xl md:text-6xl mb-5"><?= e($audio['title']) ?></h1>
-                    <p class="text-lg text-slate-600 leading-relaxed max-w-3xl" itemprop="description">
+                    <p class="text-lg text-[color:var(--ink-3)] leading-relaxed max-w-3xl" itemprop="description">
                         <?= formatDescription($audio['description']) ?>
                     </p>
                 </div>
@@ -122,7 +122,7 @@ require_once __DIR__ . '/includes/header.php';
 
                 <div class="pt-2">
                     <div class="quote-panel rounded-[1.5rem] p-6 mb-6">
-                        <p class="relative z-10 text-slate-700 leading-relaxed">
+                        <p class="relative z-10 text-[color:var(--ink-2)] leading-relaxed">
                             <?= e($categoryInfo['story']) ?>
                         </p>
                     </div>
@@ -142,8 +142,8 @@ require_once __DIR__ . '/includes/header.php';
             <aside class="space-y-6">
                 <div class="episode-sidebar-card sticky top-28">
                     <p class="soft-kicker mb-3">Об авторе</p>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-3"><?= e($SITE_CONFIG['author']['name']) ?></h2>
-                    <p class="text-slate-600 leading-relaxed mb-4"><?= e($SITE_CONFIG['author']['bio']) ?></p>
+                    <h2 class="text-2xl font-bold text-[color:var(--ink)] mb-3"><?= e($SITE_CONFIG['author']['name']) ?></h2>
+                    <p class="text-[color:var(--ink-3)] leading-relaxed mb-4"><?= e($SITE_CONFIG['author']['bio']) ?></p>
                     <a
                         href="<?= e($SITE_CONFIG['author']['website']) ?>"
                         target="_blank"
@@ -157,12 +157,12 @@ require_once __DIR__ . '/includes/header.php';
                 <?php if (count($relatedAudio) > 0): ?>
                     <div class="episode-sidebar-card">
                         <p class="soft-kicker mb-3">Рядом по теме</p>
-                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Похожие записи</h2>
+                        <h2 class="text-2xl font-bold text-[color:var(--ink)] mb-4">Похожие записи</h2>
                         <div class="space-y-4">
                             <?php foreach ($relatedAudio as $related): ?>
-                                <a href="<?= e($related['pageUrl']) ?>" class="theme-card block">
-                                    <h3 class="font-semibold text-slate-900 mb-2 line-clamp-2"><?= e($related['title']) ?></h3>
-                                    <div class="flex flex-wrap gap-3 text-sm text-slate-500">
+                                <a href="<?= e($related['pageUrl']) ?>" class="theme-card">
+                                    <h3 class="font-semibold text-[color:var(--ink)] mb-2 line-clamp-2"><?= e($related['title']) ?></h3>
+                                    <div class="flex flex-wrap gap-3 text-sm text-[color:var(--ink-3)]">
                                         <?php if (!empty($related['duration'])): ?>
                                             <span><?= e($related['duration']) ?></span>
                                         <?php endif; ?>

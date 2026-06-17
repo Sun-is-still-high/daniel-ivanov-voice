@@ -50,8 +50,8 @@ $categorySchema = [
                         <?= e($categoryInfo['description']) ?>
                     </p>
                     <div class="podcast-story-panel max-w-3xl">
-                        <p class="soft-kicker mb-3 text-violet-700">Оптика подкаста</p>
-                        <p class="text-slate-700 leading-relaxed text-lg">
+                        <p class="soft-kicker mb-3">Оптика подкаста</p>
+                        <p class="text-[color:var(--ink-2)] leading-relaxed text-lg">
                             <?= e($categoryInfo['story']) ?>
                         </p>
                     </div>
@@ -61,20 +61,20 @@ $categorySchema = [
 
         <section class="podcast-metrics-grid mb-8">
             <article class="podcast-metric-card">
-                <p class="soft-kicker mb-3 text-violet-700">Характер</p>
-                <p class="text-slate-700 leading-relaxed">Интеллектуальный, спорящий, местами неуспокаивающий. Не терапия-как-сервис, а разговор о психологии, в котором хочется участвовать, а не просто потреблять выводы.</p>
+                <p class="soft-kicker mb-3">Характер</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Интеллектуальный, спорящий, местами неуспокаивающий. Не терапия-как-сервис, а разговор о психологии, в котором хочется участвовать, а не просто потреблять выводы.</p>
             </article>
             <article class="podcast-metric-card">
-                <p class="soft-kicker mb-3 text-violet-700">Собеседник</p>
-                <p class="text-slate-700 leading-relaxed">Технари, системно мыслящие люди и все, кому важно понимать не только что чувствовать, но и как устроены выгорание, стресс, защита психики и изменения в терапии.</p>
+                <p class="soft-kicker mb-3">Собеседник</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Технари, системно мыслящие люди и все, кому важно понимать не только что чувствовать, но и как устроены выгорание, стресс, защита психики и изменения в терапии.</p>
             </article>
             <article class="podcast-metric-card">
-                <p class="soft-kicker mb-3 text-violet-700">В ленте</p>
+                <p class="soft-kicker mb-3">В ленте</p>
                 <div class="flex items-end gap-3 mb-2">
                     <span class="podcast-stat"><?= count($sortedAudio) ?></span>
-                    <span class="text-slate-600 font-semibold mb-1"><?= pluralRecords(count($sortedAudio)) ?></span>
+                    <span class="text-[color:var(--ink-3)] font-semibold mb-1"><?= pluralRecords(count($sortedAudio)) ?></span>
                 </div>
-                <p class="text-slate-700 leading-relaxed">Длиннее, глубже и плотнее по идеям, чем остальные линии проекта.</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Длиннее, глубже и плотнее по идеям, чем остальные линии проекта.</p>
             </article>
         </section>
 
@@ -82,10 +82,10 @@ $categorySchema = [
             <section class="podcast-stream-panel mb-12">
                 <div class="podcast-section-heading">
                     <div>
-                        <p class="soft-kicker mb-3 text-violet-700">Площадки</p>
+                        <p class="soft-kicker mb-3">Площадки</p>
                         <h2 class="display-title text-4xl md:text-5xl">Слушать там, где вам удобно</h2>
                     </div>
-                    <p class="max-w-2xl text-slate-600 leading-relaxed">
+                    <p class="max-w-2xl text-[color:var(--ink-3)] leading-relaxed">
                         Подкаст живет не в одном приложении. Можно выбрать привычную среду и не менять свои маршруты ради контента.
                     </p>
                 </div>
@@ -97,8 +97,8 @@ $categorySchema = [
                             rel="noopener noreferrer"
                             class="podcast-platform-card hover:-translate-y-1 transition-transform"
                         >
-                            <p class="soft-kicker mb-2 text-violet-700">Площадка</p>
-                            <p class="text-xl font-semibold text-slate-900"><?= e($platform['name']) ?></p>
+                            <p class="soft-kicker mb-2">Площадка</p>
+                            <p class="text-xl font-semibold text-[color:var(--ink)]"><?= e($platform['name']) ?></p>
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -108,10 +108,10 @@ $categorySchema = [
         <section class="podcast-stream-panel mb-16">
             <div class="podcast-section-heading">
                 <div>
-                    <p class="soft-kicker mb-3 text-violet-700">Архив выпусков</p>
+                    <p class="soft-kicker mb-3">Архив выпусков</p>
                     <h2 class="display-title text-4xl md:text-5xl">Разговоры, в которые не стоит заходить с края</h2>
                 </div>
-                <p class="max-w-2xl text-slate-600 leading-relaxed">
+                <p class="max-w-2xl text-[color:var(--ink-3)] leading-relaxed">
                     Эта лента не про фон. Здесь лучше слушать с вниманием: мысли цепляются друг за друга, а вопросы часто звучат важнее ответов.
                 </p>
             </div>

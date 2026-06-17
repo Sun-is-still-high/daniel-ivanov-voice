@@ -50,8 +50,8 @@ $categorySchema = [
                         <?= e($categoryInfo['description']) ?>
                     </p>
                     <div class="podcast-story-panel max-w-3xl">
-                        <p class="soft-kicker mb-3 text-emerald-700">Для какого состояния</p>
-                        <p class="text-slate-700 leading-relaxed text-lg">
+                        <p class="soft-kicker mb-3">Для какого состояния</p>
+                        <p class="text-[color:var(--ink-2)] leading-relaxed text-lg">
                             <?= e($categoryInfo['story']) ?>
                         </p>
                     </div>
@@ -61,41 +61,41 @@ $categorySchema = [
 
         <section class="podcast-notes-grid mb-12">
             <article class="podcast-note-card">
-                <p class="soft-kicker mb-3 text-emerald-700">Когда включать</p>
-                <p class="text-slate-700 leading-relaxed">После перегруженного дня, между задачами, перед сном или в тот момент, когда тревога, внутренний шум и усталость стали громче вас.</p>
+                <p class="soft-kicker mb-3">Когда включать</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">После перегруженного дня, между задачами, перед сном или в тот момент, когда тревога, внутренний шум и усталость стали громче вас.</p>
             </article>
             <article class="podcast-note-card">
-                <p class="soft-kicker mb-3 text-emerald-700">Как звучит</p>
-                <p class="text-slate-700 leading-relaxed">Мягко, медленно и без избыточной драматизации. Здесь важны пауза, дыхание и возвращение внимания в тело, а не эффектная подача.</p>
+                <p class="soft-kicker mb-3">Как звучит</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Мягко, медленно и без избыточной драматизации. Здесь важны пауза, дыхание и возвращение внимания в тело, а не эффектная подача.</p>
             </article>
         </section>
 
         <section class="podcast-metrics-grid mb-12">
             <article class="podcast-metric-card">
-                <p class="soft-kicker mb-3 text-emerald-700">Ритм</p>
-                <p class="text-slate-700 leading-relaxed">Короткие, понятные практики без перегруза терминами. Формат, который не требует специальной подготовки.</p>
+                <p class="soft-kicker mb-3">Ритм</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Короткие, понятные практики без перегруза терминами. Формат, который не требует специальной подготовки.</p>
             </article>
             <article class="podcast-metric-card">
-                <p class="soft-kicker mb-3 text-emerald-700">Эффект</p>
-                <p class="text-slate-700 leading-relaxed">Не убежать от жизни, а немного приглушить шум, чтобы снова почувствовать опору в настоящем моменте.</p>
+                <p class="soft-kicker mb-3">Эффект</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Не убежать от жизни, а немного приглушить шум, чтобы снова почувствовать опору в настоящем моменте.</p>
             </article>
             <article class="podcast-metric-card">
-                <p class="soft-kicker mb-3 text-emerald-700">В ленте</p>
+                <p class="soft-kicker mb-3">В ленте</p>
                 <div class="flex items-end gap-3 mb-2">
                     <span class="podcast-stat"><?= count($sortedAudio) ?></span>
-                    <span class="text-slate-600 font-semibold mb-1"><?= pluralRecords(count($sortedAudio)) ?></span>
+                    <span class="text-[color:var(--ink-3)] font-semibold mb-1"><?= pluralRecords(count($sortedAudio)) ?></span>
                 </div>
-                <p class="text-slate-700 leading-relaxed">Короткие практики, к которым удобно возвращаться и не нужно долго «созревать».</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Короткие практики, к которым удобно возвращаться и не нужно долго «созревать».</p>
             </article>
         </section>
 
         <section class="podcast-stream-panel mb-16">
             <div class="podcast-section-heading">
                 <div>
-                    <p class="soft-kicker mb-3 text-emerald-700">Лента практик</p>
+                    <p class="soft-kicker mb-3">Лента практик</p>
                     <h2 class="display-title text-4xl md:text-5xl">Пространство, где можно немного выдохнуть</h2>
                 </div>
-                <p class="max-w-2xl text-slate-600 leading-relaxed">
+                <p class="max-w-2xl text-[color:var(--ink-3)] leading-relaxed">
                     Выпуски лучше работают не как марафон, а как точечная поддержка. Выбирайте по состоянию, а не по порядку.
                 </p>
             </div>

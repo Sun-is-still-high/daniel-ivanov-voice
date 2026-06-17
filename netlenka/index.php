@@ -27,9 +27,9 @@ require_once __DIR__ . '/../includes/header.php';
                 <div>
                     <span class="category-chip mb-5">Аудиоблог</span>
                     <h1 class="display-title text-5xl md:text-7xl mb-5"><?= e($categoryInfo['title']) ?></h1>
-                    <p class="text-xl text-slate-700 leading-relaxed mb-6"><?= e($categoryInfo['description']) ?></p>
+                    <p class="text-xl text-[color:var(--ink-2)] leading-relaxed mb-6"><?= e($categoryInfo['description']) ?></p>
                     <div class="quote-panel rounded-[1.5rem] p-6">
-                        <p class="relative z-10 text-slate-700 leading-relaxed"><?= e($categoryInfo['story']) ?></p>
+                        <p class="relative z-10 text-[color:var(--ink-2)] leading-relaxed"><?= e($categoryInfo['story']) ?></p>
                     </div>
                 </div>
             </div>
@@ -37,16 +37,16 @@ require_once __DIR__ . '/../includes/header.php';
 
         <section class="grid md:grid-cols-3 gap-6 mb-12">
             <div class="theme-card">
-                <p class="soft-kicker mb-3 text-blue-700">Тембр</p>
-                <p class="text-slate-700 leading-relaxed">Редакционный, плотный, без лишней нежности. Словно заметки на полях о психологии и жизни, которые читают вслух.</p>
+                <p class="soft-kicker mb-3">Тембр</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Редакционный, плотный, без лишней нежности. Словно заметки на полях о психологии и жизни, которые читают вслух.</p>
             </div>
             <div class="theme-card">
-                <p class="soft-kicker mb-3 text-blue-700">Для кого</p>
-                <p class="text-slate-700 leading-relaxed">Для тех, кому нужен короткий, точный и иногда неудобный разговор о психологии, терапии, самообмане и жизни без красивых ширм.</p>
+                <p class="soft-kicker mb-3">Для кого</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed">Для тех, кому нужен короткий, точный и иногда неудобный разговор о психологии, терапии, самообмане и жизни без красивых ширм.</p>
             </div>
             <div class="theme-card">
-                <p class="soft-kicker mb-3 text-blue-700">Формат</p>
-                <p class="text-slate-700 leading-relaxed"><?= count($sortedAudio) ?> <?= pluralRecords(count($sortedAudio)) ?> в ленте. Небольшие выпуски, которые хочется включить между делами.</p>
+                <p class="soft-kicker mb-3">Формат</p>
+                <p class="text-[color:var(--ink-2)] leading-relaxed"><?= count($sortedAudio) ?> <?= pluralRecords(count($sortedAudio)) ?> в ленте. Небольшие выпуски, которые хочется включить между делами.</p>
             </div>
         </section>
 
@@ -54,10 +54,10 @@ require_once __DIR__ . '/../includes/header.php';
             <section class="podcast-stream-panel mb-12">
                 <div class="podcast-section-heading">
                     <div>
-                        <p class="soft-kicker mb-3 text-blue-700">Площадки</p>
+                        <p class="soft-kicker mb-3">Площадки</p>
                         <h2 class="display-title text-4xl md:text-5xl">Слушать там, где вам удобно</h2>
                     </div>
-                    <p class="max-w-2xl text-slate-600 leading-relaxed">
+                    <p class="max-w-2xl text-[color:var(--ink-3)] leading-relaxed">
                         Выберите удобную платформу и продолжайте слушать в привычной среде.
                     </p>
                 </div>
@@ -69,8 +69,8 @@ require_once __DIR__ . '/../includes/header.php';
                             rel="noopener noreferrer"
                             class="podcast-platform-card hover:-translate-y-1 transition-transform"
                         >
-                            <p class="soft-kicker mb-2 text-blue-700">Площадка</p>
-                            <p class="text-xl font-semibold text-slate-900"><?= e($platform['name']) ?></p>
+                            <p class="soft-kicker mb-2">Площадка</p>
+                            <p class="text-xl font-semibold text-[color:var(--ink)]"><?= e($platform['name']) ?></p>
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -80,10 +80,10 @@ require_once __DIR__ . '/../includes/header.php';
         <section class="mb-16">
             <div class="flex items-end justify-between gap-6 mb-8 flex-wrap">
                 <div>
-                    <p class="soft-kicker mb-3 text-blue-700">Лента выпусков</p>
+                    <p class="soft-kicker mb-3">Лента выпусков</p>
                     <h2 class="display-title text-4xl md:text-5xl">Честные записи без воды</h2>
                 </div>
-                <p class="max-w-2xl text-slate-600 leading-relaxed">
+                <p class="max-w-2xl text-[color:var(--ink-3)] leading-relaxed">
                     Здесь работает тот же принцип, что и во всём проекте: один выпуск, одна мысль, один точный поворот внимания.
                 </p>
             </div>
@@ -95,7 +95,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <div class="section-shell rounded-[2rem] p-10 text-center text-slate-600">
+                <div class="section-shell rounded-[2rem] p-10 text-center text-[color:var(--ink-3)]">
                     Выпуски скоро появятся.
                 </div>
             <?php endif; ?>

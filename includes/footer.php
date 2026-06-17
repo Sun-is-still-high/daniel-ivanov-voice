@@ -38,48 +38,48 @@ $footerContent = [
 $footer = $footerContent[$footerTheme] ?? $footerContent['site'];
 ?>
 
-<footer class="mt-20 text-slate-300">
+<footer class="mt-20 text-[color:var(--ink-2)]">
     <div class="container mx-auto px-6 md:px-8">
-        <div class="footer-shell rounded-[2rem] p-8 md:p-10">
+        <div class="footer-shell rounded-[8px] p-8 md:p-10">
             <div class="relative z-10 grid gap-10 md:grid-cols-[1.15fr_0.85fr_0.85fr]">
                 <div class="footer-card">
                     <p class="footer-kicker mb-3"><?= e($footer['kicker']) ?></p>
-                    <h3 class="site-logo text-2xl text-white mb-4"><?= e($SITE_CONFIG['title']) ?></h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4"><?= e($footer['lead']) ?></p>
-                    <p class="text-sm text-slate-400 leading-relaxed"><?= e($footer['note']) ?></p>
+                    <h3 class="site-logo text-xl mb-4"><?= e($SITE_CONFIG['title']) ?></h3>
+                    <p class="text-sm text-[color:var(--ink-2)] leading-relaxed mb-4"><?= e($footer['lead']) ?></p>
+                    <p class="text-sm text-[color:var(--ink-3)] leading-relaxed"><?= e($footer['note']) ?></p>
                 </div>
 
                 <div class="footer-card">
-                    <h3 class="text-lg font-semibold text-white mb-4">Разделы сайта</h3>
+                    <h3 class="text-lg font-semibold text-[color:var(--ink)] mb-4">Разделы сайта</h3>
                     <ul class="space-y-2">
                         <?php foreach ($SITE_CONFIG['categories'] as $key => $category): ?>
                             <li>
                                 <?php if ($category['disabled']): ?>
-                                    <span class="text-slate-500"><?= e($category['title']) ?> <span class="text-xs">(Скоро)</span></span>
+                                    <span class="text-[color:var(--ink-4)]"><?= e($category['title']) ?> <span class="text-xs">(Скоро)</span></span>
                                 <?php else: ?>
-                                    <a href="/<?= e($key) ?>/" class="footer-link text-slate-300 transition-colors"><?= e($category['title']) ?></a>
+                                    <a href="/<?= e($key) ?>/" class="footer-link text-[color:var(--ink-2)] transition-colors"><?= e($category['title']) ?></a>
                                 <?php endif; ?>
                             </li>
                         <?php endforeach; ?>
-                        <li><a href="/about/" class="footer-link text-slate-300 transition-colors">О проекте</a></li>
+                        <li><a href="/about/" class="footer-link text-[color:var(--ink-2)] transition-colors">О проекте</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-card">
-                    <h3 class="text-lg font-semibold text-white mb-4">Контакты и площадки</h3>
+                    <h3 class="text-lg font-semibold text-[color:var(--ink)] mb-4">Контакты и площадки</h3>
                     <div class="space-y-2 text-sm">
-                        <a href="<?= e($SITE_CONFIG['social']['telegram']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Telegram</a>
-                        <a href="<?= e($SITE_CONFIG['social']['telegramChannel']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Telegram-канал</a>
-                        <a href="<?= e($SITE_CONFIG['social']['youtube']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">YouTube</a>
-                        <a href="<?= e($SITE_CONFIG['social']['blog']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Блог</a>
-                        <a href="<?= e($SITE_CONFIG['social']['contacts']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-slate-300 transition-colors">Запись на консультацию</a>
+                        <a href="<?= e($SITE_CONFIG['social']['telegram']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-[color:var(--ink-2)] transition-colors">Telegram</a>
+                        <a href="<?= e($SITE_CONFIG['social']['telegramChannel']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-[color:var(--ink-2)] transition-colors">Telegram-канал</a>
+                        <a href="<?= e($SITE_CONFIG['social']['youtube']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-[color:var(--ink-2)] transition-colors">YouTube</a>
+                        <a href="<?= e($SITE_CONFIG['social']['blog']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-[color:var(--ink-2)] transition-colors">Блог</a>
+                        <a href="<?= e($SITE_CONFIG['social']['contacts']) ?>" target="_blank" rel="noopener noreferrer" class="footer-link block text-[color:var(--ink-2)] transition-colors">Запись на консультацию</a>
                     </div>
                 </div>
             </div>
 
-            <div class="relative z-10 mt-10 pt-8 border-t border-white/10 text-sm text-slate-400 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div class="relative z-10 mt-10 pt-8 border-t border-[color:var(--line)] text-sm text-[color:var(--ink-3)] flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <p>&copy; <?= $currentYear ?> <?= e($SITE_CONFIG['author']['name']) ?>.</p>
-                <a href="/privacy/" class="footer-link underline underline-offset-2 text-slate-300 transition-colors">Политика конфиденциальности</a>
+                <a href="/privacy/" class="footer-link underline underline-offset-2 text-[color:var(--ink-2)] transition-colors">Политика конфиденциальности</a>
             </div>
         </div>
     </div>
@@ -140,13 +140,13 @@ document.querySelectorAll('.audio-player-container').forEach((container) => {
 });
 </script>
 
-<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-slate-700 px-4 py-4 md:px-8" style="display:none">
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 border-t px-4 py-4 md:px-8" style="display:none">
     <div class="container mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <p class="text-sm text-slate-300 leading-relaxed">
+        <p class="text-sm text-[color:var(--ink-2)] leading-relaxed">
             Сайт использует cookie и Яндекс Метрику, чтобы понимать посещаемость и улучшать содержимое без навязчивого трекинга.
-            <a href="/privacy/" class="text-slate-200 underline underline-offset-2 hover:text-white whitespace-nowrap">Подробнее</a>
+            <a href="/privacy/" class="text-[color:var(--ink)] underline underline-offset-2 hover:text-[color:var(--accent)] whitespace-nowrap">Подробнее</a>
         </p>
-        <button id="cookie-accept" type="button" class="flex-shrink-0 px-5 py-2 bg-white hover:bg-slate-100 text-slate-900 text-sm font-semibold rounded-lg transition-colors">
+        <button id="cookie-accept" type="button" class="btn-accent flex-shrink-0 px-5 py-2 text-sm rounded-[2px] transition-colors">
             Принять
         </button>
     </div>

@@ -108,7 +108,7 @@ function formatDescription($text) {
     $escaped = htmlspecialchars((string)$text, ENT_QUOTES, 'UTF-8');
     return preg_replace(
         '/(https?:\/\/[^\s]+)/i',
-        '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline break-all">$1</a>',
+        '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[color:var(--accent)] hover:underline break-all">$1</a>',
         $escaped
     );
 }
@@ -230,26 +230,26 @@ function renderAudioCard($audio) {
   </div>
   <div class="p-7 md:p-8">
     <div class="flex items-start justify-between mb-4">
-      <span class="text-xs font-semibold px-4 py-2 rounded-full border {$badgeColor}" itemprop="genre">
+      <span class="category-badge text-xs px-4 py-2 rounded-[2px] border {$badgeColor}" itemprop="genre">
         {$categoryLabel}
       </span>
-      <span class="text-sm text-slate-500 font-medium" itemprop="duration">{$duration}</span>
+      <span class="text-sm text-[color:var(--ink-3)] font-medium" itemprop="duration">{$duration}</span>
     </div>
 
-    <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-3 line-clamp-2 break-words">
+    <h3 class="text-xl md:text-2xl font-bold text-[color:var(--ink)] mb-3 line-clamp-2 break-words">
       <a href="{$audioUrl}"{$linkAttrs} class="hover:opacity-80 transition-opacity" itemprop="url">
         <span itemprop="name">{$title}</span>
       </a>
     </h3>
 
-    <p class="text-slate-600 text-base leading-relaxed mb-5 line-clamp-2 break-words" itemprop="description">
+    <p class="text-[color:var(--ink-2)] text-base leading-relaxed mb-5 line-clamp-2 break-words" itemprop="description">
       {$descriptionHtml}
     </p>
 
     <div class="flex gap-3">
       <a
         href="{$audioUrl}"{$linkAttrs}
-        class="flex-1 px-5 py-3 btn-accent text-sm font-medium rounded-xl transition-all text-center"
+        class="flex-1 px-5 py-3 btn-accent text-sm font-medium transition-all text-center"
       >
         Прослушать
       </a>
@@ -283,12 +283,12 @@ function renderPodcastEpisode($audio) {
     $durationHtml = '';
     if (!empty($audio['duration']) && $audio['duration'] !== '00:00') {
         $durationHtml = <<<HTML
-        <span class="text-sm text-slate-500 font-medium">{$duration}</span>
+        <span class="text-sm text-[color:var(--ink-3)] font-medium">{$duration}</span>
 HTML;
     }
 
     return <<<HTML
-<article class="episode-card rounded-2xl transition-all duration-300" data-category="{$category}" itemscope itemtype="https://schema.org/AudioObject">
+<article class="episode-card transition-all duration-300" data-category="{$category}" itemscope itemtype="https://schema.org/AudioObject">
   <meta itemprop="name" content="{$title}">
   <meta itemprop="description" content="{$description}">
   <meta itemprop="contentUrl" content="{$audioFile}">
@@ -300,25 +300,25 @@ HTML;
     <div class="flex flex-col md:flex-row md:items-center gap-5">
       <div class="flex-1 min-w-0">
         <div class="flex flex-wrap items-center gap-2 mb-3">
-          <span class="text-xs font-semibold px-3 py-1.5 rounded-full border {$badgeColor}">
+          <span class="category-badge text-xs px-3 py-1.5 rounded-[2px] border {$badgeColor}">
             {$categoryLabel}
           </span>
           <span class="episode-meta-pill">{$date}</span>
           {$durationHtml}
         </div>
-        <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2">
+        <h3 class="text-xl md:text-2xl font-bold text-[color:var(--ink)] mb-2">
           <a href="{$audioUrl}"{$linkAttrs} class="hover:opacity-80 transition-opacity" itemprop="url">
             {$title}
           </a>
         </h3>
-        <p class="text-slate-600 leading-relaxed line-clamp-3" itemprop="description">
+        <p class="text-[color:var(--ink-2)] leading-relaxed line-clamp-3" itemprop="description">
           {$descriptionHtml}
         </p>
       </div>
       <div class="flex gap-3 md:flex-shrink-0">
         <a
           href="{$audioUrl}"{$linkAttrs}
-          class="px-6 py-3 btn-accent text-sm font-medium rounded-xl transition-all text-center whitespace-nowrap"
+          class="px-6 py-3 btn-accent text-sm font-medium transition-all text-center whitespace-nowrap"
         >
           Прослушать
         </a>
@@ -346,7 +346,7 @@ function renderAudioPlayer($audio) {
   <div class="flex gap-3 flex-wrap">
     <button
       type="button"
-      class="play-pause-btn px-6 py-3 btn-accent font-semibold rounded-lg transition-all flex items-center gap-2"
+      class="play-pause-btn px-6 py-3 btn-accent font-semibold transition-all flex items-center gap-2"
       aria-label="Воспроизвести / Пауза"
     >
       <svg class="play-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -360,7 +360,7 @@ function renderAudioPlayer($audio) {
 
     <button
       type="button"
-      class="skip-back-btn px-4 py-3 bg-slate-200 hover:bg-slate-300 text-slate-900 font-semibold rounded-lg transition-colors flex items-center gap-2"
+      class="skip-back-btn btn-ghost px-4 py-3 font-semibold transition-colors flex items-center gap-2"
       aria-label="Назад на 10 секунд"
       title="Назад на 10 секунд"
     >
@@ -372,7 +372,7 @@ function renderAudioPlayer($audio) {
 
     <button
       type="button"
-      class="skip-forward-btn px-4 py-3 bg-slate-200 hover:bg-slate-300 text-slate-900 font-semibold rounded-lg transition-colors flex items-center gap-2"
+      class="skip-forward-btn btn-ghost px-4 py-3 font-semibold transition-colors flex items-center gap-2"
       aria-label="Вперёд на 10 секунд"
       title="Вперёд на 10 секунд"
     >
@@ -385,7 +385,7 @@ function renderAudioPlayer($audio) {
     <a
       href="{$audioFile}"
       download
-      class="px-6 py-3 border-2 border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 font-semibold rounded-lg transition-colors flex items-center gap-2"
+      class="btn-ghost px-6 py-3 font-semibold transition-colors flex items-center gap-2"
       aria-label="Скачать аудио"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -406,15 +406,15 @@ function renderPlatformButtons($platforms) {
         return '';
     }
 
-    $html = '<div class="border-t border-slate-100 pt-6 px-6 pb-6">';
-    $html .= '<h2 class="text-xl font-bold text-slate-900 mb-4">Слушать на платформах</h2>';
+    $html = '<div class="border-t border-[color:var(--line)] pt-6 px-6 pb-6">';
+    $html .= '<h2 class="text-xl font-bold text-[color:var(--ink)] mb-4">Слушать на платформах</h2>';
     $html .= '<div class="flex flex-wrap gap-3">';
 
     foreach ($platforms as $platform) {
         $name = e($platform['name']);
         $url = e($platform['url']);
         $html .= '<a href="' . $url . '" target="_blank" rel="noopener noreferrer" ';
-        $html .= 'class="inline-flex items-center gap-2 px-5 py-3 btn-accent font-medium rounded-xl transition-all">';
+        $html .= 'class="inline-flex items-center gap-2 px-5 py-3 btn-accent font-medium transition-all">';
         $html .= '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">';
         $html .= '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>';
         $html .= '</svg>';
@@ -432,7 +432,7 @@ function renderBreadcrumbs($items) {
     $html = '<nav aria-label="Breadcrumb" class="mb-8">
   <ol class="flex items-center gap-2 text-sm flex-wrap">
     <li class="flex items-center">
-      <a href="/" class="breadcrumb-link flex items-center gap-1 text-slate-600 transition-colors" aria-label="Главная">
+      <a href="/" class="breadcrumb-link flex items-center gap-1 text-[color:var(--ink-2)] transition-colors" aria-label="Главная">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
         </svg>
@@ -446,15 +446,15 @@ function renderBreadcrumbs($items) {
         $label = e($item['label']);
 
         $html .= '<li class="flex items-center gap-2">
-      <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-4 h-4 text-[color:var(--ink-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
       </svg>';
 
         if ($isLast || empty($item['href'])) {
-            $html .= '<span class="text-slate-900 font-medium"' . ($isLast ? ' aria-current="page"' : '') . '>' . $label . '</span>';
+            $html .= '<span class="text-[color:var(--ink)] font-medium"' . ($isLast ? ' aria-current="page"' : '') . '>' . $label . '</span>';
         } else {
             $href = e($item['href']);
-            $html .= '<a href="' . $href . '" class="breadcrumb-link text-slate-600 transition-colors">' . $label . '</a>';
+            $html .= '<a href="' . $href . '" class="breadcrumb-link text-[color:var(--ink-2)] transition-colors">' . $label . '</a>';
         }
 
         $html .= '</li>';
